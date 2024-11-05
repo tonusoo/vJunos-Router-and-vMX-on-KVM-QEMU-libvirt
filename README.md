@@ -2,17 +2,17 @@
 
 Network topology used as an example:
 
-![Juniper vXM virtualized with KVM-QEMU-libvirt stack in Debian 12](https://github.com/tonusoo/vMX-without-Juniper-orchestration-scripts/blob/main/imgs/Juniper_vXM_virtualized_with_KVM-QEMU-libvirt_stack_in_Debian_12.png)
+![Juniper vXM virtualized with KVM-QEMU-libvirt stack in Debian 12](https://github.com/tonusoo/vJunos-Router-and-vMX-on-KVM-QEMU-libvirt/blob/main/imgs/Juniper_vXM_virtualized_with_KVM-QEMU-libvirt_stack_in_Debian_12.png)
 
 ### Host machine network configuration
 
-[Network configuration](https://github.com/tonusoo/vMX-without-Juniper-orchestration-scripts/blob/main/misc/vMX_lab_host_network_config.txt) of the host machine is managed by `systemd-networkd`:
+[Network configuration](https://github.com/tonusoo/vJunos-Router-and-vMX-on-KVM-QEMU-libvirt/blob/main/misc/vMX_lab_host_network_config.txt) of the host machine is managed by `systemd-networkd`:
 
-![vMX lab host network config](https://github.com/tonusoo/vMX-without-Juniper-orchestration-scripts/blob/main/imgs/vMX_lab_host_network_config.png)
+![vMX lab host network config](https://github.com/tonusoo/vJunos-Router-and-vMX-on-KVM-QEMU-libvirt/blob/main/imgs/vMX_lab_host_network_config.png)
 
 Output of `networkctl` once the `a-r1`, `a-r2` and `a-r42` routers are running:
 
-![output of networkctl](https://github.com/tonusoo/vMX-without-Juniper-orchestration-scripts/blob/main/imgs/vMX_lab_networkctl_output.png)
+![output of networkctl](https://github.com/tonusoo/vJunos-Router-and-vMX-on-KVM-QEMU-libvirt/blob/main/imgs/vMX_lab_networkctl_output.png)
 
 Resources like VMs, Linux bridges and TAP interfaces related to `iasb-class` project have the `a-` prefix. For example, this allows to find VMs related to this project with `sudo virsh list --all --name | grep ^a-` or all the Linux bridges related to this project with `ip -br l sh type bridge | grep ^a-`:
 ```
@@ -29,9 +29,9 @@ martin@deb-lab-svr:~$
 ```
 Next project in the same host machine would have the `b-` prefix.
 
-Host machine is running a [patched `bridge` module](https://github.com/tonusoo/vMX-without-Juniper-orchestration-scripts/blob/main/misc/br_private.patch) where [bridges forward LACP frames](https://github.com/tonusoo/vMX-without-Juniper-orchestration-scripts/blob/main/scripts-and-conf/etc/udev/rules.d/90-linux-br-group-fwd-mask.rules)(dst MAC `01:80:C2:00:00:02`).
+Host machine is running a [patched `bridge` module](https://github.com/tonusoo/vJunos-Router-and-vMX-on-KVM-QEMU-libvirt/blob/main/misc/br_private.patch) where [bridges forward LACP frames](https://github.com/tonusoo/vJunos-Router-and-vMX-on-KVM-QEMU-libvirt/blob/main/scripts-and-conf/etc/udev/rules.d/90-linux-br-group-fwd-mask.rules)(dst MAC `01:80:C2:00:00:02`).
 
-The host machine has a [`patch-linux-bridge.deb`](https://github.com/tonusoo/vMX-without-Juniper-orchestration-scripts/blob/main/misc/patch-linux-bridge.deb) package installed, which is a workaround to ensure that the `bridge` module is automatically patched each time the kernel is upgraded:
+The host machine has a [`patch-linux-bridge.deb`](https://github.com/tonusoo/vJunos-Router-and-vMX-on-KVM-QEMU-libvirt/blob/main/misc/patch-linux-bridge.deb) package installed, which is a workaround to ensure that the `bridge` module is automatically patched each time the kernel is upgraded:
 ```
 martin@deb-lab-svr:~$ dpkg -l patch-linux-bridge
 Desired=Unknown/Install/Remove/Purge/Hold
@@ -42,9 +42,9 @@ Desired=Unknown/Install/Remove/Purge/Hold
 ii  patch-linux-bridge 0.1          all          Patches bridge.ko to remove all group forwarding restrictions for the Linux bridge.
 martin@deb-lab-svr:~$
 ```
-This works in a way that the `patch-linux-bridge.deb` provides a [dpkg trigger](https://github.com/tonusoo/vMX-without-Juniper-orchestration-scripts/blob/main/patch-linux-bridge/DEBIAN/triggers) which ensures that the [postinst script](https://github.com/tonusoo/vMX-without-Juniper-orchestration-scripts/blob/main/patch-linux-bridge/DEBIAN/postinst) of the `patch-linux-bridge.deb` is executed if the `linux-image-amd64` package is upgraded. Triggers are processed at the end of the `apt upgrade` and even if the trigger for the `patch-linux-bridge` fails, then this does not prevent processing the triggers for other packages. An example of `apt upgrade` where kernel was upgraded from `6.1.0-25-amd64` to `6.1.0-26-amd64` and the `bridge` module was automatically patched can be seen [here](https://github.com/tonusoo/vMX-without-Juniper-orchestration-scripts/blob/main/misc/output_of_apt_upgrade.txt).
+This works in a way that the `patch-linux-bridge.deb` provides a [dpkg trigger](https://github.com/tonusoo/vJunos-Router-and-vMX-on-KVM-QEMU-libvirt/blob/main/patch-linux-bridge/DEBIAN/triggers) which ensures that the [postinst script](https://github.com/tonusoo/vJunos-Router-and-vMX-on-KVM-QEMU-libvirt/blob/main/patch-linux-bridge/DEBIAN/postinst) of the `patch-linux-bridge.deb` is executed if the `linux-image-amd64` package is upgraded. Triggers are processed at the end of the `apt upgrade` and even if the trigger for the `patch-linux-bridge` fails, then this does not prevent processing the triggers for other packages. An example of `apt upgrade` where kernel was upgraded from `6.1.0-25-amd64` to `6.1.0-26-amd64` and the `bridge` module was automatically patched can be seen [here](https://github.com/tonusoo/vJunos-Router-and-vMX-on-KVM-QEMU-libvirt/blob/main/misc/output_of_apt_upgrade.txt).
 
-One could use `libvirt` to manage the bridges([example](https://github.com/tonusoo/vMX-without-Juniper-orchestration-scripts/blob/main/misc/a-r1-r2-2.xml)), but `systemd-networkd` approach has an advantage of keeping all(including physical interfaces of the host machine) the network related configuration in one place.
+One could use `libvirt` to manage the bridges([example](https://github.com/tonusoo/vJunos-Router-and-vMX-on-KVM-QEMU-libvirt/blob/main/misc/a-r1-r2-2.xml)), but `systemd-networkd` approach has an advantage of keeping all(including physical interfaces of the host machine) the network related configuration in one place.
 
 ### Creating the vMX virtual machines
 
@@ -167,7 +167,7 @@ martin@deb-lab-svr:~$
 
 As seen above, the `vFP` VMs were built with ten vNICs for `ge-0.0.0` - `ge-0.0.9` interfaces. While it's possible to add vNICs to an already running `vFP` with `virsh attach-interface ... --live`(for example `sudo virsh attach-interface a-r1-vfp bridge a-r1-r2-2 --target a-r1-ge-0.0.1 --model virtio --config --live`), then this approach requires re-enumerating the PCIe bus with `echo 1 > /sys/bus/pci/rescan` in the `vFP` virtual machine. In addition, if the `riot`(virtual Trio chipset) DPDK application in `vFP` is already running, then this needs to be also restarted in order it to pick up the new PCIe network interfaces.
 
-`vFP` interfaces are connected to correct bridges with [mv-vm-int](https://github.com/tonusoo/vMX-without-Juniper-orchestration-scripts/blob/main/scripts-and-conf/usr/local/bin/mv-vm-int) script:
+`vFP` interfaces are connected to correct bridges with [mv-vm-int](https://github.com/tonusoo/vJunos-Router-and-vMX-on-KVM-QEMU-libvirt/blob/main/scripts-and-conf/usr/local/bin/mv-vm-int) script:
 ```
 martin@deb-lab-svr:~$ # a-r1-vfp
 martin@deb-lab-svr:~$ sudo mv-vm-int a-r1-ge-0.0.0 a-r1-r2-1
@@ -302,7 +302,7 @@ martin@deb-lab-svr:~$
 
 A `vJunos-router` named `a-r3` is added, `ge-0/0/2` of `a-r2` is connected to `a-r2-r3-1`, `ge-0/0/3` of `a-r2` is connected to `a-r2-r42-1` and a 50ms RTT is introduced between `a-r2` and `a-r3` routers:
 
-![Juniper routers virtualized with KVM-QEMU-libvirt stack in Debian 12 with a-r3](https://github.com/tonusoo/vMX-without-Juniper-orchestration-scripts/blob/main/imgs/Juniper_routers_virtualized_with_KVM-QEMU-libvirt_stack_in_Debian_12_with_a-r3.png)
+![Juniper routers virtualized with KVM-QEMU-libvirt stack in Debian 12 with a-r3](https://github.com/tonusoo/vJunos-Router-and-vMX-on-KVM-QEMU-libvirt/blob/main/imgs/Juniper_routers_virtualized_with_KVM-QEMU-libvirt_stack_in_Debian_12_with_a-r3.png)
 
 `vJunos-router` built without initial configuration:
 ```
@@ -397,9 +397,9 @@ martin@deb-lab-svr:~$ ip l sh master a-r2-r3-1
 martin@deb-lab-svr:~$
 ```
 
-`vJunos-router` is able to configure itself on a first boot from conf file in `vmm-config.tgz` archive stored on an attached USB flash drive with FAT file system. For example, [this proof of concept script](https://github.com/tonusoo/vMX-without-Juniper-orchestration-scripts/blob/main/misc/build-vjunos-routers.bash) creates six `vJunos-routers` named from `a-r10` to `a-r15` with IPv4 address on `fxp0.0` management interface and SSH enabled.
+`vJunos-router` is able to configure itself on a first boot from conf file in `vmm-config.tgz` archive stored on an attached USB flash drive with FAT file system. For example, [this proof of concept script](https://github.com/tonusoo/vJunos-Router-and-vMX-on-KVM-QEMU-libvirt/blob/main/misc/build-vjunos-routers.bash) creates six `vJunos-routers` named from `a-r10` to `a-r15` with IPv4 address on `fxp0.0` management interface and SSH enabled.
 
-50 millisecond RTT between the `a-r2` and `a-r3` routers was added by the [/etc/libvirt/hooks/qemu](https://github.com/tonusoo/vMX-without-Juniper-orchestration-scripts/blob/main/scripts-and-conf/etc/libvirt/hooks/qemu) libvirt hook script once the `a-r3-vjr` VM was started:
+50 millisecond RTT between the `a-r2` and `a-r3` routers was added by the [/etc/libvirt/hooks/qemu](https://github.com/tonusoo/vJunos-Router-and-vMX-on-KVM-QEMU-libvirt/blob/main/scripts-and-conf/etc/libvirt/hooks/qemu) libvirt hook script once the `a-r3-vjr` VM was started:
 ```
 martin@deb-lab-svr:~$ sudo tc -d qdisc sh dev a-r3-ge-0.0.0
 qdisc netem 816b: root refcnt 2 limit 1000 delay 50ms
@@ -416,12 +416,12 @@ martin@deb-lab-svr:~$ sudo sed -i 's/^#SHUTDOWN_TIMEOUT=300$/SHUTDOWN_TIMEOUT=18
 martin@deb-lab-svr:~$
 ```
 
-The official `vmx.sh --stop` isn't any more graceful and effectively pulls the virtual power cord for each `vCP` and `vFP` by executing `virsh destroy` under the hood. If the graceful shutdown is desired, then a similar [script](https://github.com/tonusoo/vMX-without-Juniper-orchestration-scripts/blob/main/scripts-and-conf/usr/local/bin/shutdown-vmx)(requires `expect` package) could be called [before the `ExecStop=` of libvirt-guests systemd service](https://github.com/tonusoo/vMX-without-Juniper-orchestration-scripts/blob/main/scripts-and-conf/etc/systemd/system/libvirt-guests.service.d/override.conf).
+The official `vmx.sh --stop` isn't any more graceful and effectively pulls the virtual power cord for each `vCP` and `vFP` by executing `virsh destroy` under the hood. If the graceful shutdown is desired, then a similar [script](https://github.com/tonusoo/vJunos-Router-and-vMX-on-KVM-QEMU-libvirt/blob/main/scripts-and-conf/usr/local/bin/shutdown-vmx)(requires `expect` package) could be called [before the `ExecStop=` of libvirt-guests systemd service](https://github.com/tonusoo/vJunos-Router-and-vMX-on-KVM-QEMU-libvirt/blob/main/scripts-and-conf/etc/systemd/system/libvirt-guests.service.d/override.conf).
 
 Contrary to `vMX`, the `vJunos-Router` has an `acpid` running which is configured to execute `/sbin/shutdown -h now "Power button pressed"` command once the VM receives the ACPI "Power key pressed short" signal. During the forwarding plane VM shutdown, an `/etc/init.d/junos-vcp` init script with argument "stop" is called which tries to execute `halt -p` in nested control plane VM.
 
-Messages on host machine console after executing `poweroff` in host machine when above-mentioned [shutdown-vmx](https://github.com/tonusoo/vMX-without-Juniper-orchestration-scripts/blob/main/scripts-and-conf/usr/local/bin/shutdown-vmx) script is in use:
-![vMX and vJunos-Router shutdown in host machine](https://github.com/tonusoo/vMX-without-Juniper-orchestration-scripts/blob/main/imgs/vMX_and_vJunos-Router_shutdown_in_host_machine.png)
+Messages on host machine console after executing `poweroff` in host machine when above-mentioned [shutdown-vmx](https://github.com/tonusoo/vJunos-Router-and-vMX-on-KVM-QEMU-libvirt/blob/main/scripts-and-conf/usr/local/bin/shutdown-vmx) script is in use:
+![vMX and vJunos-Router shutdown in host machine](https://github.com/tonusoo/vJunos-Router-and-vMX-on-KVM-QEMU-libvirt/blob/main/imgs/vMX_and_vJunos-Router_shutdown_in_host_machine.png)
 
 
 ### Various notes related to the project
@@ -596,4 +596,4 @@ Messages on host machine console after executing `poweroff` in host machine when
     PSU: Seasonic 850W SSR-850TR
     case: Phanteks Enthoo Pro PH-ES614PC full tower with additional Noctua NF-A14 case fan
     ```
-    ![host machine](https://github.com/tonusoo/vMX-without-Juniper-orchestration-scripts/blob/main/imgs/host_machine.jpg)
+    ![host machine](https://github.com/tonusoo/vJunos-Router-and-vMX-on-KVM-QEMU-libvirt/blob/main/imgs/host_machine.jpg)
