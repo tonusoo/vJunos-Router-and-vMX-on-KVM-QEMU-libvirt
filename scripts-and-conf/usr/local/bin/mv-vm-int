@@ -1,0 +1,80 @@
+#!/usr/bin/env bash
+
+# Title               : mv-vm-int
+# Last modified date  : 30.09.2024
+# Author              : Martin Tonusoo
+# Description         : Script connects VM's virtio type interface from one
+#                       Linux bridge to another.
+# Options             : interface_name - virtio type interface associated with VM
+#                       new_bridge_name - Linux bridge
+# Notes               : Both running and turned off VMs are supported.
+#                       With a few dozen VMs, the script takes less than a second
+#                       to complete, even in the worst-case scenario. With 300 VMs
+#                       and 3600 interfaces, the script takes around ten seconds in
+#                       the worst-case scenario.
+
+error_and_exit() {
+    echo "ERROR: $1" >&2
+    exit 1
+}
+
+
+(( $# != 2 )) && error_and_exit "Usage: sudo ${0##*/} <interface_name> <new_bridge_name>"
+(( EUID != 0 )) && error_and_exit "Script needs to be executed as a root user."
+
+
+# Check if the <new_bridge_name> exists.
+[[ ! -d /sys/class/net/$2/bridge ]] && error_and_exit "Linux bridge $2 does not exist"
+
+
+while read -r vm_id vm_name vm_state; do
+
+    # VMs which are not running have the "-" on Id field.
+    [[ "$vm_id" == - ]] || [[ "$vm_id" =~ ^[0-9]+$ ]] || continue
+
+    while read -r int_name int_type int_source int_model int_mac_addr; do
+
+        [[ "$int_type" != "bridge" ]] && continue
+        [[ "$int_model" != "virtio" ]] && continue
+        [[ "$int_name" == "$1" ]] && break 2
+
+    done < <(virsh domiflist "$vm_name")
+
+done < <(virsh list --all)
+
+[[ -z "$int_name" ]] && error_and_exit "None of the VMs have the $1 interface associated"
+
+if [[ "$2" == "$int_source" ]]; then
+    echo "$1 is already connected to $2"
+    exit
+fi
+
+tmp_xml=$(mktemp "/tmp/${0##*/}.XXXXXXXX")
+
+cat << EOF > "$tmp_xml"
+<interface type='bridge'>
+  <mac address='$int_mac_addr'/>
+  <source bridge='$2'/>
+  <target dev='$1'/>
+  <model type='virtio'/>
+</interface>
+EOF
+
+
+# Temporary XML file for "virsh update-device" is removed only if the
+# "virsh update-device" succeeds. This is for troubleshooting purposes.
+if [[ "$vm_state" == "running" ]] || [[ "$vm_state" == "paused" ]]; then
+
+    if virsh update-device "$vm_name" "$tmp_xml" --config --live; then
+        echo "Connected $int_name from bridge $int_source to bridge $2 and updated $vm_name XML"
+        rm -f "$tmp_xml"
+    fi
+
+else
+
+    if virsh update-device "$vm_name" "$tmp_xml" --config; then
+        echo "Updated $vm_name XML with $int_name connected to $2 bridge"
+        rm -f "$tmp_xml"
+    fi
+
+fi

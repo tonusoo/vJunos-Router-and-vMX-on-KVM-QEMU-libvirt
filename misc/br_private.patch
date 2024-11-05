@@ -1,0 +1,52 @@
+Patching the bridge.ko example on Debian 12:
+
+apt update
+apt upgrade
+apt install build-essential linux-source linux-headers-amd64
+tar xvf /usr/src/linux-source-6.1.tar.xz
+cd linux-source-6.1/
+patch net/bridge/br_private.h ~/br_private.patch
+cp -v /boot/config-$(uname -r) .
+cp -v /lib/modules/$(uname -r)/build/Module.symvers .
+make olddefconfig
+scripts/config --disable DEBUG_INFO_DWARF_TOOLCHAIN_DEFAULT
+make modules_prepare
+make M=net/bridge
+cp -v net/bridge/bridge.ko /usr/lib/modules/$(uname -r)/kernel/net/bridge/
+modprobe -rv bridge
+modprobe -v bridge
+
+
+Alternatively, building a custom kernel:
+
+apt update
+apt upgrade
+apt build-dep linux
+apt install linux-source
+tar xvf /usr/src/linux-source-6.1.tar.xz
+cd linux-source-6.1/
+patch net/bridge/br_private.h ~/br_private.patch
+cp -v /boot/config-$(uname -r) .config
+make olddefconfig
+scripts/config --disable DEBUG_INFO_DWARF_TOOLCHAIN_DEFAULT
+# reasonable number of jobs depends on system load, CPUs
+make -j 20 bindeb-pkg LOCALVERSION=-custom
+dpkg -i ../linux-image-6.1.112-custom_6.1.112-custom-1_amd64.deb
+reboot
+
+--- net/bridge/br_private.h~	2024-09-16 19:25:58.596921741 +0000
++++ net/bridge/br_private.h	2024-09-16 19:29:11.990404581 +0000
+@@ -44,8 +44,11 @@
+ 	BR_GROUPFWD_LACP	= BIT(2),
+ };
+ 
+-#define BR_GROUPFWD_RESTRICTED (BR_GROUPFWD_STP | BR_GROUPFWD_MACPAUSE | \
+-				BR_GROUPFWD_LACP)
++/* #define BR_GROUPFWD_RESTRICTED (BR_GROUPFWD_STP | BR_GROUPFWD_MACPAUSE | \
++ * 				BR_GROUPFWD_LACP)
++ */
++#define BR_GROUPFWD_RESTRICTED	0
++
+ /* The Nearest Customer Bridge Group Address, 01-80-C2-00-00-[00,0B,0C,0D,0F] */
+ #define BR_GROUPFWD_8021AD	0xB801u
+ 

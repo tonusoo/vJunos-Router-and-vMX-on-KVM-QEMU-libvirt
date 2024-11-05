@@ -1,0 +1,65 @@
+martin@deb-lab-svr:~$ cat /etc/systemd/network/10-iasb-class-a-br-ext.netdev
+[NetDev]
+# This is where the "fxp0" of vCP and "ext" of vFP are connected to.
+Name=a-br-ext
+Kind=bridge
+martin@deb-lab-svr:~$
+martin@deb-lab-svr:~$ cat /etc/systemd/network/10-iasb-class-a-r1-br-int.netdev
+[NetDev]
+# vCP <-> vFP bridge for a-r1; This is where the "em1" of vCP and "int" of vFP are connected to.
+Name=a-r1-br-int
+Kind=bridge
+martin@deb-lab-svr:~$
+martin@deb-lab-svr:~$ cat /etc/systemd/network/10-iasb-class-a-r2-br-int.netdev
+[NetDev]
+# vCP <-> vFP bridge for a-r2
+Name=a-r2-br-int
+Kind=bridge
+martin@deb-lab-svr:~$
+martin@deb-lab-svr:~$ cat /etc/systemd/network/10-iasb-class-a-r42-br-int.netdev
+[NetDev]
+# vCP <-> vFP bridge for a-r42
+Name=a-r42-br-int
+Kind=bridge
+martin@deb-lab-svr:~$
+martin@deb-lab-svr:~$ cat /etc/systemd/network/10-iasb-class-a-r1-r2-1.netdev
+[NetDev]
+# Connecting the ge-0/0/0 of a-r1 and ge-0/0/0 of a-r2.
+Name=a-r1-r2-1
+Kind=bridge
+martin@deb-lab-svr:~$
+martin@deb-lab-svr:~$ cat /etc/systemd/network/10-iasb-class-a-r1-r2-2.netdev
+[NetDev]
+# Connecting the ge-0/0/1 of a-r1 and ge-0/0/1 of a-r2.
+Name=a-r1-r2-2
+Kind=bridge
+martin@deb-lab-svr:~$
+martin@deb-lab-svr:~$ cat /etc/systemd/network/10-iasb-class-a-r2-r42-1.netdev
+[NetDev]
+# Connecting the ge-0/0/2 of a-r2 and ge-0/0/0 of a-r42.
+Name=a-r2-r42-1
+Kind=bridge
+martin@deb-lab-svr:~$
+martin@deb-lab-svr:~$ cat /etc/systemd/network/10-iasb-class-a-br-default.netdev
+[NetDev]
+# This is where the vFP VMs related to first project(class named IASB; "a-" prefix) connect
+# their unused ge-0.0.* ports.
+Name=a-br-default
+Kind=bridge
+martin@deb-lab-svr:~$
+martin@deb-lab-svr:~$ cat /etc/systemd/network/10-iasb-class-a-br-ext.network
+[Match]
+Name=a-br-ext
+
+[Network]
+Address=10.5.5.1/24
+martin@deb-lab-svr:~$
+martin@deb-lab-svr:~$ cat /etc/systemd/network/10-iasb-class-bridges.network
+[Match]
+# Needed to bring the bridges administratively up.
+Name=a-br-default a-*-br-int a-r1-r2-* a-r2-r42-*
+
+[Network]
+# Avoid "degraded" operational status in the output of networkctl.
+LinkLocalAddressing=no
+martin@deb-lab-svr:~$

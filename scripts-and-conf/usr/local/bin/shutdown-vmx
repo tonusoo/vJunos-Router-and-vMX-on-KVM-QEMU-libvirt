@@ -1,0 +1,190 @@
+#!/usr/bin/env bash
+
+# Title               : shutdown-vmx
+# Last modified date  : 11.10.2024
+# Author              : Martin Tonusoo
+# Description         : Script tries to perform a graceful shutdown of vCP and
+#                       vFP VMs via console.
+# Options             :
+# Notes               : Script expects a conf file for the vCP "root" user password.
+#                       Same password is used for all the vCPs related to a project.
+#
+#                       Script is able to shutdown the vCP or vFP even if the
+#                       console is in use, but does not attempt to handle every
+#                       possible situation, e.g if the user is in the configuration
+#                       mode or has a vi text editor open, then the script does not
+#                       shutdown the VM.
+#
+#                       A more robust approach might be to give vFP and vCP VMs a separate
+#                       console port for the shutdown script, but for example in case of
+#                       vCP this would require modifying the /etc/ttys terminal
+#                       initialization conf file.
+
+
+error_and_exit() {
+	echo "ERROR: $1" >&2
+	exit 1
+}
+
+
+(( EUID != 0 )) && error_and_exit "Script needs to be executed as a root user"
+
+# Readable only by host machine root user.
+conf_file="/usr/local/etc/shutdown-vmx.conf"
+
+if [[ ! -f $conf_file ]]; then
+	error_and_exit "$conf_file does not exist"
+fi
+
+
+while read -r vm_name; do
+
+	if [[ $vm_name =~ ^[a-z]-[a-z0-9]+-vcp$ ]]; then
+
+		# Could be easily replaced with logic where each vCP has
+		# a unique root password in the conf file.
+		project_root_passwd=""
+		while IFS="=" read -r prefix passwd; do
+			if [[ $prefix == ${vm_name%%-*}-root-password ]]; then
+				project_root_passwd="$passwd"
+				break
+			fi
+		done < "$conf_file"
+
+		# Password was not found. Try with password "root".
+		[[ -n "$project_root_passwd" ]] || project_root_passwd="root"
+
+		echo "Trying to shutdown vCP $vm_name via console"
+
+		export vm_name
+		export project_root_passwd
+
+		# "expect -d .. " and "log_user 1" for debugging.
+		expect <<- 'EOF'
+
+			log_user 0
+
+			spawn virsh console $env(vm_name) --force
+
+			expect_before {
+				timeout {
+					exit 1
+				}
+			}
+
+			# Line below is printed by virsh.
+			expect -ex "Escape character is ^] (Ctrl + ])"
+			# As the console line might be in use, then avoid sending the
+			# carriage return or newline which might execute a command.
+			#
+			# Ctrl+c(\x03) terminates possible running command(e.g "monitor interface ge-0/0/0") or
+			# ongoing login attempt.
+			# Ctrl+u(\x15) flushes all the characters on line and redraws the prompt.
+			# Ctrl+d(\x04) reinitializes the login prompt.
+			#
+			send "\x03\x15\x04"
+
+			expect {
+
+				# Login required. Console is not in use.
+				"\nlogin: $" {
+					send "root\n"
+
+					expect {
+						# root-authentication in Junos is not set.
+						"root@:~ # $" {
+						}
+						"Password:$" {
+							send -- "$env(project_root_passwd)\n"
+							expect "root@*:~ # $"
+						}
+					}
+
+					send "cli\n"
+
+				}
+
+				# Console is in use. FreeBSD C shell is open.
+				"root@*:~ # $" {
+					send "cli\n"
+				}
+
+				# End of data anchor is not used because Ctrl+u
+				# sent before adds control characters to Junos
+				# prompt.
+				"root*> " {
+					# Draw a fresh prompt. At this point it should
+					# be safe to hit enter.
+					send "\n"
+				}
+
+			}
+
+			expect "root*> $"
+			send "request system power-off\n"
+
+			expect -ex "Power Off the system ? \[yes,no\] (no)"
+			send "yes\n"
+
+		EOF
+
+		if (( $? > 0 )); then
+			echo "ERROR: Expect timed out while trying to execute" \
+				"\"request system power-off\" in vCP $vm_name" >&2
+		else
+			echo "Successfully executed \"request system power-off\" in vCP $vm_name"
+		fi
+
+	elif [[ $vm_name =~ ^[a-z]-[a-z0-9]+-vfp$ ]]; then
+
+		echo "Trying to shutdown vFP $vm_name via console"
+
+		export vm_name
+
+		expect <<- 'EOF'
+
+		log_user 0
+
+		spawn virsh console $env(vm_name) --force
+
+		expect_before {
+			timeout {
+				exit 1
+			}
+		}
+
+		expect -ex "Escape character is ^] (Ctrl + ])"
+		# Send the Ctrl+c in order to see the vFP's Wind River Linux
+		# prompt. If the vFP console was in use and a program was
+		# running, the program will (hopefully) be terminated as well.
+		send "\x03"
+
+		expect {
+
+			# Login required. Console is not in use.
+			# vFP does not have a password set.
+			"qemux86-64 login: $" {
+				send "root\n"
+			}
+
+			"root@qemux86-64:~# $" {
+				# Draw a fresh prompt.
+				send "\n"
+			}
+		}
+
+		expect "root@qemux86-64:~# $"
+		send "poweroff\n"
+
+		EOF
+
+		if (( $? > 0 )); then
+			echo "ERROR: Expect timed out while trying to execute" \
+				"\"poweroff\" in vFP $vm_name" >&2
+		else
+			echo "Successfully executed \"poweroff\" in vFP $vm_name"
+		fi
+
+	fi
+
+done < <(virsh list --name)

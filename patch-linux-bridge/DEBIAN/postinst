@@ -1,0 +1,73 @@
+#!/usr/bin/env bash
+
+# build-essential, linux-source and linux-headers-amd64 packages
+# have to be installed.
+
+set -e
+
+[[ "$1" == "triggered" ]] || exit 0
+
+while IFS= read -r line; do
+	# linux-image-amd64 is a meta-package which depends on
+	# the latest Linux kernel.
+	case "$line" in
+		"  Depends: linux-image-"*)
+			ver="${line#  Depends: linux-image-}"
+	esac
+done < <(apt-cache depends linux-image-amd64)
+
+tmp_dir=$(mktemp -d "/tmp/linux-source.XXXXXXXX")
+
+cd "$tmp_dir"
+
+# /usr/src/linux-source-*.tar.xz is installed by "linux-source-<ver>" package
+# which is a dependency for "linux-source" package. When the "linux-source-<ver>"
+# is upgraded, then the /usr/src/linux-source-*.tar.xz tarball is overwritten.
+tar xvf /usr/src/linux-source-*.tar.xz --strip-components=1 
+
+printf "\n\n"
+
+# Tested on br_private.h from Linux versions 4.19.322, 5.4.284, 5.10.228,
+# 5.15.169, 6.1.114, 6.6.58, 6.10.14, 6.11.5 and 6.12-rc5.
+patch net/bridge/br_private.h << 'EOF'
+--- net/bridge/br_private.h~	2024-09-16 19:25:58.596921741 +0000
++++ net/bridge/br_private.h	2024-09-16 19:29:11.990404581 +0000
+@@ -44,8 +44,11 @@
+ 	BR_GROUPFWD_LACP	= BIT(2),
+ };
+ 
+-#define BR_GROUPFWD_RESTRICTED (BR_GROUPFWD_STP | BR_GROUPFWD_MACPAUSE | \
+-				BR_GROUPFWD_LACP)
++/* #define BR_GROUPFWD_RESTRICTED (BR_GROUPFWD_STP | BR_GROUPFWD_MACPAUSE | \
++ * 				BR_GROUPFWD_LACP)
++ */
++#define BR_GROUPFWD_RESTRICTED	0
++
+ /* The Nearest Customer Bridge Group Address, 01-80-C2-00-00-[00,0B,0C,0D,0F] */
+ #define BR_GROUPFWD_8021AD	0xB801u
+ 
+EOF
+
+printf "\n\n"
+
+cp -v /boot/config-"$ver" .
+
+# Module.symvers is provided by "linux-headers-<ver>" package which
+# is a dependency for "linux-headers-amd64" package.
+cp -v /lib/modules/"$ver"/build/Module.symvers .
+
+
+printf "\n%s\n\n" "make olddefconfig"
+make olddefconfig
+
+# Omit debug information.
+printf "\n%s\n\n" "scripts/config --disable DEBUG_INFO_DWARF_TOOLCHAIN_DEFAULT"
+scripts/config --disable DEBUG_INFO_DWARF_TOOLCHAIN_DEFAULT
+
+printf "\n%s\n\n" "make modules_prepare"
+make modules_prepare
+
+printf "\n%s\n\n" "make M=net/bridge"
+make M=net/bridge
+
+cp -v net/bridge/bridge.ko /usr/lib/modules/"$ver"/kernel/net/bridge/

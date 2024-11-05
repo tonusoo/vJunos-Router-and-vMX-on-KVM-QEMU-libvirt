@@ -1,0 +1,2 @@
+# Symlink /usr/share/doc/linux-image-amd64 comes from linux-image-amd64*.deb package.
+interest-noawait /usr/share/doc/linux-image-amd64

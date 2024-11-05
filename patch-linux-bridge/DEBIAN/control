@@ -1,0 +1,5 @@
+Package: patch-linux-bridge
+Version: 0.1
+Maintainer: Martin Tonusoo
+Architecture: all
+Description: Patches bridge.ko to remove all group forwarding restrictions for the Linux bridge.

@@ -1,0 +1,3 @@
+# 0xfffc for /sys/class/net/<br-name>/bridge/group_fwd_mask requires patched kernel.
+# If STP is disabled, then the STP BPDUs(dst MAC 01:80:c2:00:00:00) are forwarded by default.
+ACTION=="add", SUBSYSTEM=="net", ENV{DEVTYPE}=="bridge", ATTR{bridge/group_fwd_mask}="0xfffc"

@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+# /etc/libvirt/hooks/qemu libvirt hook script. Executed
+# when a QEMU guest is started, stopped, or migrated.
+
+guest_name="$1"
+libvirt_task="$2"
+
+if [[ "$libvirt_task" == "started" ]]; then
+
+    if [[ "$guest_name" == "a-r3-vjr" ]]; then
+
+        # Adds a 50ms delay for packets outgoing from a-r3-ge-0.0.0 interface.
+        tc qdisc add dev a-r3-ge-0.0.0 root netem delay 50ms
+
+    fi
+
+fi
