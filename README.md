@@ -307,7 +307,7 @@ A `vJunos-router` named `a-r3` is added, `ge-0/0/2` of `a-r2` is connected to `a
 `vJunos-router` built without initial configuration:
 ```
 martin@deb-lab-svr:~$ mkdir ~/iasb-class/vJunos-router
-martin@deb-lab-svr:~$ # Extract the base image from HDD storage to SSDs
+martin@deb-lab-svr:~$ # Copy the base image from HDD storage to SSDs
 martin@deb-lab-svr:~$ cp -v /media/storage/juniper_images/vJunos-router-23.2R1.15.qcow2 ~/iasb-class/vJunos-router/
 '/media/storage/juniper_images/vJunos-router-23.2R1.15.qcow2' -> '/home/martin/iasb-class/vJunos-router/vJunos-router-23.2R1.15.qcow2'
 martin@deb-lab-svr:~$
