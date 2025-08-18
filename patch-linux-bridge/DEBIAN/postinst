@@ -1,11 +1,29 @@
 #!/usr/bin/env bash
 
-# build-essential, linux-source and linux-headers-amd64 packages
-# have to be installed.
+# Tested on upgrades from 6.1.0-37-amd64 (Debian 12) to 6.1.0-38-amd64 (Debian
+# 12) to 6.12.41+deb13-amd64 (Debian 13).
+
+# https://kernel-team.pages.debian.net/kernel-handbook/ch-common-tasks.html
+
+# Build dependencies for a "linux" source package and kernel header
+# files have to be installed:
+#
+# apt build-dep linux
+# apt install linux-headers-amd64
+
 
 set -e
 
 [[ "$1" == "triggered" ]] || exit 0
+
+tmp_dir=$(mktemp -d "/tmp/linux-source.XXXXXXXX")
+
+cd "$tmp_dir"
+
+apt-get source linux
+
+cd linux-*
+
 
 while IFS= read -r line; do
 	# linux-image-amd64 is a meta-package which depends on
@@ -16,19 +34,11 @@ while IFS= read -r line; do
 	esac
 done < <(apt-cache depends linux-image-amd64)
 
-tmp_dir=$(mktemp -d "/tmp/linux-source.XXXXXXXX")
-
-cd "$tmp_dir"
-
-# /usr/src/linux-source-*.tar.xz is installed by "linux-source-<ver>" package
-# which is a dependency for "linux-source" package. When the "linux-source-<ver>"
-# is upgraded, then the /usr/src/linux-source-*.tar.xz tarball is overwritten.
-tar xvf /usr/src/linux-source-*.tar.xz --strip-components=1 
 
 printf "\n\n"
 
 # Tested on br_private.h from Linux versions 4.19.322, 5.4.284, 5.10.228,
-# 5.15.169, 6.1.114, 6.6.58, 6.10.14, 6.11.5 and 6.12-rc5.
+# 5.15.169, 6.1.114, 6.6.58, 6.10.14, 6.11.5, 6.12-rc5 and 6.12.41.
 patch net/bridge/br_private.h << 'EOF'
 --- net/bridge/br_private.h~	2024-09-16 19:25:58.596921741 +0000
 +++ net/bridge/br_private.h	2024-09-16 19:29:11.990404581 +0000
@@ -50,19 +60,27 @@ EOF
 
 printf "\n\n"
 
-cp -v /boot/config-"$ver" .
+# Kernel configuration is provided by "linux-image-<ver>" package which
+# is a dependency for "linux-image-amd64" package.
+cp -v /boot/config-"$ver" .config
 
 # Module.symvers is provided by "linux-headers-<ver>" package which
 # is a dependency for "linux-headers-amd64" package.
-cp -v /lib/modules/"$ver"/build/Module.symvers .
+cp -v /usr/src/linux-headers-"$ver"/Module.symvers .
 
 
 printf "\n%s\n\n" "make olddefconfig"
 make olddefconfig
 
-# Omit debug information.
-printf "\n%s\n\n" "scripts/config --disable DEBUG_INFO_DWARF_TOOLCHAIN_DEFAULT"
-scripts/config --disable DEBUG_INFO_DWARF_TOOLCHAIN_DEFAULT
+# Omitting the debug information on Debian Trixie(6.12.41+deb13-amd64) with
+# "scripts/config --disable DEBUG_INFO_DWARF_TOOLCHAIN_DEFAULT" causes module
+# not to load, that is, "modprobe -v bridge" prints "ERROR: could not insert
+# 'bridge': Exec format error" and dmesg shows "module: x86/modules: Invalid
+# relocation target, existing value is nonzero for type 1, loc 000000005be9d908,
+# val ffffffffc0ccf2c0" error. Leave the debug info in and remove it later
+# with strip.
+#printf "\n%s\n\n" "scripts/config --disable DEBUG_INFO_DWARF_TOOLCHAIN_DEFAULT"
+#scripts/config --disable DEBUG_INFO_DWARF_TOOLCHAIN_DEFAULT
 
 printf "\n%s\n\n" "make modules_prepare"
 make modules_prepare
@@ -70,4 +88,37 @@ make modules_prepare
 printf "\n%s\n\n" "make M=net/bridge"
 make M=net/bridge
 
-cp -v net/bridge/bridge.ko /usr/lib/modules/"$ver"/kernel/net/bridge/
+printf "\n%s\n\n" "strip --strip-debug net/bridge/bridge.ko"
+strip --strip-debug net/bridge/bridge.ko
+
+modules_dir="/usr/lib/modules/$ver/kernel/net/bridge"
+
+for module_name in bridge.ko bridge.ko.xz bridge.ko.zst; do
+
+	current_module="$modules_dir/$module_name"
+
+	if [[ -f "$current_module" ]]; then
+
+		mv -v "$current_module" "$current_module.$(date +%s).bak"
+
+		case "$module_name" in
+
+			# CONFIG_MODULE_COMPRESS_XZ is set
+			"bridge.ko.xz")
+				# Match the xz options from kernel scripts/Makefile.modinst.
+				xz -v -k --check=crc32 --lzma2=dict=1MiB net/bridge/bridge.ko
+			;;
+
+			# CONFIG_MODULE_COMPRESS_ZSTD is set
+			"bridge.ko.zst")
+				zstd -v -k net/bridge/bridge.ko
+			;;
+
+		esac
+
+		cp -v net/bridge/"$module_name" "$modules_dir"
+		break
+
+	fi
+
+done
