@@ -11,6 +11,9 @@
 # apt build-dep linux
 # apt install linux-headers-amd64
 
+# Script expects that binary and source packages sources are in sync. For
+# example, if the "trixie-security" suite has "deb" type enabled, then
+# it also has to have "deb-src" enabled.
 
 set -e
 
@@ -20,7 +23,12 @@ tmp_dir=$(mktemp -d "/tmp/linux-source.XXXXXXXX")
 
 cd "$tmp_dir"
 
-apt-get source linux
+# Without specifying exact version, the "apt-get source .." would fetch
+# the latest possible version. For example, this could mean that the
+# binary kernel package is from stable repo, but source is fetched from
+# backports.
+src_ver=$(dpkg-query --show --showformat='${Version}' linux-image-amd64)
+apt-get source linux="$src_ver"
 
 cd linux-*
 
