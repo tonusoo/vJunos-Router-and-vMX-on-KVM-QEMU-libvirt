@@ -52,6 +52,12 @@ martin@deb-lab-svr:~$ cat /etc/systemd/network/10-iasb-class-a-br-ext.network
 Name=a-br-ext
 
 [Network]
+# Allows systemd-networkd to configure a link even if it has no carrier.
+# The bridge interface with no members will have a NO-CARRIER link status
+# and without ConfigureWithoutCarrier=yes the bridge interface will be stuck
+# in "configuring" state and this in turn means that the systemd-networkd-wait-online
+# service will timeout.
+ConfigureWithoutCarrier=yes
 Address=10.5.5.1/24
 martin@deb-lab-svr:~$
 martin@deb-lab-svr:~$ cat /etc/systemd/network/10-iasb-class-bridges.network
@@ -60,6 +66,11 @@ martin@deb-lab-svr:~$ cat /etc/systemd/network/10-iasb-class-bridges.network
 Name=a-br-default a-*-br-int a-r1-r2-* a-r2-r42-*
 
 [Network]
-# Avoid "degraded" operational status in the output of networkctl.
+# Avoid "configuring" setup status for bridges with no
+# physically up members and "degraded"(link local addr
+# present, but routable addr not) operational status
+# for bridges which have members which are physically up
+# and thus allow the bridge to complete the link-local
+# address(es) configuration.
 LinkLocalAddressing=no
 martin@deb-lab-svr:~$
