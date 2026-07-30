@@ -10,7 +10,7 @@ Network topology used as an example:
 
 ![vMX lab host network config](https://github.com/tonusoo/vJunos-Router-and-vMX-on-KVM-QEMU-libvirt/blob/main/imgs/vMX_lab_host_network_config.png)
 
-Output of `networkctl` once the `a-r1`, `a-r2` and `a-r42` routers are running:
+Output of `networkctl` once the `a-r1`, `a-r2` and `a-r42` routers are running and interfaces of `vFP` virtual machines are connected to correct bridges:
 
 ![output of networkctl](https://github.com/tonusoo/vJunos-Router-and-vMX-on-KVM-QEMU-libvirt/blob/main/imgs/vMX_lab_networkctl_output.png)
 
