@@ -6,7 +6,8 @@ Kind=bridge
 martin@deb-lab-svr:~$
 martin@deb-lab-svr:~$ cat /etc/systemd/network/10-iasb-class-a-r1-br-int.netdev
 [NetDev]
-# vCP <-> vFP bridge for a-r1; This is where the "em1" of vCP and "int" of vFP are connected to.
+# vCP <-> vFP bridge for a-r1
+# This is where the "em1" of vCP and "int" of vFP are connected to.
 Name=a-r1-br-int
 Kind=bridge
 martin@deb-lab-svr:~$
@@ -42,8 +43,8 @@ Kind=bridge
 martin@deb-lab-svr:~$
 martin@deb-lab-svr:~$ cat /etc/systemd/network/10-iasb-class-a-br-default.netdev
 [NetDev]
-# This is where the vFP VMs related to first project(class named IASB; "a-" prefix) connect
-# their unused ge-0.0.* ports.
+# This is where the vFP VMs related to first project(class
+# named IASB; "a-" prefix) connect their unused ge-0.0.* ports.
 Name=a-br-default
 Kind=bridge
 martin@deb-lab-svr:~$
@@ -52,10 +53,12 @@ martin@deb-lab-svr:~$ cat /etc/systemd/network/10-iasb-class-a-br-ext.network
 Name=a-br-ext
 
 [Network]
-# Allows systemd-networkd to configure a link even if it has no carrier.
-# The bridge interface with no members will have a NO-CARRIER link status
-# and without ConfigureWithoutCarrier=yes the bridge interface will be stuck
-# in "configuring" state and this in turn means that the systemd-networkd-wait-online
+# Allows systemd-networkd to configure a link even if it
+# has no carrier. The bridge interface with no members
+# will have a NO-CARRIER link status and without
+# ConfigureWithoutCarrier=yes the bridge interface
+# will be stuck in "configuring" state and this in
+# turn means that the systemd-networkd-wait-online
 # service will timeout.
 ConfigureWithoutCarrier=yes
 Address=10.5.5.1/24
