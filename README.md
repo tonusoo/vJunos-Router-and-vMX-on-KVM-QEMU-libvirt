@@ -582,6 +582,121 @@ Messages on host machine console after executing `poweroff` in host machine when
     ```
 
 
+* Managing virtual machine internal type snapshots with `virsh`:
+    ```
+    martin@deb-lab-svr:~$ # vJunos-router virtual machine named "a-r3-vjr" is shut off and currently has one snapshot named "initial-conf"
+    martin@deb-lab-svr:~$ sudo virsh dominfo a-r3-vjr
+    Id:             -
+    Name:           a-r3-vjr
+    UUID:           8543d21a-4e18-4854-ac43-b77d6d7d1014
+    OS Type:        hvm
+    State:          shut off
+    CPU(s):         4
+    Max memory:     5242880 KiB
+    Used memory:    5242880 KiB
+    Persistent:     yes
+    Autostart:      enable
+    Autostart Once: disable
+    Managed save:   no
+    Security model: apparmor
+    Security DOI:   0
+
+    martin@deb-lab-svr:~$
+    martin@deb-lab-svr:~$ sudo virsh snapshot-list a-r3-vjr
+     Name           Creation Time               State
+    -----------------------------------------------------
+     initial-conf   2026-07-30 23:04:32 +0300   shutoff
+
+    martin@deb-lab-svr:~$
+    martin@deb-lab-svr:~$ # create a new internal snapshot (supported only by qcow2 disk images) of a powered-off virtual machine
+    martin@deb-lab-svr:~$ sudo virsh snapshot-create-as a-r3-vjr complete-conf --description "Final routing config applied"
+    Domain snapshot complete-conf created
+    martin@deb-lab-svr:~$
+    martin@deb-lab-svr:~$ sudo virsh snapshot-list a-r3-vjr
+     Name            Creation Time               State
+    ------------------------------------------------------
+     complete-conf   2026-07-31 18:40:47 +0300   shutoff
+     initial-conf    2026-07-30 23:04:32 +0300   shutoff
+
+    martin@deb-lab-svr:~$
+    martin@deb-lab-svr:~$ sudo virsh snapshot-info a-r3-vjr initial-conf
+    Name:           initial-conf
+    Domain:         a-r3-vjr
+    Current:        no
+    State:          shutoff
+    Location:       internal
+    Parent:         -
+    Children:       1
+    Descendants:    1
+    Metadata:       yes
+
+    martin@deb-lab-svr:~$
+    martin@deb-lab-svr:~$ sudo virsh snapshot-info a-r3-vjr complete-conf
+    Name:           complete-conf
+    Domain:         a-r3-vjr
+    Current:        yes
+    State:          shutoff
+    Location:       internal
+    Parent:         initial-conf
+    Children:       0
+    Descendants:    0
+    Metadata:       yes
+
+    martin@deb-lab-svr:~$
+    martin@deb-lab-svr:~$ # as already seen above, the "complete-conf" snapshot is a child of "initial-conf" snapshot
+    martin@deb-lab-svr:~$ sudo virsh snapshot-list a-r3-vjr --tree
+    initial-conf
+      |
+      +- complete-conf
+
+
+    martin@deb-lab-svr:~$
+    martin@deb-lab-svr:~$ # internal type snapshots are stored in the virtual machine disk file
+    martin@deb-lab-svr:~$ # as snapshots were done from a shut down VM, the memory state is not stored and the "VM SIZE" is 0
+    martin@deb-lab-svr:~$ sudo qemu-img info ~/iasb-class/a-r3/images/vJunos-router-23.2R1.15.qcow2
+    image: /home/martin/iasb-class/a-r3/images/vJunos-router-23.2R1.15.qcow2
+    file format: qcow2
+    virtual size: 31.8 GiB (34100740096 bytes)
+    disk size: 4.34 GiB
+    cluster_size: 65536
+    backing file: /home/martin/iasb-class/vJunos-router/vJunos-router-23.2R1.15.qcow2
+    backing file format: qcow2
+    Snapshot list:
+    ID      TAG               VM_SIZE                DATE        VM_CLOCK     ICOUNT
+    1       initial-conf          0 B 2026-07-30 23:04:32  0000:00:00.000          0
+    2       complete-conf         0 B 2026-07-31 18:40:47  0000:00:00.000          0
+    Format specific information:
+        compat: 1.1
+        compression type: zlib
+        lazy refcounts: false
+        refcount bits: 16
+        corrupt: false
+        extended l2: false
+    Child node '/file':
+        filename: /home/martin/iasb-class/a-r3/images/vJunos-router-23.2R1.15.qcow2
+        protocol type: file
+        file length: 7.47 GiB (8018592256 bytes)
+        disk size: 4.34 GiB
+    martin@deb-lab-svr:~$
+    martin@deb-lab-svr:~$ # revert to a "initial-conf" snapshot
+    martin@deb-lab-svr:~$ sudo virsh snapshot-current a-r3-vjr --name
+    complete-conf
+    martin@deb-lab-svr:~$ sudo virsh snapshot-revert a-r3-vjr initial-conf
+    Domain snapshot initial-conf reverted
+
+    martin@deb-lab-svr:~$ sudo virsh snapshot-current a-r3-vjr --name
+    initial-conf
+    martin@deb-lab-svr:~$
+    martin@deb-lab-svr:~$ # start the VM (which now starts from the reverted "initial-conf" state)
+    martin@deb-lab-svr:~$ sudo virsh start a-r3-vjr
+    Domain 'a-r3-vjr' started
+
+    martin@deb-lab-svr:~$
+    martin@deb-lab-svr:~$ # snapshots can be deleted with "sudo virsh snapshot-delete a-r3-vjr <snapshot-name>"
+    martin@deb-lab-svr:~$
+    ```
+
+
 * Host machine spec:
     ```
     CPU: 2x Intel Xeon E5-2680v2 @ 2.80 GHz (Noctua's NH-U12DXi4 cooler)
