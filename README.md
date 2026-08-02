@@ -711,4 +711,20 @@ Messages on host machine console after executing `poweroff` in host machine when
     PSU: Seasonic 850W SSR-850TR
     case: Phanteks Enthoo Pro PH-ES614PC full tower with additional Noctua NF-A14 case fan
     ```
+    Available NUMA nodes on the system:
+    ```
+    martin@deb-lab-svr:~$ numactl --hardware
+    available: 2 nodes (0-1)
+    node 0 cpus: 0 1 2 3 4 5 6 7 8 9 20 21 22 23 24 25 26 27 28 29
+    node 0 size: 128886 MB
+    node 0 free: 115063 MB
+    node 1 cpus: 10 11 12 13 14 15 16 17 18 19 30 31 32 33 34 35 36 37 38 39
+    node 1 size: 129015 MB
+    node 1 free: 113075 MB
+    node distances:
+    node     0    1
+       0:   10   21
+       1:   21   10
+    martin@deb-lab-svr:~$
+    ```
     ![host machine](https://github.com/tonusoo/vJunos-Router-and-vMX-on-KVM-QEMU-libvirt/blob/main/imgs/host_machine.jpg)
