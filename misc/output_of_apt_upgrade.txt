@@ -1,393 +1,164 @@
-root@deb12-1:~# apt update
-Get:1 http://security.debian.org/debian-security bookworm-security InRelease [48.0 kB]
-Get:2 http://deb.debian.org/debian bookworm InRelease [151 kB]
-Get:3 http://deb.debian.org/debian bookworm-updates InRelease [55.4 kB]
-Get:4 https://packages.nlnetlabs.nl/linux/debian bookworm InRelease [7,566 B]
-Get:5 http://security.debian.org/debian-security bookworm-security/main Sources [146 kB]
-Get:6 http://security.debian.org/debian-security bookworm-security/main amd64 Packages [274 kB]
-Get:7 http://security.debian.org/debian-security bookworm-security/main Translation-en [165 kB]
-Get:8 http://deb.debian.org/debian bookworm-updates/main Sources.diff/Index [21.8 kB]
-Ign:8 http://deb.debian.org/debian bookworm-updates/main Sources.diff/Index
-Get:9 http://deb.debian.org/debian bookworm-updates/main amd64 Packages.diff/Index [21.8 kB]
-Ign:9 http://deb.debian.org/debian bookworm-updates/main amd64 Packages.diff/Index
-Get:10 http://deb.debian.org/debian bookworm-updates/main Translation-en.diff/Index [20.7 kB]
-Ign:10 http://deb.debian.org/debian bookworm-updates/main Translation-en.diff/Index
-Get:11 http://deb.debian.org/debian bookworm-updates/main Sources [3,288 B]
-Get:12 http://deb.debian.org/debian bookworm-updates/main amd64 Packages [6,924 B]
-Get:13 http://deb.debian.org/debian bookworm-updates/main Translation-en [5,448 B]
-Get:14 https://packages.nlnetlabs.nl/linux/debian bookworm/main amd64 Packages [10.1 kB]
-Fetched 938 kB in 1s (1,114 kB/s)
-Reading package lists... Done
-Building dependency tree... Done
-Reading state information... Done
-58 packages can be upgraded. Run 'apt list --upgradable' to see them.
-N: Repository 'http://security.debian.org/debian-security bookworm-security InRelease' changed its 'Suite' value from 'stable-security' to 'oldstable-security'
-N: Repository 'http://deb.debian.org/debian bookworm InRelease' changed its 'Suite' value from 'stable' to 'oldstable'
-N: Repository 'http://deb.debian.org/debian bookworm-updates InRelease' changed its 'Suite' value from 'stable-updates' to 'oldstable-updates'
-root@deb12-1:~#
-root@deb12-1:~# apt list --upgradable
-Listing... Done
-ca-certificates/oldstable-updates 20230311+deb12u1 all [upgradable from: 20230311]
-firefox-esr/oldstable-security 128.13.0esr-1~deb12u1 amd64 [upgradable from: 128.11.0esr-1~deb12u1]
-gir1.2-gdkpixbuf-2.0/oldstable-security 2.42.10+dfsg-1+deb12u2 amd64 [upgradable from: 2.42.10+dfsg-1+deb12u1]
-gir1.2-gst-plugins-bad-1.0/oldstable-security 1.22.0-4+deb12u6 amd64 [upgradable from: 1.22.0-4+deb12u5]
-gir1.2-javascriptcoregtk-4.0/oldstable-security 2.48.3-1~deb12u1 amd64 [upgradable from: 2.48.1-2~deb12u1]
-gir1.2-javascriptcoregtk-4.1/oldstable-security 2.48.3-1~deb12u1 amd64 [upgradable from: 2.48.1-2~deb12u1]
-gir1.2-webkit2-4.0/oldstable-security 2.48.3-1~deb12u1 amd64 [upgradable from: 2.48.1-2~deb12u1]
-gir1.2-webkit2-4.1/oldstable-security 2.48.3-1~deb12u1 amd64 [upgradable from: 2.48.1-2~deb12u1]
-gstreamer1.0-plugins-bad/oldstable-security 1.22.0-4+deb12u6 amd64 [upgradable from: 1.22.0-4+deb12u5]
-libblockdev-crypto2/oldstable-security 2.28-2+deb12u1 amd64 [upgradable from: 2.28-2]
-libblockdev-fs2/oldstable-security 2.28-2+deb12u1 amd64 [upgradable from: 2.28-2]
-libblockdev-loop2/oldstable-security 2.28-2+deb12u1 amd64 [upgradable from: 2.28-2]
-libblockdev-part-err2/oldstable-security 2.28-2+deb12u1 amd64 [upgradable from: 2.28-2]
-libblockdev-part2/oldstable-security 2.28-2+deb12u1 amd64 [upgradable from: 2.28-2]
-libblockdev-swap2/oldstable-security 2.28-2+deb12u1 amd64 [upgradable from: 2.28-2]
-libblockdev-utils2/oldstable-security 2.28-2+deb12u1 amd64 [upgradable from: 2.28-2]
-libblockdev2/oldstable-security 2.28-2+deb12u1 amd64 [upgradable from: 2.28-2]
-libdjvulibre-text/oldstable-security 3.5.28-2.1~deb12u1 all [upgradable from: 3.5.28-2]
-libdjvulibre21/oldstable-security 3.5.28-2.1~deb12u1 amd64 [upgradable from: 3.5.28-2+b1]
-libfile-find-rule-perl/oldstable-security 0.34-4~deb12u1 all [upgradable from: 0.34-3]
-libgdk-pixbuf-2.0-0/oldstable-security 2.42.10+dfsg-1+deb12u2 amd64 [upgradable from: 2.42.10+dfsg-1+deb12u1]
-libgdk-pixbuf2.0-bin/oldstable-security 2.42.10+dfsg-1+deb12u2 amd64 [upgradable from: 2.42.10+dfsg-1+deb12u1]
-libgdk-pixbuf2.0-common/oldstable-security 2.42.10+dfsg-1+deb12u2 all [upgradable from: 2.42.10+dfsg-1+deb12u1]
-libgnutls30/oldstable-security 3.7.9-2+deb12u5 amd64 [upgradable from: 3.7.9-2+deb12u4]
-libgstreamer-plugins-bad1.0-0/oldstable-security 1.22.0-4+deb12u6 amd64 [upgradable from: 1.22.0-4+deb12u5]
-libicu72/oldstable-security 72.1-3+deb12u1 amd64 [upgradable from: 72.1-3]
-libjavascriptcoregtk-4.0-18/oldstable-security 2.48.3-1~deb12u1 amd64 [upgradable from: 2.48.1-2~deb12u1]
-libjavascriptcoregtk-4.1-0/oldstable-security 2.48.3-1~deb12u1 amd64 [upgradable from: 2.48.1-2~deb12u1]
-libjavascriptcoregtk-6.0-1/oldstable-security 2.48.3-1~deb12u1 amd64 [upgradable from: 2.48.1-2~deb12u1]
-libjxl0.7/oldstable-security 0.7.0-10+deb12u1 amd64 [upgradable from: 0.7.0-10]
-libldb2/oldstable-updates 2:2.6.2+samba4.17.12+dfsg-0+deb12u2 amd64 [upgradable from: 2:2.6.2+samba4.17.12+dfsg-0+deb12u1]
-libsmbclient/oldstable-updates 2:4.17.12+dfsg-0+deb12u2 amd64 [upgradable from: 2:4.17.12+dfsg-0+deb12u1]
-libssl-dev/oldstable-updates 3.0.17-1~deb12u2 amd64 [upgradable from: 3.0.16-1~deb12u1]
-libssl3/oldstable-updates 3.0.17-1~deb12u2 amd64 [upgradable from: 3.0.16-1~deb12u1]
-libudisks2-0/oldstable-security 2.9.4-4+deb12u1 amd64 [upgradable from: 2.9.4-4]
-libwbclient0/oldstable-updates 2:4.17.12+dfsg-0+deb12u2 amd64 [upgradable from: 2:4.17.12+dfsg-0+deb12u1]
-libwebkit2gtk-4.0-37/oldstable-security 2.48.3-1~deb12u1 amd64 [upgradable from: 2.48.1-2~deb12u1]
-libwebkit2gtk-4.1-0/oldstable-security 2.48.3-1~deb12u1 amd64 [upgradable from: 2.48.1-2~deb12u1]
-libwebkitgtk-6.0-4/oldstable-security 2.48.3-1~deb12u1 amd64 [upgradable from: 2.48.1-2~deb12u1]
-libxml2/oldstable-security 2.9.14+dfsg-1.3~deb12u2 amd64 [upgradable from: 2.9.14+dfsg-1.3~deb12u1]
-linux-compiler-gcc-12-x86/oldstable-security 6.1.147-1 amd64 [upgradable from: 6.1.140-1]
-linux-headers-amd64/oldstable-security 6.1.147-1 amd64 [upgradable from: 6.1.140-1]
-linux-image-amd64/oldstable-security 6.1.147-1 amd64 [upgradable from: 6.1.140-1]
-linux-kbuild-6.1/oldstable-security 6.1.147-1 amd64 [upgradable from: 6.1.140-1]
-linux-libc-dev/oldstable-security 6.1.147-1 amd64 [upgradable from: 6.1.140-1]
-openjdk-17-jre-headless/oldstable-security 17.0.16+8-1~deb12u1 amd64 [upgradable from: 17.0.15+6-1~deb12u1]
-openjdk-17-jre/oldstable-security 17.0.16+8-1~deb12u1 amd64 [upgradable from: 17.0.15+6-1~deb12u1]
-openssh-client/oldstable-updates 1:9.2p1-2+deb12u7 amd64 [upgradable from: 1:9.2p1-2+deb12u6]
-openssh-server/oldstable-updates 1:9.2p1-2+deb12u7 amd64 [upgradable from: 1:9.2p1-2+deb12u6]
-openssh-sftp-server/oldstable-updates 1:9.2p1-2+deb12u7 amd64 [upgradable from: 1:9.2p1-2+deb12u6]
-openssl/oldstable-updates 3.0.17-1~deb12u2 amd64 [upgradable from: 3.0.16-1~deb12u1]
-samba-libs/oldstable-updates 2:4.17.12+dfsg-0+deb12u2 amd64 [upgradable from: 2:4.17.12+dfsg-0+deb12u1]
-sudo/oldstable-security 1.9.13p3-1+deb12u2 amd64 [upgradable from: 1.9.13p3-1+deb12u1]
-udisks2/oldstable-security 2.9.4-4+deb12u1 amd64 [upgradable from: 2.9.4-4]
-xserver-common/oldstable-security 2:21.1.7-3+deb12u10 all [upgradable from: 2:21.1.7-3+deb12u9]
-xserver-xephyr/oldstable-security 2:21.1.7-3+deb12u10 amd64 [upgradable from: 2:21.1.7-3+deb12u9]
-xserver-xorg-core/oldstable-security 2:21.1.7-3+deb12u10 amd64 [upgradable from: 2:21.1.7-3+deb12u9]
-xserver-xorg-legacy/oldstable-security 2:21.1.7-3+deb12u10 amd64 [upgradable from: 2:21.1.7-3+deb12u9]
-root@deb12-1:~#
-root@deb12-1:~# apt upgrade -y
-Reading package lists... Done
-Building dependency tree... Done
-Reading state information... Done
-Calculating upgrade... Done
-The following packages were automatically installed and are no longer required:
-  libdbus-glib-1-2 linux-image-5.10.0-32-amd64 linux-image-6.1.0-25-amd64
-Use 'apt autoremove' to remove them.
-The following NEW packages will be installed:
-  linux-headers-6.1.0-38-amd64 linux-headers-6.1.0-38-common linux-image-6.1.0-38-amd64
-The following packages will be upgraded:
-  ca-certificates firefox-esr gir1.2-gdkpixbuf-2.0 gir1.2-gst-plugins-bad-1.0 gir1.2-javascriptcoregtk-4.0 gir1.2-javascriptcoregtk-4.1 gir1.2-webkit2-4.0 gir1.2-webkit2-4.1 gstreamer1.0-plugins-bad libblockdev-crypto2 libblockdev-fs2 libblockdev-loop2
-  libblockdev-part-err2 libblockdev-part2 libblockdev-swap2 libblockdev-utils2 libblockdev2 libdjvulibre-text libdjvulibre21 libfile-find-rule-perl libgdk-pixbuf-2.0-0 libgdk-pixbuf2.0-bin libgdk-pixbuf2.0-common libgnutls30 libgstreamer-plugins-bad1.0-0 libicu72
-  libjavascriptcoregtk-4.0-18 libjavascriptcoregtk-4.1-0 libjavascriptcoregtk-6.0-1 libjxl0.7 libldb2 libsmbclient libssl-dev libssl3 libudisks2-0 libwbclient0 libwebkit2gtk-4.0-37 libwebkit2gtk-4.1-0 libwebkitgtk-6.0-4 libxml2 linux-compiler-gcc-12-x86
-  linux-headers-amd64 linux-image-amd64 linux-kbuild-6.1 linux-libc-dev openjdk-17-jre openjdk-17-jre-headless openssh-client openssh-server openssh-sftp-server openssl samba-libs sudo udisks2 xserver-common xserver-xephyr xserver-xorg-core xserver-xorg-legacy
-58 upgraded, 3 newly installed, 0 to remove and 0 not upgraded.
-Need to get 332 MB of archives.
-After this operation, 471 MB of additional disk space will be used.
-Get:1 http://security.debian.org/debian-security bookworm-security/main amd64 sudo amd64 1.9.13p3-1+deb12u2 [1,890 kB]
-Get:2 http://deb.debian.org/debian bookworm-updates/main amd64 libssl-dev amd64 3.0.17-1~deb12u2 [2,441 kB]
-Get:3 http://security.debian.org/debian-security bookworm-security/main amd64 libfile-find-rule-perl all 0.34-4~deb12u1 [26.7 kB]
-Get:4 http://security.debian.org/debian-security bookworm-security/main amd64 libgnutls30 amd64 3.7.9-2+deb12u5 [1,406 kB]
-Get:5 http://deb.debian.org/debian bookworm-updates/main amd64 libssl3 amd64 3.0.17-1~deb12u2 [2,027 kB]
-Get:6 http://security.debian.org/debian-security bookworm-security/main amd64 libgdk-pixbuf2.0-common all 2.42.10+dfsg-1+deb12u2 [306 kB]
-Get:7 http://security.debian.org/debian-security bookworm-security/main amd64 libgdk-pixbuf-2.0-0 amd64 2.42.10+dfsg-1+deb12u2 [138 kB]
-Get:8 http://security.debian.org/debian-security bookworm-security/main amd64 firefox-esr amd64 128.13.0esr-1~deb12u1 [69.8 MB]
-Get:9 http://deb.debian.org/debian bookworm-updates/main amd64 openssh-sftp-server amd64 1:9.2p1-2+deb12u7 [65.9 kB]
-Get:10 http://deb.debian.org/debian bookworm-updates/main amd64 openssh-server amd64 1:9.2p1-2+deb12u7 [457 kB]
-Get:11 http://deb.debian.org/debian bookworm-updates/main amd64 openssh-client amd64 1:9.2p1-2+deb12u7 [992 kB]
-Get:12 http://deb.debian.org/debian bookworm-updates/main amd64 openssl amd64 3.0.17-1~deb12u2 [1,430 kB]
-Get:13 http://deb.debian.org/debian bookworm-updates/main amd64 ca-certificates all 20230311+deb12u1 [155 kB]
-Get:14 http://deb.debian.org/debian bookworm-updates/main amd64 libldb2 amd64 2:2.6.2+samba4.17.12+dfsg-0+deb12u2 [162 kB]
-Get:15 http://deb.debian.org/debian bookworm-updates/main amd64 libsmbclient amd64 2:4.17.12+dfsg-0+deb12u2 [83.2 kB]
-Get:16 http://deb.debian.org/debian bookworm-updates/main amd64 samba-libs amd64 2:4.17.12+dfsg-0+deb12u2 [5,655 kB]
-Get:17 http://deb.debian.org/debian bookworm-updates/main amd64 libwbclient0 amd64 2:4.17.12+dfsg-0+deb12u2 [54.4 kB]
-Get:18 http://security.debian.org/debian-security bookworm-security/main amd64 gir1.2-gdkpixbuf-2.0 amd64 2.42.10+dfsg-1+deb12u2 [13.4 kB]
-Get:19 http://security.debian.org/debian-security bookworm-security/main amd64 libicu72 amd64 72.1-3+deb12u1 [9,376 kB]
-Get:20 http://security.debian.org/debian-security bookworm-security/main amd64 libxml2 amd64 2.9.14+dfsg-1.3~deb12u2 [687 kB]
-Get:21 http://security.debian.org/debian-security bookworm-security/main amd64 gstreamer1.0-plugins-bad amd64 1.22.0-4+deb12u6 [2,993 kB]
-Get:22 http://security.debian.org/debian-security bookworm-security/main amd64 libgstreamer-plugins-bad1.0-0 amd64 1.22.0-4+deb12u6 [766 kB]
-Get:23 http://security.debian.org/debian-security bookworm-security/main amd64 gir1.2-gst-plugins-bad-1.0 amd64 1.22.0-4+deb12u6 [195 kB]
-Get:24 http://security.debian.org/debian-security bookworm-security/main amd64 gir1.2-webkit2-4.0 amd64 2.48.3-1~deb12u1 [107 kB]
-Get:25 http://security.debian.org/debian-security bookworm-security/main amd64 gir1.2-javascriptcoregtk-4.0 amd64 2.48.3-1~deb12u1 [50.8 kB]
-Get:26 http://security.debian.org/debian-security bookworm-security/main amd64 libwebkit2gtk-4.0-37 amd64 2.48.3-1~deb12u1 [22.2 MB]
-Get:27 http://security.debian.org/debian-security bookworm-security/main amd64 libjavascriptcoregtk-4.0-18 amd64 2.48.3-1~deb12u1 [6,882 kB]
-Get:28 http://security.debian.org/debian-security bookworm-security/main amd64 gir1.2-webkit2-4.1 amd64 2.48.3-1~deb12u1 [107 kB]
-Get:29 http://security.debian.org/debian-security bookworm-security/main amd64 gir1.2-javascriptcoregtk-4.1 amd64 2.48.3-1~deb12u1 [50.8 kB]
-Get:30 http://security.debian.org/debian-security bookworm-security/main amd64 libwebkit2gtk-4.1-0 amd64 2.48.3-1~deb12u1 [22.2 MB]
-Get:31 http://security.debian.org/debian-security bookworm-security/main amd64 libjavascriptcoregtk-4.1-0 amd64 2.48.3-1~deb12u1 [6,882 kB]
-Get:32 http://security.debian.org/debian-security bookworm-security/main amd64 libblockdev-utils2 amd64 2.28-2+deb12u1 [15.3 kB]
-Get:33 http://security.debian.org/debian-security bookworm-security/main amd64 libblockdev-crypto2 amd64 2.28-2+deb12u1 [18.4 kB]
-Get:34 http://security.debian.org/debian-security bookworm-security/main amd64 libblockdev-part-err2 amd64 2.28-2+deb12u1 [5,724 B]
-Get:35 http://security.debian.org/debian-security bookworm-security/main amd64 libblockdev-fs2 amd64 2.28-2+deb12u1 [22.8 kB]
-Get:36 http://security.debian.org/debian-security bookworm-security/main amd64 libblockdev-loop2 amd64 2.28-2+deb12u1 [8,416 B]
-Get:37 http://security.debian.org/debian-security bookworm-security/main amd64 libblockdev-part2 amd64 2.28-2+deb12u1 [17.6 kB]
-Get:38 http://security.debian.org/debian-security bookworm-security/main amd64 libblockdev-swap2 amd64 2.28-2+deb12u1 [10.3 kB]
-Get:39 http://security.debian.org/debian-security bookworm-security/main amd64 libblockdev2 amd64 2.28-2+deb12u1 [38.8 kB]
-Get:40 http://security.debian.org/debian-security bookworm-security/main amd64 libdjvulibre-text all 3.5.28-2.1~deb12u1 [52.0 kB]
-Get:41 http://security.debian.org/debian-security bookworm-security/main amd64 libdjvulibre21 amd64 3.5.28-2.1~deb12u1 [585 kB]
-Get:42 http://security.debian.org/debian-security bookworm-security/main amd64 libgdk-pixbuf2.0-bin amd64 2.42.10+dfsg-1+deb12u2 [17.8 kB]
-Get:43 http://security.debian.org/debian-security bookworm-security/main amd64 libwebkitgtk-6.0-4 amd64 2.48.3-1~deb12u1 [22.0 MB]
-Get:44 http://security.debian.org/debian-security bookworm-security/main amd64 libjavascriptcoregtk-6.0-1 amd64 2.48.3-1~deb12u1 [6,881 kB]
-Get:45 http://security.debian.org/debian-security bookworm-security/main amd64 libjxl0.7 amd64 0.7.0-10+deb12u1 [1,046 kB]
-Get:46 http://security.debian.org/debian-security bookworm-security/main amd64 libudisks2-0 amd64 2.9.4-4+deb12u1 [146 kB]
-Get:47 http://security.debian.org/debian-security bookworm-security/main amd64 linux-compiler-gcc-12-x86 amd64 6.1.147-1 [1,025 kB]
-Get:48 http://security.debian.org/debian-security bookworm-security/main amd64 linux-headers-6.1.0-38-common all 6.1.147-1 [10.2 MB]
-Get:49 http://security.debian.org/debian-security bookworm-security/main amd64 linux-kbuild-6.1 amd64 6.1.147-1 [1,283 kB]
-Get:50 http://security.debian.org/debian-security bookworm-security/main amd64 linux-headers-6.1.0-38-amd64 amd64 6.1.147-1 [1,555 kB]
-Get:51 http://security.debian.org/debian-security bookworm-security/main amd64 linux-headers-amd64 amd64 6.1.147-1 [1,420 B]
-Get:52 http://security.debian.org/debian-security bookworm-security/main amd64 linux-image-6.1.0-38-amd64 amd64 6.1.147-1 [69.1 MB]
-Get:53 http://security.debian.org/debian-security bookworm-security/main amd64 linux-image-amd64 amd64 6.1.147-1 [1,480 B]
-Get:54 http://security.debian.org/debian-security bookworm-security/main amd64 linux-libc-dev amd64 6.1.147-1 [2,171 kB]
-Get:55 http://security.debian.org/debian-security bookworm-security/main amd64 openjdk-17-jre amd64 17.0.16+8-1~deb12u1 [209 kB]
-Get:56 http://security.debian.org/debian-security bookworm-security/main amd64 openjdk-17-jre-headless amd64 17.0.16+8-1~deb12u1 [43.8 MB]
-Get:57 http://security.debian.org/debian-security bookworm-security/main amd64 udisks2 amd64 2.9.4-4+deb12u1 [403 kB]
-Get:58 http://security.debian.org/debian-security bookworm-security/main amd64 xserver-common all 2:21.1.7-3+deb12u10 [2,383 kB]
-Get:59 http://security.debian.org/debian-security bookworm-security/main amd64 xserver-xephyr amd64 2:21.1.7-3+deb12u10 [3,294 kB]
-Get:60 http://security.debian.org/debian-security bookworm-security/main amd64 xserver-xorg-legacy amd64 2:21.1.7-3+deb12u10 [2,389 kB]
-Get:61 http://security.debian.org/debian-security bookworm-security/main amd64 xserver-xorg-core amd64 2:21.1.7-3+deb12u10 [3,721 kB]
-Fetched 332 MB in 11s (29.2 MB/s)
+martin@deb-lab-svr:~$ sudo apt update
+Get:1 http://deb.debian.org/debian trixie-backports InRelease [54.0 kB]
+Get:2 https://security.debian.org/debian-security trixie-security InRelease [43.4 kB]
+Hit:3 https://deb.debian.org/debian trixie InRelease
+Get:4 https://deb.debian.org/debian trixie-updates InRelease [47.3 kB]
+Get:5 http://deb.debian.org/debian trixie-backports/main Sources.diff/Index [63.3 kB]
+Get:6 https://security.debian.org/debian-security trixie-security/main Sources [196 kB]
+Get:7 http://deb.debian.org/debian trixie-backports/main amd64 Packages.diff/Index [63.3 kB]
+Get:8 http://deb.debian.org/debian trixie-backports/main Translation-en.diff/Index [63.3 kB]
+Get:9 http://deb.debian.org/debian trixie-backports/main all Contents (deb).diff/Index [63.7 kB]
+Get:10 http://deb.debian.org/debian trixie-backports/main amd64 Contents (deb).diff/Index [63.6 kB]
+Get:11 https://security.debian.org/debian-security trixie-security/main amd64 Packages [231 kB]
+Get:12 https://security.debian.org/debian-security trixie-security/main Translation-en [140 kB]
+Get:13 http://deb.debian.org/debian trixie-backports/main Sources T-2026-08-02-1401.57-F-2026-07-28-2005.45.pdiff [7,908 B]
+Get:13 http://deb.debian.org/debian trixie-backports/main Sources T-2026-08-02-1401.57-F-2026-07-28-2005.45.pdiff [7,908 B]
+Get:14 http://deb.debian.org/debian trixie-backports/main amd64 Packages T-2026-08-02-0802.51-F-2026-07-28-2005.45.pdiff [10.9 kB]
+Get:14 http://deb.debian.org/debian trixie-backports/main amd64 Packages T-2026-08-02-0802.51-F-2026-07-28-2005.45.pdiff [10.9 kB]
+Get:15 http://deb.debian.org/debian trixie-backports/main Translation-en T-2026-07-30-2016.59-F-2026-07-30-2016.59.pdiff [1,957 B]
+Get:15 http://deb.debian.org/debian trixie-backports/main Translation-en T-2026-07-30-2016.59-F-2026-07-30-2016.59.pdiff [1,957 B]
+Get:16 http://deb.debian.org/debian trixie-backports/main all Contents (deb) T-2026-08-02-0802.51-F-2026-07-28-2005.45.pdiff [11.1 kB]
+Get:16 http://deb.debian.org/debian trixie-backports/main all Contents (deb) T-2026-08-02-0802.51-F-2026-07-28-2005.45.pdiff [11.1 kB]
+Get:17 http://deb.debian.org/debian trixie-backports/main amd64 Contents (deb) T-2026-08-02-0200.42-F-2026-07-28-2005.45.pdiff [1,457 B]
+Get:17 http://deb.debian.org/debian trixie-backports/main amd64 Contents (deb) T-2026-08-02-0200.42-F-2026-07-28-2005.45.pdiff [1,457 B]
+Fetched 1,063 kB in 6s (187 kB/s)
+14 packages can be upgraded. Run 'apt list --upgradable' to see them.
+martin@deb-lab-svr:~$
+martin@deb-lab-svr:~$ sudo apt list --upgradable
+chromium-common/stable-security 151.0.7922.71-1~deb13u1 amd64 [upgradable from: 150.0.7871.181-1~deb13u1]
+chromium-sandbox/stable-security 151.0.7922.71-1~deb13u1 amd64 [upgradable from: 150.0.7871.181-1~deb13u1]
+chromium/stable-security 151.0.7922.71-1~deb13u1 amd64 [upgradable from: 150.0.7871.181-1~deb13u1]
+libexpat1-dev/stable-security 2.8.2-1~deb13u1 amd64 [upgradable from: 2.7.1-2]
+libexpat1/stable-security 2.8.2-1~deb13u1 amd64 [upgradable from: 2.7.1-2]
+libgd3/stable-security 2.3.3-14~deb13u1 amd64 [upgradable from: 2.3.3-13]
+libnss3/stable-security 2:3.110-1+deb13u4 amd64 [upgradable from: 2:3.110-1+deb13u3]
+libssh-4/stable-security 0.11.5-0+deb13u1 amd64 [upgradable from: 0.11.2-1+deb13u1]
+linux-config-6.12/stable-security 6.12.100-1 amd64 [upgradable from: 6.12.96-1]
+linux-headers-amd64/stable-security 6.12.100-1 amd64 [upgradable from: 6.12.96-1]
+linux-image-amd64/stable-security 6.12.100-1 amd64 [upgradable from: 6.12.96-1]
+linux-libc-dev/stable-security 6.12.100-1 all [upgradable from: 6.12.96-1]
+linux-source-6.12/stable-security 6.12.100-1 all [upgradable from: 6.12.96-1]
+linux-source/stable-security 6.12.100-1 all [upgradable from: 6.12.96-1]
+martin@deb-lab-svr:~$
+martin@deb-lab-svr:~$ sudo apt upgrade -y
+Upgrading:
+  chromium         chromium-sandbox  libexpat1-dev  libnss3   linux-config-6.12    linux-image-amd64  linux-source
+  chromium-common  libexpat1         libgd3         libssh-4  linux-headers-amd64  linux-libc-dev     linux-source-6.12
+
+Installing dependencies:
+  linux-headers-6.12.100+deb13-amd64  linux-headers-6.12.100+deb13-common  linux-image-6.12.100+deb13-amd64  linux-kbuild-6.12.100+deb13
+
+Suggested packages:
+  linux-doc-6.12  debian-kernel-handbook
+
+Summary:
+  Upgrading: 14, Installing: 4, Removing: 0, Not Upgrading: 0
+  Download size: 402 MB
+  Space needed: 257 MB / 27.3 GB available
+
+Get:1 https://security.debian.org/debian-security trixie-security/main amd64 libexpat1-dev amd64 2.8.2-1~deb13u1 [178 kB]
+Get:2 https://security.debian.org/debian-security trixie-security/main amd64 libexpat1 amd64 2.8.2-1~deb13u1 [122 kB]
+Get:3 https://security.debian.org/debian-security trixie-security/main amd64 linux-image-6.12.100+deb13-amd64 amd64 6.12.100-1 [108 MB]
+Get:4 https://security.debian.org/debian-security trixie-security/main amd64 chromium amd64 151.0.7922.71-1~deb13u1 [89.5 MB]
+Get:5 https://security.debian.org/debian-security trixie-security/main amd64 chromium-sandbox amd64 151.0.7922.71-1~deb13u1 [137 kB]
+Get:6 https://security.debian.org/debian-security trixie-security/main amd64 chromium-common amd64 151.0.7922.71-1~deb13u1 [29.6 MB]
+Get:7 https://security.debian.org/debian-security trixie-security/main amd64 libnss3 amd64 2:3.110-1+deb13u4 [1,394 kB]
+Get:8 https://security.debian.org/debian-security trixie-security/main amd64 libgd3 amd64 2.3.3-14~deb13u1 [126 kB]
+Get:9 https://security.debian.org/debian-security trixie-security/main amd64 libssh-4 amd64 0.11.5-0+deb13u1 [212 kB]
+Get:10 https://security.debian.org/debian-security trixie-security/main amd64 linux-config-6.12 amd64 6.12.100-1 [1,475 kB]
+Get:11 https://security.debian.org/debian-security trixie-security/main amd64 linux-headers-6.12.100+deb13-common all 6.12.100-1 [11.2 MB]
+Get:12 https://security.debian.org/debian-security trixie-security/main amd64 linux-kbuild-6.12.100+deb13 amd64 6.12.100-1 [1,766 kB]
+Get:13 https://security.debian.org/debian-security trixie-security/main amd64 linux-headers-6.12.100+deb13-amd64 amd64 6.12.100-1 [3,094 kB]
+Get:14 https://security.debian.org/debian-security trixie-security/main amd64 linux-headers-amd64 amd64 6.12.100-1 [1,412 B]
+Get:15 https://security.debian.org/debian-security trixie-security/main amd64 linux-image-amd64 amd64 6.12.100-1 [1,480 B]
+Get:16 https://security.debian.org/debian-security trixie-security/main amd64 linux-libc-dev all 6.12.100-1 [2,887 kB]
+Get:17 https://security.debian.org/debian-security trixie-security/main amd64 linux-source all 6.12.100-1 [1,100 B]
+Get:18 https://security.debian.org/debian-security trixie-security/main amd64 linux-source-6.12 all 6.12.100-1 [153 MB]
+Fetched 402 MB in 49s (8,137 kB/s)
 apt-listchanges: Reading changelogs...
-Extracting templates from packages: 100%
-Preconfiguring packages ...
-setting xserver-xorg-legacy/xwrapper/allowed_users from configuration file
-(Reading database ... 244201 files and directories currently installed.)
-Preparing to unpack .../0-libssl-dev_3.0.17-1~deb12u2_amd64.deb ...
-Unpacking libssl-dev:amd64 (3.0.17-1~deb12u2) over (3.0.16-1~deb12u1) ...
-Preparing to unpack .../1-libssl3_3.0.17-1~deb12u2_amd64.deb ...
-Unpacking libssl3:amd64 (3.0.17-1~deb12u2) over (3.0.16-1~deb12u1) ...
-Preparing to unpack .../2-openssh-sftp-server_1%3a9.2p1-2+deb12u7_amd64.deb ...
-Unpacking openssh-sftp-server (1:9.2p1-2+deb12u7) over (1:9.2p1-2+deb12u6) ...
-Preparing to unpack .../3-openssh-server_1%3a9.2p1-2+deb12u7_amd64.deb ...
-Unpacking openssh-server (1:9.2p1-2+deb12u7) over (1:9.2p1-2+deb12u6) ...
-Preparing to unpack .../4-openssh-client_1%3a9.2p1-2+deb12u7_amd64.deb ...
-Unpacking openssh-client (1:9.2p1-2+deb12u7) over (1:9.2p1-2+deb12u6) ...
-Preparing to unpack .../5-sudo_1.9.13p3-1+deb12u2_amd64.deb ...
-Unpacking sudo (1.9.13p3-1+deb12u2) over (1.9.13p3-1+deb12u1) ...
-Preparing to unpack .../6-libfile-find-rule-perl_0.34-4~deb12u1_all.deb ...
-Unpacking libfile-find-rule-perl (0.34-4~deb12u1) over (0.34-3) ...
-Setting up libfile-find-rule-perl (0.34-4~deb12u1) ...
-(Reading database ... 244201 files and directories currently installed.)
-Preparing to unpack .../libgnutls30_3.7.9-2+deb12u5_amd64.deb ...
-Unpacking libgnutls30:amd64 (3.7.9-2+deb12u5) over (3.7.9-2+deb12u4) ...
-Setting up libgnutls30:amd64 (3.7.9-2+deb12u5) ...
-(Reading database ... 244201 files and directories currently installed.)
-Preparing to unpack .../00-openssl_3.0.17-1~deb12u2_amd64.deb ...
-Unpacking openssl (3.0.17-1~deb12u2) over (3.0.16-1~deb12u1) ...
-Preparing to unpack .../01-ca-certificates_20230311+deb12u1_all.deb ...
-Unpacking ca-certificates (20230311+deb12u1) over (20230311) ...
-Preparing to unpack .../02-libgdk-pixbuf2.0-common_2.42.10+dfsg-1+deb12u2_all.deb ...
-Unpacking libgdk-pixbuf2.0-common (2.42.10+dfsg-1+deb12u2) over (2.42.10+dfsg-1+deb12u1) ...
-Preparing to unpack .../03-libgdk-pixbuf-2.0-0_2.42.10+dfsg-1+deb12u2_amd64.deb ...
-Unpacking libgdk-pixbuf-2.0-0:amd64 (2.42.10+dfsg-1+deb12u2) over (2.42.10+dfsg-1+deb12u1) ...
-Preparing to unpack .../04-firefox-esr_128.13.0esr-1~deb12u1_amd64.deb ...
-Leaving 'diversion of /usr/bin/firefox to /usr/bin/firefox.real by firefox-esr'
-Unpacking firefox-esr (128.13.0esr-1~deb12u1) over (128.11.0esr-1~deb12u1) ...
-Preparing to unpack .../05-gir1.2-gdkpixbuf-2.0_2.42.10+dfsg-1+deb12u2_amd64.deb ...
-Unpacking gir1.2-gdkpixbuf-2.0:amd64 (2.42.10+dfsg-1+deb12u2) over (2.42.10+dfsg-1+deb12u1) ...
-Preparing to unpack .../06-libicu72_72.1-3+deb12u1_amd64.deb ...
-Unpacking libicu72:amd64 (72.1-3+deb12u1) over (72.1-3) ...
-Preparing to unpack .../07-libxml2_2.9.14+dfsg-1.3~deb12u2_amd64.deb ...
-Unpacking libxml2:amd64 (2.9.14+dfsg-1.3~deb12u2) over (2.9.14+dfsg-1.3~deb12u1) ...
-Preparing to unpack .../08-gstreamer1.0-plugins-bad_1.22.0-4+deb12u6_amd64.deb ...
-Unpacking gstreamer1.0-plugins-bad:amd64 (1.22.0-4+deb12u6) over (1.22.0-4+deb12u5) ...
-Preparing to unpack .../09-libgstreamer-plugins-bad1.0-0_1.22.0-4+deb12u6_amd64.deb ...
-Unpacking libgstreamer-plugins-bad1.0-0:amd64 (1.22.0-4+deb12u6) over (1.22.0-4+deb12u5) ...
-Preparing to unpack .../10-gir1.2-gst-plugins-bad-1.0_1.22.0-4+deb12u6_amd64.deb ...
-Unpacking gir1.2-gst-plugins-bad-1.0:amd64 (1.22.0-4+deb12u6) over (1.22.0-4+deb12u5) ...
-Preparing to unpack .../11-gir1.2-webkit2-4.0_2.48.3-1~deb12u1_amd64.deb ...
-Unpacking gir1.2-webkit2-4.0:amd64 (2.48.3-1~deb12u1) over (2.48.1-2~deb12u1) ...
-Preparing to unpack .../12-gir1.2-javascriptcoregtk-4.0_2.48.3-1~deb12u1_amd64.deb ...
-Unpacking gir1.2-javascriptcoregtk-4.0:amd64 (2.48.3-1~deb12u1) over (2.48.1-2~deb12u1) ...
-Preparing to unpack .../13-libwebkit2gtk-4.0-37_2.48.3-1~deb12u1_amd64.deb ...
-Unpacking libwebkit2gtk-4.0-37:amd64 (2.48.3-1~deb12u1) over (2.48.1-2~deb12u1) ...
-Preparing to unpack .../14-libjavascriptcoregtk-4.0-18_2.48.3-1~deb12u1_amd64.deb ...
-Unpacking libjavascriptcoregtk-4.0-18:amd64 (2.48.3-1~deb12u1) over (2.48.1-2~deb12u1) ...
-Preparing to unpack .../15-gir1.2-webkit2-4.1_2.48.3-1~deb12u1_amd64.deb ...
-Unpacking gir1.2-webkit2-4.1:amd64 (2.48.3-1~deb12u1) over (2.48.1-2~deb12u1) ...
-Preparing to unpack .../16-gir1.2-javascriptcoregtk-4.1_2.48.3-1~deb12u1_amd64.deb ...
-Unpacking gir1.2-javascriptcoregtk-4.1:amd64 (2.48.3-1~deb12u1) over (2.48.1-2~deb12u1) ...
-Preparing to unpack .../17-libwebkit2gtk-4.1-0_2.48.3-1~deb12u1_amd64.deb ...
-Unpacking libwebkit2gtk-4.1-0:amd64 (2.48.3-1~deb12u1) over (2.48.1-2~deb12u1) ...
-Preparing to unpack .../18-libjavascriptcoregtk-4.1-0_2.48.3-1~deb12u1_amd64.deb ...
-Unpacking libjavascriptcoregtk-4.1-0:amd64 (2.48.3-1~deb12u1) over (2.48.1-2~deb12u1) ...
-Preparing to unpack .../19-libblockdev-utils2_2.28-2+deb12u1_amd64.deb ...
-Unpacking libblockdev-utils2:amd64 (2.28-2+deb12u1) over (2.28-2) ...
-Preparing to unpack .../20-libblockdev-crypto2_2.28-2+deb12u1_amd64.deb ...
-Unpacking libblockdev-crypto2:amd64 (2.28-2+deb12u1) over (2.28-2) ...
-Preparing to unpack .../21-libblockdev-part-err2_2.28-2+deb12u1_amd64.deb ...
-Unpacking libblockdev-part-err2:amd64 (2.28-2+deb12u1) over (2.28-2) ...
-Preparing to unpack .../22-libblockdev-fs2_2.28-2+deb12u1_amd64.deb ...
-Unpacking libblockdev-fs2:amd64 (2.28-2+deb12u1) over (2.28-2) ...
-Preparing to unpack .../23-libblockdev-loop2_2.28-2+deb12u1_amd64.deb ...
-Unpacking libblockdev-loop2:amd64 (2.28-2+deb12u1) over (2.28-2) ...
-Preparing to unpack .../24-libblockdev-part2_2.28-2+deb12u1_amd64.deb ...
-Unpacking libblockdev-part2:amd64 (2.28-2+deb12u1) over (2.28-2) ...
-Preparing to unpack .../25-libblockdev-swap2_2.28-2+deb12u1_amd64.deb ...
-Unpacking libblockdev-swap2:amd64 (2.28-2+deb12u1) over (2.28-2) ...
-Preparing to unpack .../26-libblockdev2_2.28-2+deb12u1_amd64.deb ...
-Unpacking libblockdev2:amd64 (2.28-2+deb12u1) over (2.28-2) ...
-Preparing to unpack .../27-libdjvulibre-text_3.5.28-2.1~deb12u1_all.deb ...
-Unpacking libdjvulibre-text (3.5.28-2.1~deb12u1) over (3.5.28-2) ...
-Preparing to unpack .../28-libdjvulibre21_3.5.28-2.1~deb12u1_amd64.deb ...
-Unpacking libdjvulibre21:amd64 (3.5.28-2.1~deb12u1) over (3.5.28-2+b1) ...
-Preparing to unpack .../29-libgdk-pixbuf2.0-bin_2.42.10+dfsg-1+deb12u2_amd64.deb ...
-Unpacking libgdk-pixbuf2.0-bin (2.42.10+dfsg-1+deb12u2) over (2.42.10+dfsg-1+deb12u1) ...
-Preparing to unpack .../30-libwebkitgtk-6.0-4_2.48.3-1~deb12u1_amd64.deb ...
-Unpacking libwebkitgtk-6.0-4:amd64 (2.48.3-1~deb12u1) over (2.48.1-2~deb12u1) ...
-Preparing to unpack .../31-libjavascriptcoregtk-6.0-1_2.48.3-1~deb12u1_amd64.deb ...
-Unpacking libjavascriptcoregtk-6.0-1:amd64 (2.48.3-1~deb12u1) over (2.48.1-2~deb12u1) ...
-Preparing to unpack .../32-libjxl0.7_0.7.0-10+deb12u1_amd64.deb ...
-Unpacking libjxl0.7:amd64 (0.7.0-10+deb12u1) over (0.7.0-10) ...
-Preparing to unpack .../33-libldb2_2%3a2.6.2+samba4.17.12+dfsg-0+deb12u2_amd64.deb ...
-Unpacking libldb2:amd64 (2:2.6.2+samba4.17.12+dfsg-0+deb12u2) over (2:2.6.2+samba4.17.12+dfsg-0+deb12u1) ...
-Preparing to unpack .../34-libsmbclient_2%3a4.17.12+dfsg-0+deb12u2_amd64.deb ...
-Unpacking libsmbclient:amd64 (2:4.17.12+dfsg-0+deb12u2) over (2:4.17.12+dfsg-0+deb12u1) ...
-Preparing to unpack .../35-samba-libs_2%3a4.17.12+dfsg-0+deb12u2_amd64.deb ...
-Unpacking samba-libs:amd64 (2:4.17.12+dfsg-0+deb12u2) over (2:4.17.12+dfsg-0+deb12u1) ...
-Preparing to unpack .../36-libwbclient0_2%3a4.17.12+dfsg-0+deb12u2_amd64.deb ...
-Unpacking libwbclient0:amd64 (2:4.17.12+dfsg-0+deb12u2) over (2:4.17.12+dfsg-0+deb12u1) ...
-Preparing to unpack .../37-libudisks2-0_2.9.4-4+deb12u1_amd64.deb ...
-Unpacking libudisks2-0:amd64 (2.9.4-4+deb12u1) over (2.9.4-4) ...
-Preparing to unpack .../38-linux-compiler-gcc-12-x86_6.1.147-1_amd64.deb ...
-Unpacking linux-compiler-gcc-12-x86 (6.1.147-1) over (6.1.140-1) ...
-Selecting previously unselected package linux-headers-6.1.0-38-common.
-Preparing to unpack .../39-linux-headers-6.1.0-38-common_6.1.147-1_all.deb ...
-Unpacking linux-headers-6.1.0-38-common (6.1.147-1) ...
-Preparing to unpack .../40-linux-kbuild-6.1_6.1.147-1_amd64.deb ...
-Unpacking linux-kbuild-6.1 (6.1.147-1) over (6.1.140-1) ...
-Selecting previously unselected package linux-headers-6.1.0-38-amd64.
-Preparing to unpack .../41-linux-headers-6.1.0-38-amd64_6.1.147-1_amd64.deb ...
-Unpacking linux-headers-6.1.0-38-amd64 (6.1.147-1) ...
-Preparing to unpack .../42-linux-headers-amd64_6.1.147-1_amd64.deb ...
-Unpacking linux-headers-amd64 (6.1.147-1) over (6.1.140-1) ...
-Selecting previously unselected package linux-image-6.1.0-38-amd64.
-Preparing to unpack .../43-linux-image-6.1.0-38-amd64_6.1.147-1_amd64.deb ...
-Unpacking linux-image-6.1.0-38-amd64 (6.1.147-1) ...
-Preparing to unpack .../44-linux-image-amd64_6.1.147-1_amd64.deb ...
-Unpacking linux-image-amd64 (6.1.147-1) over (6.1.140-1) ...
-Preparing to unpack .../45-linux-libc-dev_6.1.147-1_amd64.deb ...
-Unpacking linux-libc-dev:amd64 (6.1.147-1) over (6.1.140-1) ...
-Preparing to unpack .../46-openjdk-17-jre_17.0.16+8-1~deb12u1_amd64.deb ...
-Unpacking openjdk-17-jre:amd64 (17.0.16+8-1~deb12u1) over (17.0.15+6-1~deb12u1) ...
-Preparing to unpack .../47-openjdk-17-jre-headless_17.0.16+8-1~deb12u1_amd64.deb ...
-Unpacking openjdk-17-jre-headless:amd64 (17.0.16+8-1~deb12u1) over (17.0.15+6-1~deb12u1) ...
-Preparing to unpack .../48-udisks2_2.9.4-4+deb12u1_amd64.deb ...
-Unpacking udisks2 (2.9.4-4+deb12u1) over (2.9.4-4) ...
-Preparing to unpack .../49-xserver-common_2%3a21.1.7-3+deb12u10_all.deb ...
-Unpacking xserver-common (2:21.1.7-3+deb12u10) over (2:21.1.7-3+deb12u9) ...
-Preparing to unpack .../50-xserver-xephyr_2%3a21.1.7-3+deb12u10_amd64.deb ...
-Unpacking xserver-xephyr (2:21.1.7-3+deb12u10) over (2:21.1.7-3+deb12u9) ...
-Preparing to unpack .../51-xserver-xorg-legacy_2%3a21.1.7-3+deb12u10_amd64.deb ...
-Unpacking xserver-xorg-legacy (2:21.1.7-3+deb12u10) over (2:21.1.7-3+deb12u9) ...
-Preparing to unpack .../52-xserver-xorg-core_2%3a21.1.7-3+deb12u10_amd64.deb ...
-Unpacking xserver-xorg-core (2:21.1.7-3+deb12u10) over (2:21.1.7-3+deb12u9) ...
-Setting up libicu72:amd64 (72.1-3+deb12u1) ...
-Setting up linux-headers-6.1.0-38-common (6.1.147-1) ...
-Setting up libgdk-pixbuf2.0-common (2.42.10+dfsg-1+deb12u2) ...
-Setting up libssl3:amd64 (3.0.17-1~deb12u2) ...
-Setting up libjavascriptcoregtk-4.0-18:amd64 (2.48.3-1~deb12u1) ...
-Setting up linux-libc-dev:amd64 (6.1.147-1) ...
-Setting up gir1.2-javascriptcoregtk-4.0:amd64 (2.48.3-1~deb12u1) ...
-Setting up libwbclient0:amd64 (2:4.17.12+dfsg-0+deb12u2) ...
-Setting up linux-image-6.1.0-38-amd64 (6.1.147-1) ...
-I: /vmlinuz.old is now a symlink to boot/vmlinuz-6.1.0-37-amd64
-I: /initrd.img.old is now a symlink to boot/initrd.img-6.1.0-37-amd64
-I: /vmlinuz is now a symlink to boot/vmlinuz-6.1.0-38-amd64
-I: /initrd.img is now a symlink to boot/initrd.img-6.1.0-38-amd64
+(Reading database ... 205401 files and directories currently installed.)
+Preparing to unpack .../00-libexpat1-dev_2.8.2-1~deb13u1_amd64.deb ...
+Unpacking libexpat1-dev:amd64 (2.8.2-1~deb13u1) over (2.7.1-2) ...
+Preparing to unpack .../01-libexpat1_2.8.2-1~deb13u1_amd64.deb ...
+Unpacking libexpat1:amd64 (2.8.2-1~deb13u1) over (2.7.1-2) ...
+Selecting previously unselected package linux-image-6.12.100+deb13-amd64.
+Preparing to unpack .../02-linux-image-6.12.100+deb13-amd64_6.12.100-1_amd64.deb ...
+Unpacking linux-image-6.12.100+deb13-amd64 (6.12.100-1) ...
+Preparing to unpack .../03-chromium_151.0.7922.71-1~deb13u1_amd64.deb ...
+Unpacking chromium (151.0.7922.71-1~deb13u1) over (150.0.7871.181-1~deb13u1) ...
+Preparing to unpack .../04-chromium-sandbox_151.0.7922.71-1~deb13u1_amd64.deb ...
+Unpacking chromium-sandbox (151.0.7922.71-1~deb13u1) over (150.0.7871.181-1~deb13u1) ...
+Preparing to unpack .../05-chromium-common_151.0.7922.71-1~deb13u1_amd64.deb ...
+Unpacking chromium-common (151.0.7922.71-1~deb13u1) over (150.0.7871.181-1~deb13u1) ...
+Preparing to unpack .../06-libnss3_2%3a3.110-1+deb13u4_amd64.deb ...
+Unpacking libnss3:amd64 (2:3.110-1+deb13u4) over (2:3.110-1+deb13u3) ...
+Preparing to unpack .../07-libgd3_2.3.3-14~deb13u1_amd64.deb ...
+Unpacking libgd3:amd64 (2.3.3-14~deb13u1) over (2.3.3-13) ...
+Preparing to unpack .../08-libssh-4_0.11.5-0+deb13u1_amd64.deb ...
+Unpacking libssh-4:amd64 (0.11.5-0+deb13u1) over (0.11.2-1+deb13u1) ...
+Preparing to unpack .../09-linux-config-6.12_6.12.100-1_amd64.deb ...
+Unpacking linux-config-6.12:amd64 (6.12.100-1) over (6.12.96-1) ...
+Selecting previously unselected package linux-headers-6.12.100+deb13-common.
+Preparing to unpack .../10-linux-headers-6.12.100+deb13-common_6.12.100-1_all.deb ...
+Unpacking linux-headers-6.12.100+deb13-common (6.12.100-1) ...
+Selecting previously unselected package linux-kbuild-6.12.100+deb13.
+Preparing to unpack .../11-linux-kbuild-6.12.100+deb13_6.12.100-1_amd64.deb ...
+Unpacking linux-kbuild-6.12.100+deb13 (6.12.100-1) ...
+Selecting previously unselected package linux-headers-6.12.100+deb13-amd64.
+Preparing to unpack .../12-linux-headers-6.12.100+deb13-amd64_6.12.100-1_amd64.deb ...
+Unpacking linux-headers-6.12.100+deb13-amd64 (6.12.100-1) ...
+Preparing to unpack .../13-linux-headers-amd64_6.12.100-1_amd64.deb ...
+Unpacking linux-headers-amd64 (6.12.100-1) over (6.12.96-1) ...
+Preparing to unpack .../14-linux-image-amd64_6.12.100-1_amd64.deb ...
+Unpacking linux-image-amd64 (6.12.100-1) over (6.12.96-1) ...
+Preparing to unpack .../15-linux-libc-dev_6.12.100-1_all.deb ...
+Unpacking linux-libc-dev (6.12.100-1) over (6.12.96-1) ...
+Preparing to unpack .../16-linux-source_6.12.100-1_all.deb ...
+Unpacking linux-source (6.12.100-1) over (6.12.96-1) ...
+Preparing to unpack .../17-linux-source-6.12_6.12.100-1_all.deb ...
+Unpacking linux-source-6.12 (6.12.100-1) over (6.12.96-1) ...
+Setting up libexpat1:amd64 (2.8.2-1~deb13u1) ...
+Setting up linux-source-6.12 (6.12.100-1) ...
+Setting up linux-kbuild-6.12.100+deb13 (6.12.100-1) ...
+Setting up linux-image-6.12.100+deb13-amd64 (6.12.100-1) ...
+I: /vmlinuz.old is now a symlink to boot/vmlinuz-6.12.96+deb13-amd64
+I: /initrd.img.old is now a symlink to boot/initrd.img-6.12.96+deb13-amd64
+I: /vmlinuz is now a symlink to boot/vmlinuz-6.12.100+deb13-amd64
+I: /initrd.img is now a symlink to boot/initrd.img-6.12.100+deb13-amd64
 /etc/kernel/postinst.d/initramfs-tools:
-update-initramfs: Generating /boot/initrd.img-6.1.0-38-amd64
+update-initramfs: Generating /boot/initrd.img-6.12.100+deb13-amd64
+W: initramfs-tools configuration sets RESUME=UUID=bc4a51b6-3215-4b51-b4aa-204357425de4
+W: but no matching swap device is available.
+I: The initramfs will attempt to resume from /dev/sdb3
+I: (UUID=7a72b739-e270-4dda-9588-ba285f4706fd)
+I: Set the RESUME variable to override this.
 /etc/kernel/postinst.d/zz-update-grub:
 Generating grub configuration file ...
-Found linux image: /boot/vmlinuz-6.1.0-38-amd64
-Found initrd image: /boot/initrd.img-6.1.0-38-amd64
-Found linux image: /boot/vmlinuz-6.1.0-37-amd64
-Found initrd image: /boot/initrd.img-6.1.0-37-amd64
-Found linux image: /boot/vmlinuz-6.1.0-28-amd64
-Found initrd image: /boot/initrd.img-6.1.0-28-amd64
-Found linux image: /boot/vmlinuz-6.1.0-25-amd64
-Found initrd image: /boot/initrd.img-6.1.0-25-amd64
-Found linux image: /boot/vmlinuz-5.10.0-32-amd64
-Found initrd image: /boot/initrd.img-5.10.0-32-amd64
+Found linux image: /boot/vmlinuz-6.12.100+deb13-amd64
+Found initrd image: /boot/initrd.img-6.12.100+deb13-amd64
+Found linux image: /boot/vmlinuz-6.12.96+deb13-amd64
+Found initrd image: /boot/initrd.img-6.12.96+deb13-amd64
+Found linux image: /boot/vmlinuz-6.12.95+deb13-amd64
+Found initrd image: /boot/initrd.img-6.12.95+deb13-amd64
 Warning: os-prober will not be executed to detect other bootable partitions.
 Systems on them will not be added to the GRUB boot configuration.
 Check GRUB_DISABLE_OS_PROBER documentation entry.
+Adding boot menu entry for UEFI Firmware Settings ...
 done
-Setting up linux-compiler-gcc-12-x86 (6.1.147-1) ...
-Setting up libgstreamer-plugins-bad1.0-0:amd64 (1.22.0-4+deb12u6) ...
-Setting up libjavascriptcoregtk-4.1-0:amd64 (2.48.3-1~deb12u1) ...
-Setting up libblockdev-utils2:amd64 (2.28-2+deb12u1) ...
-Setting up libjavascriptcoregtk-6.0-1:amd64 (2.48.3-1~deb12u1) ...
-Setting up gir1.2-gst-plugins-bad-1.0:amd64 (1.22.0-4+deb12u6) ...
-Setting up libssl-dev:amd64 (3.0.17-1~deb12u2) ...
-Setting up sudo (1.9.13p3-1+deb12u2) ...
-Setting up libjxl0.7:amd64 (0.7.0-10+deb12u1) ...
-Setting up openjdk-17-jre-headless:amd64 (17.0.16+8-1~deb12u1) ...
-Setting up libblockdev-part-err2:amd64 (2.28-2+deb12u1) ...
-Setting up libgdk-pixbuf-2.0-0:amd64 (2.42.10+dfsg-1+deb12u2) ...
-Setting up libdjvulibre-text (3.5.28-2.1~deb12u1) ...
-Setting up xserver-common (2:21.1.7-3+deb12u10) ...
-Setting up linux-kbuild-6.1 (6.1.147-1) ...
-Setting up libldb2:amd64 (2:2.6.2+samba4.17.12+dfsg-0+deb12u2) ...
-Setting up openssl (3.0.17-1~deb12u2) ...
-Setting up xserver-xorg-legacy (2:21.1.7-3+deb12u10) ...
-setting xserver-xorg-legacy/xwrapper/allowed_users from configuration file
-Setting up libxml2:amd64 (2.9.14+dfsg-1.3~deb12u2) ...
-Setting up firefox-esr (128.13.0esr-1~deb12u1) ...
-Setting up libudisks2-0:amd64 (2.9.4-4+deb12u1) ...
-Setting up libwebkit2gtk-4.1-0:amd64 (2.48.3-1~deb12u1) ...
-Setting up libblockdev-crypto2:amd64 (2.28-2+deb12u1) ...
-Setting up libblockdev-swap2:amd64 (2.28-2+deb12u1) ...
-Setting up gir1.2-gdkpixbuf-2.0:amd64 (2.42.10+dfsg-1+deb12u2) ...
-Setting up libwebkitgtk-6.0-4:amd64 (2.48.3-1~deb12u1) ...
-Setting up openssh-client (1:9.2p1-2+deb12u7) ...
-Setting up libdjvulibre21:amd64 (3.5.28-2.1~deb12u1) ...
-Setting up xserver-xorg-core (2:21.1.7-3+deb12u10) ...
-Setting up samba-libs:amd64 (2:4.17.12+dfsg-0+deb12u2) ...
-Setting up libblockdev-loop2:amd64 (2.28-2+deb12u1) ...
-Setting up libblockdev2:amd64 (2.28-2+deb12u1) ...
-Setting up linux-image-amd64 (6.1.147-1) ...
-Setting up libblockdev-part2:amd64 (2.28-2+deb12u1) ...
-Setting up linux-headers-6.1.0-38-amd64 (6.1.147-1) ...
-Setting up gir1.2-javascriptcoregtk-4.1:amd64 (2.48.3-1~deb12u1) ...
-Setting up ca-certificates (20230311+deb12u1) ...
-Updating certificates in /etc/ssl/certs...
-rehash: warning: skipping ca-certificates.crt,it does not contain exactly one certificate or CRL
-2 added, 0 removed; done.
-Setting up xserver-xephyr (2:21.1.7-3+deb12u10) ...
-Setting up gstreamer1.0-plugins-bad:amd64 (1.22.0-4+deb12u6) ...
-Setting up libblockdev-fs2:amd64 (2.28-2+deb12u1) ...
-Setting up libsmbclient:amd64 (2:4.17.12+dfsg-0+deb12u2) ...
-Setting up libwebkit2gtk-4.0-37:amd64 (2.48.3-1~deb12u1) ...
-Setting up libgdk-pixbuf2.0-bin (2.42.10+dfsg-1+deb12u2) ...
-Setting up openssh-sftp-server (1:9.2p1-2+deb12u7) ...
-Setting up udisks2 (2.9.4-4+deb12u1) ...
-Setting up gir1.2-webkit2-4.0:amd64 (2.48.3-1~deb12u1) ...
-Setting up gir1.2-webkit2-4.1:amd64 (2.48.3-1~deb12u1) ...
-Setting up openssh-server (1:9.2p1-2+deb12u7) ...
-rescue-ssh.target is a disabled or a static unit not running, not starting it.
-ssh.socket is a disabled or a static unit not running, not starting it.
-Setting up linux-headers-amd64 (6.1.147-1) ...
-Processing triggers for libc-bin (2.36-9+deb12u10) ...
+Setting up linux-source (6.12.100-1) ...
+Setting up linux-libc-dev (6.12.100-1) ...
+Setting up libnss3:amd64 (2:3.110-1+deb13u4) ...
+Setting up linux-image-amd64 (6.12.100-1) ...
+Setting up chromium-sandbox (151.0.7922.71-1~deb13u1) ...
+Setting up libexpat1-dev:amd64 (2.8.2-1~deb13u1) ...
+Setting up libgd3:amd64 (2.3.3-14~deb13u1) ...
+Setting up libssh-4:amd64 (0.11.5-0+deb13u1) ...
+Setting up linux-config-6.12:amd64 (6.12.100-1) ...
+Setting up chromium-common (151.0.7922.71-1~deb13u1) ...
+Setting up chromium (151.0.7922.71-1~deb13u1) ...
+Setting up linux-headers-6.12.100+deb13-common (6.12.100-1) ...
+Setting up linux-headers-6.12.100+deb13-amd64 (6.12.100-1) ...
+Setting up linux-headers-amd64 (6.12.100-1) ...
 Processing triggers for patch-linux-bridge (0.1) ...
 Reading package lists... Done
 NOTICE: 'linux' packaging is maintained in the 'Git' version control system at:
@@ -395,29 +166,26 @@ https://salsa.debian.org/kernel-team/linux.git
 Please use:
 git clone https://salsa.debian.org/kernel-team/linux.git
 to retrieve the latest (possibly unreleased) updates to the package.
-Need to get 140 MB of source archives.
-Get:1 http://security.debian.org/debian-security bookworm-security/main linux 6.1.147-1 (dsc) [291 kB]
-Get:2 http://security.debian.org/debian-security bookworm-security/main linux 6.1.147-1 (tar) [138 MB]
-Get:3 http://security.debian.org/debian-security bookworm-security/main linux 6.1.147-1 (diff) [1,772 kB]
-Fetched 140 MB in 4s (39.6 MB/s)
-dpkg-source: info: extracting linux in linux-6.1.147
-dpkg-source: info: unpacking linux_6.1.147.orig.tar.xz
-dpkg-source: info: unpacking linux_6.1.147-1.debian.tar.xz
+Need to get 154 MB of source archives.
+Get:1 https://security.debian.org/debian-security trixie-security/main linux 6.12.100-1 (dsc) [290 kB]
+Get:2 https://security.debian.org/debian-security trixie-security/main linux 6.12.100-1 (tar) [151 MB]
+Get:3 https://security.debian.org/debian-security trixie-security/main linux 6.12.100-1 (diff) [1,864 kB]
+Fetched 154 MB in 7s (21.9 MB/s)
+dpkg-source: info: extracting linux in linux-6.12.100
+dpkg-source: info: unpacking linux_6.12.100.orig.tar.xz
+dpkg-source: info: unpacking linux_6.12.100-1.debian.tar.xz
 dpkg-source: info: using patch list from debian/patches/series
 dpkg-source: info: applying debian/gitignore.patch
 dpkg-source: info: applying debian/dfsg/arch-powerpc-platforms-8xx-ucode-disable.patch
 dpkg-source: info: applying debian/dfsg/drivers-media-dvb-dvb-usb-af9005-disable.patch
-dpkg-source: info: applying debian/dfsg/vs6624-disable.patch
-dpkg-source: info: applying debian/dfsg/drivers-net-appletalk-cops.patch
 dpkg-source: info: applying debian/dfsg/video-remove-nvidiafb-and-rivafb.patch
 dpkg-source: info: applying debian/dfsg/documentation-fix-broken-link-to-cipso-draft.patch
 dpkg-source: info: applying debian/version.patch
 dpkg-source: info: applying debian/uname-version-timestamp.patch
 dpkg-source: info: applying debian/kernelvariables.patch
-dpkg-source: info: applying debian/ia64-hardcode-arch-script-output.patch
-dpkg-source: info: applying debian/mips-disable-werror.patch
 dpkg-source: info: applying debian/mips-boston-disable-its.patch
 dpkg-source: info: applying debian/mips-ieee754-relaxed.patch
+dpkg-source: info: applying debian/mips-enable-r2-to-r6-emu-by-default.patch
 dpkg-source: info: applying debian/arch-sh4-fix-uimage-build.patch
 dpkg-source: info: applying debian/tools-perf-perf-read-vdso-in-libexec.patch
 dpkg-source: info: applying debian/tools-perf-install-python-bindings.patch
@@ -428,27 +196,24 @@ dpkg-source: info: applying debian/documentation-drop-sphinx-version-check.patch
 dpkg-source: info: applying debian/perf-traceevent-support-asciidoctor-for-documentatio.patch
 dpkg-source: info: applying debian/kbuild-look-for-module.lds-under-arch-directory-too.patch
 dpkg-source: info: applying debian/kbuild-abort-build-if-subdirs-used.patch
-dpkg-source: info: applying debian/module-avoid-abi-changes-when-debug-info-is-disabled.patch
 dpkg-source: info: applying debian/makefile-make-compiler-version-comparison-optional.patch
+dpkg-source: info: applying bugfix/all/revert-tools-build-clean-cflags-and-ldflags-for-fixdep.patch
+dpkg-source: info: applying debian/fixdep-allow-overriding-hostcc-and-hostld.patch
+dpkg-source: info: applying debian/linux-perf-remove-remaining-source-filenames-from-executable.patch
 dpkg-source: info: applying features/all/drivers-media-dvb-usb-af9005-request_firmware.patch
 dpkg-source: info: applying debian/iwlwifi-do-not-request-unreleased-firmware.patch
-dpkg-source: info: applying bugfix/all/firmware_class-log-every-success-and-failure.patch
-dpkg-source: info: applying bugfix/all/firmware-remove-redundant-log-messages-from-drivers.patch
+dpkg-source: info: applying debian/firmware_loader-log-direct-loading-failures-as-info-for-d-i.patch
 dpkg-source: info: applying bugfix/all/radeon-amdgpu-firmware-is-required-for-drm-and-kms-on-r600-onward.patch
-dpkg-source: info: applying debian/firmware_class-refer-to-debian-wiki-firmware-page.patch
-dpkg-source: info: applying features/arm/arm-dts-bcm-Enable-device-tree-overlay-support-for-R.patch
 dpkg-source: info: applying debian/af_802154-Disable-auto-loading-as-mitigation-against.patch
 dpkg-source: info: applying debian/rds-Disable-auto-loading-as-mitigation-against-local.patch
 dpkg-source: info: applying debian/dccp-disable-auto-loading-as-mitigation-against-local-exploits.patch
 dpkg-source: info: applying debian/hamradio-disable-auto-loading-as-mitigation-against-local-exploits.patch
 dpkg-source: info: applying debian/fs-enable-link-security-restrictions-by-default.patch
-dpkg-source: info: applying debian/sched-autogroup-disabled.patch
 dpkg-source: info: applying debian/yama-disable-by-default.patch
 dpkg-source: info: applying debian/add-sysctl-to-disallow-unprivileged-CLONE_NEWUSER-by-default.patch
 dpkg-source: info: applying features/all/security-perf-allow-further-restriction-of-perf_event_open.patch
 dpkg-source: info: applying features/x86/intel-iommu-add-option-to-exclude-integrated-gpu-only.patch
 dpkg-source: info: applying features/x86/intel-iommu-add-kconfig-option-to-exclude-igpu-by-default.patch
-dpkg-source: info: applying debian/cdc_ncm-cdc_mbim-use-ncm-by-default.patch
 dpkg-source: info: applying debian/snd-pcsp-disable-autoload.patch
 dpkg-source: info: applying bugfix/x86/viafb-autoload-on-olpc-xo1.5-only.patch
 dpkg-source: info: applying debian/fjes-disable-autoload.patch
@@ -456,38 +221,15 @@ dpkg-source: info: applying debian/fanotify-taint-on-use-of-fanotify_access_perm
 dpkg-source: info: applying debian/btrfs-warn-about-raid5-6-being-experimental-at-mount.patch
 dpkg-source: info: applying bugfix/arm/arm-dts-kirkwood-fix-sata-pinmux-ing-for-ts419.patch
 dpkg-source: info: applying bugfix/x86/perf-tools-fix-unwind-build-on-i386.patch
-dpkg-source: info: applying bugfix/sh/sh-boot-do-not-use-hyphen-in-exported-variable-name.patch
 dpkg-source: info: applying bugfix/arm/arm-mm-export-__sync_icache_dcache-for-xen-privcmd.patch
 dpkg-source: info: applying bugfix/powerpc/powerpc-boot-fix-missing-crc32poly.h-when-building-with-kernel_xz.patch
 dpkg-source: info: applying bugfix/arm64/arm64-acpi-Add-fixup-for-HPE-m400-quirks.patch
-dpkg-source: info: applying bugfix/alpha/alpha-fix-missing-symbol-versions-for-str-n-cat-cpy.patch
-dpkg-source: info: applying features/arm64/dt-bindings-rockchip-Add-Hardkernel-ODROID-M1-board.patch
-dpkg-source: info: applying features/arm64/arm64-dts-rockchip-Add-Hardkernel-ODROID-M1-board.patch
-dpkg-source: info: applying features/arm64/arm64-dts-rockchip-add-thermal-support-to-ODROID-M1.patch
-dpkg-source: info: applying features/arm64/arm64-dts-rockchip-Add-NOR-flash-to-ODROID-M1.patch
-dpkg-source: info: applying features/arm64/arm64-dts-rockchip-Add-analog-audio-on-ODROID-M1.patch
-dpkg-source: info: applying features/arm64/arm64-dts-rockchip-Enable-vop2-and-hdmi-tx-on-ODROID.patch
-dpkg-source: info: applying features/arm64/arm64-dts-rockchip-Enable-HDMI-audio-on-ODROID-M1.patch
-dpkg-source: info: applying features/arm64/arm64-dts-rockchip-Enable-the-GPU-on-ODROID-M1.patch
-dpkg-source: info: applying features/arm64/arm64-dts-rockchip-Enable-the-USB-2.0-ports-on-ODROI.patch
-dpkg-source: info: applying features/arm64/arm64-dts-rockchip-Enable-the-USB-3.0-ports-on-ODROI.patch
-dpkg-source: info: applying features/arm64/arm64-dts-rockchip-Add-SATA-support-to-ODROID-M1.patch
-dpkg-source: info: applying features/arm64/arm64-dts-rockchip-Add-PCIEe-v3-nodes-to-ODROID-M1.patch
-dpkg-source: info: applying features/arm64/arm64-dts-rockchip-Add-IR-receiver-node-to-ODROID-M1.patch
+dpkg-source: info: applying debian/revert-cgroup-do-not-report-unavailable-v1-controlle.patch
 dpkg-source: info: applying features/x86/x86-memtest-WARN-if-bad-RAM-found.patch
 dpkg-source: info: applying features/x86/x86-make-x32-syscall-support-conditional.patch
-dpkg-source: info: applying bugfix/arm64/arm64-dts-rockchip-fix-spdif-fe460000-ordering-on-rk.patch
-dpkg-source: info: applying features/arm64/quartz64/arm64-dts-rockchip-RK356x-Add-I2S2-device-node.patch
-dpkg-source: info: applying features/arm64/quartz64/arm64-dts-rockchip-Enable-video-output-and-HDMI-on-S.patch
-dpkg-source: info: applying features/arm64/quartz64/arm64-dts-rockchip-Enable-HDMI-sound-on-SOQuartz.patch
-dpkg-source: info: applying features/arm64/quartz64/arm64-dts-rockchip-Enable-PCIe-2-on-SOQuartz-CM4IO.patch
-dpkg-source: info: applying features/arm64/quartz64/dt-bindings-arm-rockchip-Add-SOQuartz-Blade.patch
-dpkg-source: info: applying features/arm64/quartz64/arm64-dts-rockchip-Add-SOQuartz-blade-board.patch
-dpkg-source: info: applying features/arm64/quartz64/dt-bindings-arm-rockchip-Add-SOQuartz-Model-A.patch
-dpkg-source: info: applying features/arm64/quartz64/arm64-dts-rockchip-Add-SOQuartz-Model-A-baseboard.patch
 dpkg-source: info: applying bugfix/all/disable-some-marvell-phys.patch
 dpkg-source: info: applying bugfix/all/fs-add-module_softdep-declarations-for-hard-coded-cr.patch
-dpkg-source: info: applying bugfix/all/net-sched-sch_qfq-Avoid-triggering-might_sleep-in-at.patch
+dpkg-source: info: applying bugfix/all/documentation-use-relative-source-paths-in-abi-documentation.patch
 dpkg-source: info: applying features/all/lockdown/efi-add-an-efi_secure_boot-flag-to-indicate-secure-b.patch
 dpkg-source: info: applying features/all/lockdown/efi-lock-down-the-kernel-if-booted-in-secure-boot-mo.patch
 dpkg-source: info: applying features/all/lockdown/mtd-disable-slram-and-phram-when-locked-down.patch
@@ -495,73 +237,31 @@ dpkg-source: info: applying features/all/lockdown/arm64-add-kernel-config-option
 dpkg-source: info: applying features/all/db-mok-keyring/0003-MODSIGN-checking-the-blacklisted-hash-before-loading-a-kernel-module.patch
 dpkg-source: info: applying features/all/db-mok-keyring/KEYS-Make-use-of-platform-keyring-for-module-signature.patch
 dpkg-source: info: applying features/all/db-mok-keyring/trust-machine-keyring-by-default.patch
-dpkg-source: info: applying debian/i386-686-pae-pci-set-pci-nobios-by-default.patch
-dpkg-source: info: applying debian/ntfs-mark-it-as-broken.patch
-dpkg-source: info: applying bugfix/x86/x86-bugs-Fix-use-of-possibly-uninit-value-in-amd_che.patch
 dpkg-source: info: applying bugfix/all/module-disable-matching-missing-version-crc.patch
 dpkg-source: info: applying bugfix/all/usbip-document-tcp-wrappers.patch
 dpkg-source: info: applying bugfix/all/kbuild-fix-recordmcount-dependency.patch
-dpkg-source: info: applying bugfix/all/tools-perf-man-date.patch
 dpkg-source: info: applying bugfix/all/tools-perf-remove-shebangs.patch
 dpkg-source: info: applying bugfix/x86/revert-perf-build-fix-libunwind-feature-detection-on.patch
 dpkg-source: info: applying bugfix/all/tools-build-remove-bpf-run-time-check-at-build-time.patch
-dpkg-source: info: applying bugfix/all/cpupower-bump-soname-version.patch
 dpkg-source: info: applying bugfix/all/cpupower-fix-checks-for-cpu-existence.patch
-dpkg-source: info: applying bugfix/all/tools-perf-pmu-events-fix-reproducibility.patch
 dpkg-source: info: applying bugfix/all/libapi-define-_fortify_source-as-2-not-empty.patch
 dpkg-source: info: applying bugfix/all/tools-perf-fix-missing-ldflags-for-some-programs.patch
-dpkg-source: info: applying features/all/ethernet-microsoft/0001-net-Remove-the-obsolte-u64_stats_fetch_-_irq-users-d.patch
-dpkg-source: info: applying features/all/ethernet-microsoft/0002-net-mana-Assign-interrupts-to-CPUs-based-on-NUMA-nod.patch
-dpkg-source: info: applying features/all/ethernet-microsoft/0003-net-mana-Add-support-for-auxiliary-device.patch
-dpkg-source: info: applying features/all/ethernet-microsoft/0004-net-mana-Record-the-physical-address-for-doorbell-pa.patch
-dpkg-source: info: applying features/all/ethernet-microsoft/0005-net-mana-Handle-vport-sharing-between-devices.patch
-dpkg-source: info: applying features/all/ethernet-microsoft/0006-net-mana-Set-the-DMA-device-max-segment-size.patch
-dpkg-source: info: applying features/all/ethernet-microsoft/0007-net-mana-Export-Work-Queue-functions-for-use-by-RDMA.patch
-dpkg-source: info: applying features/all/ethernet-microsoft/0008-net-mana-Record-port-number-in-netdev.patch
-dpkg-source: info: applying features/all/ethernet-microsoft/0009-net-mana-Move-header-files-to-a-common-location.patch
-dpkg-source: info: applying features/all/ethernet-microsoft/0010-net-mana-Define-max-values-for-SGL-entries.patch
-dpkg-source: info: applying features/all/ethernet-microsoft/0011-net-mana-Define-and-process-GDMA-response-code-GDMA_.patch
-dpkg-source: info: applying features/all/ethernet-microsoft/0012-net-mana-Define-data-structures-for-protection-domai.patch
-dpkg-source: info: applying features/all/ethernet-microsoft/0013-net-mana-Fix-return-type-of-mana_start_xmit.patch
-dpkg-source: info: applying features/all/ethernet-microsoft/0014-net-mana-Fix-accessing-freed-irq-affinity_hint.patch
-dpkg-source: info: applying features/all/ethernet-microsoft/0015-net-mana-Add-new-MANA-VF-performance-counters-for-ea.patch
-dpkg-source: info: applying features/all/ethernet-microsoft/0016-net-mana-Remove-redundant-pci_clear_master.patch
-dpkg-source: info: applying features/all/ethernet-microsoft/0017-net-mana-Use-napi_build_skb-in-RX-path.patch
-dpkg-source: info: applying features/all/ethernet-microsoft/0018-net-mana-Refactor-RX-buffer-allocation-code-to-prepa.patch
-dpkg-source: info: applying features/all/ethernet-microsoft/0019-net-mana-Enable-RX-path-to-handle-various-MTU-sizes.patch
-dpkg-source: info: applying features/all/ethernet-microsoft/0020-net-mana-Add-support-for-jumbo-frame.patch
-dpkg-source: info: applying features/all/ethernet-microsoft/0021-net-mana-Check-if-netdev-napi_alloc_frag-returns-sin.patch
-dpkg-source: info: applying features/all/ethernet-microsoft/0022-net-mana-Fix-perf-regression-remove-rx_cqes-tx_cqes-.patch
-dpkg-source: info: applying features/all/ethernet-microsoft/0023-net-mana-Add-support-for-vlan-tagging.patch
-dpkg-source: info: applying features/all/ethernet-microsoft/0024-RDMA-mana_ib-Use-v2-version-of-cfg_rx_steer_req-to-e.patch
-dpkg-source: info: applying features/all/ethernet-microsoft/0025-net-mana-use-vmalloc_array-and-vcalloc.patch
-dpkg-source: info: applying features/all/ethernet-microsoft/0026-net-mana-Batch-ringing-RX-queue-doorbell-on-receivin.patch
-dpkg-source: info: applying features/all/ethernet-microsoft/0027-net-mana-Use-the-correct-WQE-count-for-ringing-RQ-do.patch
-dpkg-source: info: applying features/all/ethernet-microsoft/0028-net-mana-Configure-hwc-timeout-from-hardware.patch
-dpkg-source: info: applying features/all/ethernet-microsoft/0029-net-mana-Rename-mana_refill_rxoob-and-remove-some-em.patch
-dpkg-source: info: applying features/all/ethernet-microsoft/0030-net-mana-Add-gdma-stats-to-ethtool-output-for-mana.patch
-dpkg-source: info: applying features/all/ethernet-microsoft/0031-net-mana-Add-remaining-GDMA-stats-for-MANA-to-ethtoo.patch
-dpkg-source: info: applying features/all/ethernet-microsoft/0032-net-mana-Fix-Rx-DMA-datasize-and-skb_over_panic.patch
-dpkg-source: info: applying features/all/ethernet-microsoft/0033-net-mana-Enable-MANA-driver-on-ARM64-with-4K-page-si.patch
-dpkg-source: info: applying features/all/ethernet-microsoft/0034-net-mana-Fix-the-extra-HZ-in-mana_hwc_send_request.patch
-dpkg-source: info: applying features/all/ethernet-microsoft/0035-net-mana-Fix-possible-double-free-in-error-handling-.patch
-dpkg-source: info: applying features/all/ethernet-microsoft/0036-net-mana-Fix-RX-buf-alloc_size-alignment-and-atomic-.patch
-dpkg-source: info: applying features/all/ethernet-microsoft/0037-net-mana-Use-mana_cleanup_port_context-for-rxq-clean.patch
-dpkg-source: info: applying features/all/ethernet-microsoft/0038-net-mana-Add-support-for-page-sizes-other-than-4KB-o.patch
-dpkg-source: info: applying features/all/ethernet-microsoft/0039-net-mana-Add-page-pool-for-RX-buffers.patch
-dpkg-source: info: applying features/all/ethernet-microsoft/0040-net-mana-Fix-the-tso_bytes-calculation.patch
-dpkg-source: info: applying features/all/ethernet-microsoft/0041-net-mana-Fix-oversized-sge0-for-GSO-packets.patch
-dpkg-source: info: applying features/all/ethernet-microsoft/0042-net-mana-Avoid-open-coded-arithmetic.patch
-dpkg-source: info: applying features/all/ethernet-microsoft/0043-net-mana-Add-flex-array-to-struct-mana_cfg_rx_steer_.patch
-dpkg-source: info: applying features/all/ethernet-microsoft/0044-net-mana-Allow-variable-size-indirection-table.patch
-W: Download is performed unsandboxed as root as file 'linux_6.1.147-1.dsc' couldn't be accessed by user '_apt'. - pkgAcquire::Run (13: Permission denied)
+dpkg-source: info: applying bugfix/all/tools_lib_symbol_use_d_fortify_source_2_for_non_debug_builds.patch
+dpkg-source: info: applying bugfix/all/perf-tools-support-extra-cxxflags.patch
+dpkg-source: info: applying bugfix/all/perf-tools-pass-extra_cflags-through-to-libbpf-build-again.patch
+dpkg-source: info: applying bugfix/all/kbuild-bpf-fix-btf-reproducibility.patch
+dpkg-source: info: applying bugfix/all/perf-docs-Fix-perf-check-manual-page-built-with-asci.patch
+dpkg-source: info: applying bugfix/all/libbpf-use-the-standard-fixdep-build-rule.patch
+dpkg-source: info: applying bugfix/all/tools-hv-Make-the-sample-hv_get_dhcp_info-script-mor.patch
+W: Download is performed unsandboxed as root as file 'linux_6.12.100-1.dsc' couldn't be accessed by user '_apt'. - pkgAcquire::Run (13: Permission denied)
 
 
 patching file net/bridge/br_private.h
+Hunk #1 succeeded at 47 (offset 3 lines).
 
 
-'/boot/config-6.1.0-38-amd64' -> '.config'
-'/usr/src/linux-headers-6.1.0-38-amd64/Module.symvers' -> './Module.symvers'
+'/boot/config-6.12.100+deb13-amd64' -> '.config'
+'/usr/src/linux-headers-6.12.100+deb13-amd64/Module.symvers' -> './Module.symvers'
 
 make olddefconfig
 
@@ -584,6 +284,7 @@ make olddefconfig
 
 make modules_prepare
 
+  GEN     arch/x86/include/generated/asm/orc_hash.h
   SYSHDR  arch/x86/include/generated/uapi/asm/unistd_32.h
   SYSHDR  arch/x86/include/generated/uapi/asm/unistd_64.h
   SYSHDR  arch/x86/include/generated/uapi/asm/unistd_x32.h
@@ -603,13 +304,14 @@ make modules_prepare
   LEX     scripts/genksyms/lex.lex.c
   HOSTCC  scripts/genksyms/lex.lex.o
   HOSTLD  scripts/genksyms/genksyms
+  HOSTCC  scripts/ipe/polgen/polgen
   HOSTCC  scripts/selinux/genheaders/genheaders
   HOSTCC  scripts/selinux/mdp/mdp
-  HOSTCC  scripts/bin2c
   HOSTCC  scripts/kallsyms
   HOSTCC  scripts/sorttable
   HOSTCC  scripts/asn1_compiler
   HOSTCC  scripts/sign-file
+  UPD     include/config/kernel.release
   WRAP    arch/x86/include/generated/uapi/asm/bpf_perf_event.h
   WRAP    arch/x86/include/generated/uapi/asm/errno.h
   WRAP    arch/x86/include/generated/uapi/asm/fcntl.h
@@ -625,16 +327,15 @@ make modules_prepare
   WRAP    arch/x86/include/generated/uapi/asm/termios.h
   WRAP    arch/x86/include/generated/uapi/asm/types.h
   WRAP    arch/x86/include/generated/asm/early_ioremap.h
-  WRAP    arch/x86/include/generated/asm/export.h
   WRAP    arch/x86/include/generated/asm/mcs_spinlock.h
+  WRAP    arch/x86/include/generated/asm/mmzone.h
+  WRAP    arch/x86/include/generated/asm/ring_buffer.h
   WRAP    arch/x86/include/generated/asm/irq_regs.h
   WRAP    arch/x86/include/generated/asm/kmap_size.h
   WRAP    arch/x86/include/generated/asm/local64.h
   WRAP    arch/x86/include/generated/asm/mmiowb.h
   WRAP    arch/x86/include/generated/asm/module.lds.h
   WRAP    arch/x86/include/generated/asm/rwonce.h
-  WRAP    arch/x86/include/generated/asm/unaligned.h
-  UPD     include/config/kernel.release
   UPD     include/generated/uapi/linux/version.h
   UPD     include/generated/utsrelease.h
   UPD     include/generated/compile.h
@@ -647,6 +348,7 @@ make modules_prepare
   UPD     scripts/mod/devicetable-offsets.h
   HOSTCC  scripts/mod/file2alias.o
   HOSTCC  scripts/mod/sumversion.o
+  HOSTCC  scripts/mod/symsearch.o
   HOSTLD  scripts/mod/modpost
   UPD     include/generated/timeconst.h
   CC      kernel/bounds.s
@@ -658,128 +360,111 @@ make modules_prepare
   CHKSHA1 include/linux/atomic/atomic-instrumented.h
   CHKSHA1 include/linux/atomic/atomic-long.h
   DESCEND objtool
-  HOSTCC  /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/objtool/fixdep.o
-  HOSTLD  /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/objtool/fixdep-in.o
-  LINK    /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/objtool/fixdep
-  CC      /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/objtool/exec-cmd.o
-  CC      /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/objtool/help.o
-  CC      /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/objtool/pager.o
-  CC      /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/objtool/parse-options.o
-  CC      /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/objtool/run-command.o
-  CC      /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/objtool/sigchain.o
-  CC      /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/objtool/subcmd-config.o
-  LD      /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/objtool/libsubcmd-in.o
-  AR      /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/objtool/libsubcmd.a
-  CC      /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/objtool/arch/x86/special.o
-  MKDIR   /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/objtool/arch/x86/lib/
-  GEN     /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/objtool/arch/x86/lib/inat-tables.c
-  CC      /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/objtool/arch/x86/decode.o
-  LD      /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/objtool/arch/x86/objtool-in.o
-  CC      /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/objtool/weak.o
-  CC      /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/objtool/check.o
-  CC      /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/objtool/special.o
-  CC      /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/objtool/builtin-check.o
-  CC      /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/objtool/elf.o
-  CC      /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/objtool/objtool.o
-  CC      /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/objtool/orc_gen.o
-  CC      /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/objtool/orc_dump.o
-  CC      /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/objtool/libstring.o
-  CC      /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/objtool/libctype.o
-  CC      /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/objtool/str_error_r.o
-  CC      /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/objtool/librbtree.o
-  LD      /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/objtool/objtool-in.o
-  LINK    /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/objtool/objtool
-  DESCEND bpf/resolve_btfids
-  MKDIR     /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/bpf/resolve_btfids/libbpf/
-  GEN     /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/bpf/resolve_btfids/libbpf/bpf_helper_defs.h
-  MKDIR   /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/bpf/resolve_btfids/libbpf/staticobjs/
-  CC      /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/bpf/resolve_btfids/libbpf/staticobjs/libbpf.o
-  CC      /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/bpf/resolve_btfids/libbpf/staticobjs/bpf.o
-  CC      /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/bpf/resolve_btfids/libbpf/staticobjs/nlattr.o
-  CC      /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/bpf/resolve_btfids/libbpf/staticobjs/btf.o
-  CC      /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/bpf/resolve_btfids/libbpf/staticobjs/libbpf_errno.o
-  CC      /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/bpf/resolve_btfids/libbpf/staticobjs/str_error.o
-  CC      /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/bpf/resolve_btfids/libbpf/staticobjs/netlink.o
-  CC      /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/bpf/resolve_btfids/libbpf/staticobjs/bpf_prog_linfo.o
-  CC      /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/bpf/resolve_btfids/libbpf/staticobjs/libbpf_probes.o
-  CC      /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/bpf/resolve_btfids/libbpf/staticobjs/hashmap.o
-  CC      /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/bpf/resolve_btfids/libbpf/staticobjs/btf_dump.o
-  CC      /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/bpf/resolve_btfids/libbpf/staticobjs/ringbuf.o
-  CC      /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/bpf/resolve_btfids/libbpf/staticobjs/strset.o
-  CC      /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/bpf/resolve_btfids/libbpf/staticobjs/linker.o
-  CC      /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/bpf/resolve_btfids/libbpf/staticobjs/gen_loader.o
-  CC      /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/bpf/resolve_btfids/libbpf/staticobjs/relo_core.o
-  CC      /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/bpf/resolve_btfids/libbpf/staticobjs/usdt.o
-  LD      /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/bpf/resolve_btfids/libbpf/staticobjs/libbpf-in.o
-  LINK    /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/bpf/resolve_btfids/libbpf/libbpf.a
-  INSTALL /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/bpf/resolve_btfids/libbpf//include/bpf/bpf.h
-  INSTALL /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/bpf/resolve_btfids/libbpf//include/bpf/libbpf.h
-  INSTALL /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/bpf/resolve_btfids/libbpf//include/bpf/btf.h
-  INSTALL /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/bpf/resolve_btfids/libbpf//include/bpf/libbpf_common.h
-  INSTALL /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/bpf/resolve_btfids/libbpf//include/bpf/libbpf_legacy.h
-  INSTALL /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/bpf/resolve_btfids/libbpf//include/bpf/bpf_helpers.h
-  INSTALL /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/bpf/resolve_btfids/libbpf//include/bpf/bpf_tracing.h
-  INSTALL /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/bpf/resolve_btfids/libbpf//include/bpf/bpf_endian.h
-  INSTALL /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/bpf/resolve_btfids/libbpf//include/bpf/bpf_core_read.h
-  INSTALL /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/bpf/resolve_btfids/libbpf//include/bpf/skel_internal.h
-  INSTALL /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/bpf/resolve_btfids/libbpf//include/bpf/libbpf_version.h
-  INSTALL /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/bpf/resolve_btfids/libbpf//include/bpf/usdt.bpf.h
-  INSTALL /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/bpf/resolve_btfids/libbpf//include/bpf/bpf_helper_defs.h
-  HOSTCC  /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/bpf/resolve_btfids/fixdep.o
-  HOSTLD  /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/bpf/resolve_btfids/fixdep-in.o
-  LINK    /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/bpf/resolve_btfids/fixdep
-  MKDIR     /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/bpf/resolve_btfids//libsubcmd
-  CC      /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/bpf/resolve_btfids/libsubcmd/exec-cmd.o
-  CC      /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/bpf/resolve_btfids/libsubcmd/help.o
-  CC      /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/bpf/resolve_btfids/libsubcmd/pager.o
-  CC      /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/bpf/resolve_btfids/libsubcmd/parse-options.o
-  CC      /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/bpf/resolve_btfids/libsubcmd/run-command.o
-  CC      /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/bpf/resolve_btfids/libsubcmd/sigchain.o
-  CC      /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/bpf/resolve_btfids/libsubcmd/subcmd-config.o
-  LD      /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/bpf/resolve_btfids/libsubcmd/libsubcmd-in.o
-  AR      /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/bpf/resolve_btfids/libsubcmd/libsubcmd.a
-  INSTALL /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/bpf/resolve_btfids/libsubcmd//include/subcmd/exec-cmd.h
-  INSTALL /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/bpf/resolve_btfids/libsubcmd//include/subcmd/help.h
-  INSTALL /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/bpf/resolve_btfids/libsubcmd//include/subcmd/pager.h
-  INSTALL /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/bpf/resolve_btfids/libsubcmd//include/subcmd/parse-options.h
-  INSTALL /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/bpf/resolve_btfids/libsubcmd//include/subcmd/run-command.h
+  CC      /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/objtool/libsubcmd/exec-cmd.o
+  CC      /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/objtool/libsubcmd/help.o
+  CC      /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/objtool/libsubcmd/pager.o
+  CC      /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/objtool/libsubcmd/parse-options.o
+  CC      /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/objtool/libsubcmd/run-command.o
+  CC      /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/objtool/libsubcmd/sigchain.o
+  CC      /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/objtool/libsubcmd/subcmd-config.o
+  LD      /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/objtool/libsubcmd/libsubcmd-in.o
+  AR      /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/objtool/libsubcmd/libsubcmd.a
+  INSTALL /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/objtool/libsubcmd/include/subcmd/exec-cmd.h
+  INSTALL /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/objtool/libsubcmd/include/subcmd/help.h
+  INSTALL /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/objtool/libsubcmd/include/subcmd/pager.h
+  INSTALL /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/objtool/libsubcmd/include/subcmd/parse-options.h
+  INSTALL /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/objtool/libsubcmd/include/subcmd/run-command.h
   INSTALL libsubcmd_headers
-  HOSTCC  /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/bpf/resolve_btfids/main.o
-  HOSTCC  /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/bpf/resolve_btfids/rbtree.o
-  HOSTCC  /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/bpf/resolve_btfids/zalloc.o
-  HOSTCC  /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/bpf/resolve_btfids/string.o
-  HOSTCC  /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/bpf/resolve_btfids/ctype.o
-  HOSTCC  /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/bpf/resolve_btfids/str_error_r.o
-  HOSTLD  /tmp/linux-source.oGRtB9Cp/linux-6.1.147/tools/bpf/resolve_btfids/resolve_btfids-in.o
+  CC      /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/objtool/arch/x86/special.o
+  MKDIR   /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/objtool/arch/x86/lib/
+  GEN     /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/objtool/arch/x86/lib/inat-tables.c
+  CC      /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/objtool/arch/x86/decode.o
+  CC      /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/objtool/arch/x86/orc.o
+  LD      /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/objtool/arch/x86/objtool-in.o
+  CC      /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/objtool/weak.o
+  CC      /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/objtool/check.o
+  CC      /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/objtool/special.o
+  CC      /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/objtool/builtin-check.o
+  CC      /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/objtool/elf.o
+  CC      /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/objtool/objtool.o
+  CC      /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/objtool/orc_gen.o
+  CC      /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/objtool/orc_dump.o
+  CC      /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/objtool/libstring.o
+  CC      /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/objtool/libctype.o
+  CC      /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/objtool/str_error_r.o
+  CC      /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/objtool/librbtree.o
+  LD      /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/objtool/objtool-in.o
+  LINK    /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/objtool/objtool
+  DESCEND bpf/resolve_btfids
+  MKDIR     /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/bpf/resolve_btfids/libbpf/
+  GEN     /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/bpf/resolve_btfids/libbpf/bpf_helper_defs.h
+ln -sf ../fixdep /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/bpf/resolve_btfids/libbpf/staticobjs//
+  CC      /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/bpf/resolve_btfids/libbpf/staticobjs/libbpf.o
+  CC      /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/bpf/resolve_btfids/libbpf/staticobjs/bpf.o
+  CC      /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/bpf/resolve_btfids/libbpf/staticobjs/nlattr.o
+  CC      /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/bpf/resolve_btfids/libbpf/staticobjs/btf.o
+  CC      /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/bpf/resolve_btfids/libbpf/staticobjs/libbpf_errno.o
+  CC      /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/bpf/resolve_btfids/libbpf/staticobjs/str_error.o
+  CC      /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/bpf/resolve_btfids/libbpf/staticobjs/netlink.o
+  CC      /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/bpf/resolve_btfids/libbpf/staticobjs/bpf_prog_linfo.o
+  CC      /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/bpf/resolve_btfids/libbpf/staticobjs/libbpf_probes.o
+  CC      /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/bpf/resolve_btfids/libbpf/staticobjs/hashmap.o
+  CC      /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/bpf/resolve_btfids/libbpf/staticobjs/btf_dump.o
+  CC      /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/bpf/resolve_btfids/libbpf/staticobjs/ringbuf.o
+  CC      /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/bpf/resolve_btfids/libbpf/staticobjs/strset.o
+  CC      /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/bpf/resolve_btfids/libbpf/staticobjs/linker.o
+  CC      /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/bpf/resolve_btfids/libbpf/staticobjs/gen_loader.o
+  CC      /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/bpf/resolve_btfids/libbpf/staticobjs/relo_core.o
+  CC      /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/bpf/resolve_btfids/libbpf/staticobjs/usdt.o
+  CC      /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/bpf/resolve_btfids/libbpf/staticobjs/zip.o
+  CC      /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/bpf/resolve_btfids/libbpf/staticobjs/elf.o
+  CC      /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/bpf/resolve_btfids/libbpf/staticobjs/features.o
+  CC      /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/bpf/resolve_btfids/libbpf/staticobjs/btf_iter.o
+  CC      /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/bpf/resolve_btfids/libbpf/staticobjs/btf_relocate.o
+  LD      /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/bpf/resolve_btfids/libbpf/staticobjs/libbpf-in.o
+  LINK    /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/bpf/resolve_btfids/libbpf/libbpf.a
+  INSTALL /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/bpf/resolve_btfids/libbpf//include/bpf/bpf.h
+  INSTALL /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/bpf/resolve_btfids/libbpf//include/bpf/libbpf.h
+  INSTALL /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/bpf/resolve_btfids/libbpf//include/bpf/btf.h
+  INSTALL /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/bpf/resolve_btfids/libbpf//include/bpf/libbpf_common.h
+  INSTALL /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/bpf/resolve_btfids/libbpf//include/bpf/libbpf_legacy.h
+  INSTALL /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/bpf/resolve_btfids/libbpf//include/bpf/bpf_helpers.h
+  INSTALL /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/bpf/resolve_btfids/libbpf//include/bpf/bpf_tracing.h
+  INSTALL /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/bpf/resolve_btfids/libbpf//include/bpf/bpf_endian.h
+  INSTALL /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/bpf/resolve_btfids/libbpf//include/bpf/bpf_core_read.h
+  INSTALL /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/bpf/resolve_btfids/libbpf//include/bpf/skel_internal.h
+  INSTALL /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/bpf/resolve_btfids/libbpf//include/bpf/libbpf_version.h
+  INSTALL /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/bpf/resolve_btfids/libbpf//include/bpf/usdt.bpf.h
+  INSTALL /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/bpf/resolve_btfids/libbpf//include/bpf/bpf_helper_defs.h
+  INSTALL libbpf_headers
+  MKDIR     /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/bpf/resolve_btfids//libsubcmd
+  CC      /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/bpf/resolve_btfids/libsubcmd/exec-cmd.o
+  CC      /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/bpf/resolve_btfids/libsubcmd/help.o
+  CC      /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/bpf/resolve_btfids/libsubcmd/pager.o
+  CC      /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/bpf/resolve_btfids/libsubcmd/parse-options.o
+  CC      /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/bpf/resolve_btfids/libsubcmd/run-command.o
+  CC      /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/bpf/resolve_btfids/libsubcmd/sigchain.o
+  CC      /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/bpf/resolve_btfids/libsubcmd/subcmd-config.o
+  LD      /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/bpf/resolve_btfids/libsubcmd/libsubcmd-in.o
+  AR      /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/bpf/resolve_btfids/libsubcmd/libsubcmd.a
+  INSTALL /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/bpf/resolve_btfids/libsubcmd//include/subcmd/exec-cmd.h
+  INSTALL /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/bpf/resolve_btfids/libsubcmd//include/subcmd/help.h
+  INSTALL /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/bpf/resolve_btfids/libsubcmd//include/subcmd/pager.h
+  INSTALL /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/bpf/resolve_btfids/libsubcmd//include/subcmd/parse-options.h
+  INSTALL /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/bpf/resolve_btfids/libsubcmd//include/subcmd/run-command.h
+  INSTALL libsubcmd_headers
+  HOSTCC  /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/bpf/resolve_btfids/main.o
+  HOSTCC  /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/bpf/resolve_btfids/rbtree.o
+  HOSTCC  /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/bpf/resolve_btfids/zalloc.o
+  HOSTCC  /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/bpf/resolve_btfids/string.o
+  HOSTCC  /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/bpf/resolve_btfids/ctype.o
+  HOSTCC  /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/bpf/resolve_btfids/str_error_r.o
+  HOSTLD  /tmp/linux-source.dV0AA5yu/linux-6.12.100/tools/bpf/resolve_btfids/resolve_btfids-in.o
   LINK     resolve_btfids
   LDS     scripts/module.lds
 
 make M=net/bridge
 
-  CC [M]  net/bridge/netfilter/nft_meta_bridge.o
-  CC [M]  net/bridge/netfilter/nft_reject_bridge.o
-  CC [M]  net/bridge/netfilter/nf_conntrack_bridge.o
-  CC [M]  net/bridge/netfilter/ebtables.o
-  CC [M]  net/bridge/netfilter/ebtable_broute.o
-  CC [M]  net/bridge/netfilter/ebtable_filter.o
-  CC [M]  net/bridge/netfilter/ebtable_nat.o
-  CC [M]  net/bridge/netfilter/ebt_802_3.o
-  CC [M]  net/bridge/netfilter/ebt_among.o
-  CC [M]  net/bridge/netfilter/ebt_arp.o
-  CC [M]  net/bridge/netfilter/ebt_ip.o
-  CC [M]  net/bridge/netfilter/ebt_ip6.o
-  CC [M]  net/bridge/netfilter/ebt_limit.o
-  CC [M]  net/bridge/netfilter/ebt_mark_m.o
-  CC [M]  net/bridge/netfilter/ebt_pkttype.o
-  CC [M]  net/bridge/netfilter/ebt_stp.o
-  CC [M]  net/bridge/netfilter/ebt_vlan.o
-  CC [M]  net/bridge/netfilter/ebt_arpreply.o
-  CC [M]  net/bridge/netfilter/ebt_mark.o
-  CC [M]  net/bridge/netfilter/ebt_dnat.o
-  CC [M]  net/bridge/netfilter/ebt_redirect.o
-  CC [M]  net/bridge/netfilter/ebt_snat.o
-  CC [M]  net/bridge/netfilter/ebt_log.o
-  CC [M]  net/bridge/netfilter/ebt_nflog.o
   CC [M]  net/bridge/br.o
   CC [M]  net/bridge/br_device.o
   CC [M]  net/bridge/br_fdb.o
@@ -809,83 +494,48 @@ make M=net/bridge
   CC [M]  net/bridge/br_netfilter_hooks.o
   CC [M]  net/bridge/br_netfilter_ipv6.o
   LD [M]  net/bridge/br_netfilter.o
+  CC [M]  net/bridge/netfilter/nft_meta_bridge.o
+  CC [M]  net/bridge/netfilter/nft_reject_bridge.o
+  CC [M]  net/bridge/netfilter/nf_conntrack_bridge.o
+  CC [M]  net/bridge/netfilter/ebtables.o
+  CC [M]  net/bridge/netfilter/ebtable_broute.o
+  CC [M]  net/bridge/netfilter/ebtable_filter.o
+  CC [M]  net/bridge/netfilter/ebtable_nat.o
+  CC [M]  net/bridge/netfilter/ebt_802_3.o
+  CC [M]  net/bridge/netfilter/ebt_among.o
+  CC [M]  net/bridge/netfilter/ebt_arp.o
+  CC [M]  net/bridge/netfilter/ebt_ip.o
+  CC [M]  net/bridge/netfilter/ebt_ip6.o
+  CC [M]  net/bridge/netfilter/ebt_limit.o
+  CC [M]  net/bridge/netfilter/ebt_mark_m.o
+  CC [M]  net/bridge/netfilter/ebt_pkttype.o
+  CC [M]  net/bridge/netfilter/ebt_stp.o
+  CC [M]  net/bridge/netfilter/ebt_vlan.o
+  CC [M]  net/bridge/netfilter/ebt_arpreply.o
+  CC [M]  net/bridge/netfilter/ebt_mark.o
+  CC [M]  net/bridge/netfilter/ebt_dnat.o
+  CC [M]  net/bridge/netfilter/ebt_redirect.o
+  CC [M]  net/bridge/netfilter/ebt_snat.o
+  CC [M]  net/bridge/netfilter/ebt_log.o
+  CC [M]  net/bridge/netfilter/ebt_nflog.o
   MODPOST net/bridge/Module.symvers
-  CC [M]  net/bridge/br_netfilter.mod.o
-  LD [M]  net/bridge/br_netfilter.ko
-  BTF [M] net/bridge/br_netfilter.ko
-Skipping BTF generation for net/bridge/br_netfilter.ko due to unavailability of vmlinux
-  CC [M]  net/bridge/bridge.mod.o
-  LD [M]  net/bridge/bridge.ko
-  BTF [M] net/bridge/bridge.ko
-Skipping BTF generation for net/bridge/bridge.ko due to unavailability of vmlinux
-  CC [M]  net/bridge/netfilter/ebt_802_3.mod.o
-  LD [M]  net/bridge/netfilter/ebt_802_3.ko
-  BTF [M] net/bridge/netfilter/ebt_802_3.ko
-Skipping BTF generation for net/bridge/netfilter/ebt_802_3.ko due to unavailability of vmlinux
-  CC [M]  net/bridge/netfilter/ebt_among.mod.o
-  LD [M]  net/bridge/netfilter/ebt_among.ko
-  BTF [M] net/bridge/netfilter/ebt_among.ko
-Skipping BTF generation for net/bridge/netfilter/ebt_among.ko due to unavailability of vmlinux
-  CC [M]  net/bridge/netfilter/ebt_arp.mod.o
-  LD [M]  net/bridge/netfilter/ebt_arp.ko
-  BTF [M] net/bridge/netfilter/ebt_arp.ko
-Skipping BTF generation for net/bridge/netfilter/ebt_arp.ko due to unavailability of vmlinux
-  CC [M]  net/bridge/netfilter/ebt_arpreply.mod.o
-  LD [M]  net/bridge/netfilter/ebt_arpreply.ko
-  BTF [M] net/bridge/netfilter/ebt_arpreply.ko
-Skipping BTF generation for net/bridge/netfilter/ebt_arpreply.ko due to unavailability of vmlinux
-  CC [M]  net/bridge/netfilter/ebt_dnat.mod.o
-  LD [M]  net/bridge/netfilter/ebt_dnat.ko
-  BTF [M] net/bridge/netfilter/ebt_dnat.ko
-Skipping BTF generation for net/bridge/netfilter/ebt_dnat.ko due to unavailability of vmlinux
-  CC [M]  net/bridge/netfilter/ebt_ip.mod.o
-  LD [M]  net/bridge/netfilter/ebt_ip.ko
-  BTF [M] net/bridge/netfilter/ebt_ip.ko
-Skipping BTF generation for net/bridge/netfilter/ebt_ip.ko due to unavailability of vmlinux
-  CC [M]  net/bridge/netfilter/ebt_ip6.mod.o
-  LD [M]  net/bridge/netfilter/ebt_ip6.ko
-  BTF [M] net/bridge/netfilter/ebt_ip6.ko
-Skipping BTF generation for net/bridge/netfilter/ebt_ip6.ko due to unavailability of vmlinux
-  CC [M]  net/bridge/netfilter/ebt_limit.mod.o
-  LD [M]  net/bridge/netfilter/ebt_limit.ko
-  BTF [M] net/bridge/netfilter/ebt_limit.ko
-Skipping BTF generation for net/bridge/netfilter/ebt_limit.ko due to unavailability of vmlinux
-  CC [M]  net/bridge/netfilter/ebt_log.mod.o
-  LD [M]  net/bridge/netfilter/ebt_log.ko
-  BTF [M] net/bridge/netfilter/ebt_log.ko
-Skipping BTF generation for net/bridge/netfilter/ebt_log.ko due to unavailability of vmlinux
-  CC [M]  net/bridge/netfilter/ebt_mark.mod.o
-  LD [M]  net/bridge/netfilter/ebt_mark.ko
-  BTF [M] net/bridge/netfilter/ebt_mark.ko
-Skipping BTF generation for net/bridge/netfilter/ebt_mark.ko due to unavailability of vmlinux
-  CC [M]  net/bridge/netfilter/ebt_mark_m.mod.o
-  LD [M]  net/bridge/netfilter/ebt_mark_m.ko
-  BTF [M] net/bridge/netfilter/ebt_mark_m.ko
-Skipping BTF generation for net/bridge/netfilter/ebt_mark_m.ko due to unavailability of vmlinux
-  CC [M]  net/bridge/netfilter/ebt_nflog.mod.o
-  LD [M]  net/bridge/netfilter/ebt_nflog.ko
-  BTF [M] net/bridge/netfilter/ebt_nflog.ko
-Skipping BTF generation for net/bridge/netfilter/ebt_nflog.ko due to unavailability of vmlinux
-  CC [M]  net/bridge/netfilter/ebt_pkttype.mod.o
-  LD [M]  net/bridge/netfilter/ebt_pkttype.ko
-  BTF [M] net/bridge/netfilter/ebt_pkttype.ko
-Skipping BTF generation for net/bridge/netfilter/ebt_pkttype.ko due to unavailability of vmlinux
-  CC [M]  net/bridge/netfilter/ebt_redirect.mod.o
-  LD [M]  net/bridge/netfilter/ebt_redirect.ko
-  BTF [M] net/bridge/netfilter/ebt_redirect.ko
-Skipping BTF generation for net/bridge/netfilter/ebt_redirect.ko due to unavailability of vmlinux
-  CC [M]  net/bridge/netfilter/ebt_snat.mod.o
-  LD [M]  net/bridge/netfilter/ebt_snat.ko
-  BTF [M] net/bridge/netfilter/ebt_snat.ko
-Skipping BTF generation for net/bridge/netfilter/ebt_snat.ko due to unavailability of vmlinux
-  CC [M]  net/bridge/netfilter/ebt_stp.mod.o
-  LD [M]  net/bridge/netfilter/ebt_stp.ko
-  BTF [M] net/bridge/netfilter/ebt_stp.ko
-Skipping BTF generation for net/bridge/netfilter/ebt_stp.ko due to unavailability of vmlinux
-  CC [M]  net/bridge/netfilter/ebt_vlan.mod.o
-  LD [M]  net/bridge/netfilter/ebt_vlan.ko
-  BTF [M] net/bridge/netfilter/ebt_vlan.ko
-Skipping BTF generation for net/bridge/netfilter/ebt_vlan.ko due to unavailability of vmlinux
+  CC [M]  net/bridge/netfilter/nft_meta_bridge.mod.o
+  CC [M]  net/bridge/.module-common.o
+  LD [M]  net/bridge/netfilter/nft_meta_bridge.ko
+  BTF [M] net/bridge/netfilter/nft_meta_bridge.ko
+Skipping BTF generation for net/bridge/netfilter/nft_meta_bridge.ko due to unavailability of vmlinux
+  CC [M]  net/bridge/netfilter/nft_reject_bridge.mod.o
+  LD [M]  net/bridge/netfilter/nft_reject_bridge.ko
+  BTF [M] net/bridge/netfilter/nft_reject_bridge.ko
+Skipping BTF generation for net/bridge/netfilter/nft_reject_bridge.ko due to unavailability of vmlinux
+  CC [M]  net/bridge/netfilter/nf_conntrack_bridge.mod.o
+  LD [M]  net/bridge/netfilter/nf_conntrack_bridge.ko
+  BTF [M] net/bridge/netfilter/nf_conntrack_bridge.ko
+Skipping BTF generation for net/bridge/netfilter/nf_conntrack_bridge.ko due to unavailability of vmlinux
+  CC [M]  net/bridge/netfilter/ebtables.mod.o
+  LD [M]  net/bridge/netfilter/ebtables.ko
+  BTF [M] net/bridge/netfilter/ebtables.ko
+Skipping BTF generation for net/bridge/netfilter/ebtables.ko due to unavailability of vmlinux
   CC [M]  net/bridge/netfilter/ebtable_broute.mod.o
   LD [M]  net/bridge/netfilter/ebtable_broute.ko
   BTF [M] net/bridge/netfilter/ebtable_broute.ko
@@ -898,41 +548,116 @@ Skipping BTF generation for net/bridge/netfilter/ebtable_filter.ko due to unavai
   LD [M]  net/bridge/netfilter/ebtable_nat.ko
   BTF [M] net/bridge/netfilter/ebtable_nat.ko
 Skipping BTF generation for net/bridge/netfilter/ebtable_nat.ko due to unavailability of vmlinux
-  CC [M]  net/bridge/netfilter/ebtables.mod.o
-  LD [M]  net/bridge/netfilter/ebtables.ko
-  BTF [M] net/bridge/netfilter/ebtables.ko
-Skipping BTF generation for net/bridge/netfilter/ebtables.ko due to unavailability of vmlinux
-  CC [M]  net/bridge/netfilter/nf_conntrack_bridge.mod.o
-  LD [M]  net/bridge/netfilter/nf_conntrack_bridge.ko
-  BTF [M] net/bridge/netfilter/nf_conntrack_bridge.ko
-Skipping BTF generation for net/bridge/netfilter/nf_conntrack_bridge.ko due to unavailability of vmlinux
-  CC [M]  net/bridge/netfilter/nft_meta_bridge.mod.o
-  LD [M]  net/bridge/netfilter/nft_meta_bridge.ko
-  BTF [M] net/bridge/netfilter/nft_meta_bridge.ko
-Skipping BTF generation for net/bridge/netfilter/nft_meta_bridge.ko due to unavailability of vmlinux
-  CC [M]  net/bridge/netfilter/nft_reject_bridge.mod.o
-  LD [M]  net/bridge/netfilter/nft_reject_bridge.ko
-  BTF [M] net/bridge/netfilter/nft_reject_bridge.ko
-Skipping BTF generation for net/bridge/netfilter/nft_reject_bridge.ko due to unavailability of vmlinux
+  CC [M]  net/bridge/netfilter/ebt_802_3.mod.o
+  LD [M]  net/bridge/netfilter/ebt_802_3.ko
+  BTF [M] net/bridge/netfilter/ebt_802_3.ko
+Skipping BTF generation for net/bridge/netfilter/ebt_802_3.ko due to unavailability of vmlinux
+  CC [M]  net/bridge/netfilter/ebt_among.mod.o
+  LD [M]  net/bridge/netfilter/ebt_among.ko
+  BTF [M] net/bridge/netfilter/ebt_among.ko
+Skipping BTF generation for net/bridge/netfilter/ebt_among.ko due to unavailability of vmlinux
+  CC [M]  net/bridge/netfilter/ebt_arp.mod.o
+  LD [M]  net/bridge/netfilter/ebt_arp.ko
+  BTF [M] net/bridge/netfilter/ebt_arp.ko
+Skipping BTF generation for net/bridge/netfilter/ebt_arp.ko due to unavailability of vmlinux
+  CC [M]  net/bridge/netfilter/ebt_ip.mod.o
+  LD [M]  net/bridge/netfilter/ebt_ip.ko
+  BTF [M] net/bridge/netfilter/ebt_ip.ko
+Skipping BTF generation for net/bridge/netfilter/ebt_ip.ko due to unavailability of vmlinux
+  CC [M]  net/bridge/netfilter/ebt_ip6.mod.o
+  LD [M]  net/bridge/netfilter/ebt_ip6.ko
+  BTF [M] net/bridge/netfilter/ebt_ip6.ko
+Skipping BTF generation for net/bridge/netfilter/ebt_ip6.ko due to unavailability of vmlinux
+  CC [M]  net/bridge/netfilter/ebt_limit.mod.o
+  LD [M]  net/bridge/netfilter/ebt_limit.ko
+  BTF [M] net/bridge/netfilter/ebt_limit.ko
+Skipping BTF generation for net/bridge/netfilter/ebt_limit.ko due to unavailability of vmlinux
+  CC [M]  net/bridge/netfilter/ebt_mark_m.mod.o
+  LD [M]  net/bridge/netfilter/ebt_mark_m.ko
+  BTF [M] net/bridge/netfilter/ebt_mark_m.ko
+Skipping BTF generation for net/bridge/netfilter/ebt_mark_m.ko due to unavailability of vmlinux
+  CC [M]  net/bridge/netfilter/ebt_pkttype.mod.o
+  LD [M]  net/bridge/netfilter/ebt_pkttype.ko
+  BTF [M] net/bridge/netfilter/ebt_pkttype.ko
+Skipping BTF generation for net/bridge/netfilter/ebt_pkttype.ko due to unavailability of vmlinux
+  CC [M]  net/bridge/netfilter/ebt_stp.mod.o
+  LD [M]  net/bridge/netfilter/ebt_stp.ko
+  BTF [M] net/bridge/netfilter/ebt_stp.ko
+Skipping BTF generation for net/bridge/netfilter/ebt_stp.ko due to unavailability of vmlinux
+  CC [M]  net/bridge/netfilter/ebt_vlan.mod.o
+  LD [M]  net/bridge/netfilter/ebt_vlan.ko
+  BTF [M] net/bridge/netfilter/ebt_vlan.ko
+Skipping BTF generation for net/bridge/netfilter/ebt_vlan.ko due to unavailability of vmlinux
+  CC [M]  net/bridge/netfilter/ebt_arpreply.mod.o
+  LD [M]  net/bridge/netfilter/ebt_arpreply.ko
+  BTF [M] net/bridge/netfilter/ebt_arpreply.ko
+Skipping BTF generation for net/bridge/netfilter/ebt_arpreply.ko due to unavailability of vmlinux
+  CC [M]  net/bridge/netfilter/ebt_mark.mod.o
+  LD [M]  net/bridge/netfilter/ebt_mark.ko
+  BTF [M] net/bridge/netfilter/ebt_mark.ko
+Skipping BTF generation for net/bridge/netfilter/ebt_mark.ko due to unavailability of vmlinux
+  CC [M]  net/bridge/netfilter/ebt_dnat.mod.o
+  LD [M]  net/bridge/netfilter/ebt_dnat.ko
+  BTF [M] net/bridge/netfilter/ebt_dnat.ko
+Skipping BTF generation for net/bridge/netfilter/ebt_dnat.ko due to unavailability of vmlinux
+  CC [M]  net/bridge/netfilter/ebt_redirect.mod.o
+  LD [M]  net/bridge/netfilter/ebt_redirect.ko
+  BTF [M] net/bridge/netfilter/ebt_redirect.ko
+Skipping BTF generation for net/bridge/netfilter/ebt_redirect.ko due to unavailability of vmlinux
+  CC [M]  net/bridge/netfilter/ebt_snat.mod.o
+  LD [M]  net/bridge/netfilter/ebt_snat.ko
+  BTF [M] net/bridge/netfilter/ebt_snat.ko
+Skipping BTF generation for net/bridge/netfilter/ebt_snat.ko due to unavailability of vmlinux
+  CC [M]  net/bridge/netfilter/ebt_log.mod.o
+  LD [M]  net/bridge/netfilter/ebt_log.ko
+  BTF [M] net/bridge/netfilter/ebt_log.ko
+Skipping BTF generation for net/bridge/netfilter/ebt_log.ko due to unavailability of vmlinux
+  CC [M]  net/bridge/netfilter/ebt_nflog.mod.o
+  LD [M]  net/bridge/netfilter/ebt_nflog.ko
+  BTF [M] net/bridge/netfilter/ebt_nflog.ko
+Skipping BTF generation for net/bridge/netfilter/ebt_nflog.ko due to unavailability of vmlinux
+  CC [M]  net/bridge/bridge.mod.o
+  LD [M]  net/bridge/bridge.ko
+  BTF [M] net/bridge/bridge.ko
+Skipping BTF generation for net/bridge/bridge.ko due to unavailability of vmlinux
+  CC [M]  net/bridge/br_netfilter.mod.o
+  LD [M]  net/bridge/br_netfilter.ko
+  BTF [M] net/bridge/br_netfilter.ko
+Skipping BTF generation for net/bridge/br_netfilter.ko due to unavailability of vmlinux
 
 strip --strip-debug net/bridge/bridge.ko
 
-renamed '/usr/lib/modules/6.1.0-38-amd64/kernel/net/bridge/bridge.ko' -> '/usr/lib/modules/6.1.0-38-amd64/kernel/net/bridge/bridge.ko.1755531833.bak'
-'net/bridge/bridge.ko' -> '/usr/lib/modules/6.1.0-38-amd64/kernel/net/bridge/bridge.ko'
-Processing triggers for man-db (2.11.2-2) ...
-Processing triggers for dbus (1.14.10-1~deb12u1) ...
-Processing triggers for mailcap (3.70+nmu1) ...
-Processing triggers for desktop-file-utils (0.26-1) ...
-Processing triggers for hicolor-icon-theme (0.17-2) ...
-Processing triggers for gnome-menus (3.36.0-1.1) ...
-Processing triggers for ca-certificates-java (20230710~deb12u1) ...
-done.
-Setting up openjdk-17-jre:amd64 (17.0.16+8-1~deb12u1) ...
-Processing triggers for ca-certificates (20230311+deb12u1) ...
-Updating certificates in /etc/ssl/certs...
-0 added, 0 removed; done.
-Running hooks in /etc/ca-certificates/update.d...
-done.
-Processing triggers for ca-certificates-java (20230710~deb12u1) ...
-done.
-root@deb12-1:~#
+renamed '/usr/lib/modules/6.12.100+deb13-amd64/kernel/net/bridge/bridge.ko.xz' -> '/usr/lib/modules/6.12.100+deb13-amd64/kernel/net/bridge/bridge.ko.xz.1785683212.bak'
+net/bridge/bridge.ko (1/1)
+  100 %       134.0 KiB / 810.4 KiB = 0.165
+'net/bridge/bridge.ko.xz' -> '/usr/lib/modules/6.12.100+deb13-amd64/kernel/net/bridge/bridge.ko.xz'
+Processing triggers for man-db (2.13.1-1) ...
+Processing triggers for mailcap (3.74) ...
+Processing triggers for desktop-file-utils (0.28-1) ...
+Processing triggers for hicolor-icon-theme (0.18-2) ...
+Processing triggers for libc-bin (2.41-12+deb13u3) ...
+Scanning processes...
+Scanning candidates...
+Scanning processor microcode...
+Scanning linux images...
+
+The processor microcode seems to be up-to-date.
+
+Restarting services...
+ systemctl restart avahi-daemon.service polkit.service udisks2.service
+Service restarts being deferred:
+ /etc/needrestart/restart.d/dbus.service
+ systemctl restart libvirtd.service
+ systemctl restart unattended-upgrades.service
+ systemctl restart virtlockd.service
+ systemctl restart virtlogd.service
+
+No containers need to be restarted.
+
+User sessions running outdated binaries:
+ martin @ session #1: bash[4293,37561], chrome_crashpad[4312,4314], chromium[4318], xinit[4166]
+ martin @ user manager: chromium[4296]
+ martin @ user service: dbus.service[4142], pulseaudio.service[4131]
+
+No VM guests are running outdated hypervisor (qemu) binaries on this host.
+martin@deb-lab-svr:~$
