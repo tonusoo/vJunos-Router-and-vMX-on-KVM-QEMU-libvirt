@@ -459,7 +459,7 @@ Messages on host machine console after executing `poweroff` in host machine when
     : rd_bytes=1234886656 wr_bytes=324805120 rd_operations=14835 wr_operations=2057 flush_operations=0 wr_total_time_ns=1377246988817 rd_total_time_ns=53329979260 flush_total_time_ns=0 rd_merged=459 wr_merged=95 idle_time_ns=1767581173
 
 
-    martin@deb-lab-svr:~$ 
+    martin@deb-lab-svr:~$
     ```
 
 * Connecting to the Wind River Linux Bash shell and the virtualized line-card uKernel shell from `vCP`, respectively:
@@ -542,41 +542,41 @@ Messages on host machine console after executing `poweroff` in host machine when
 * NAT can be used to make the virtual routers accessible from outside of the host machine. Relevant configuration snippets from `/etc/nftables.conf`:
     ```
     table inet filter {
-    
+
             chain forward {
                     type filter hook forward priority filter; policy drop
-    
+
                     # net.ipv4.ip_forward is 1. Isolate guests connected to a-br-ext from guests
                     # connected to other bridges.
                     iifname . oifname { "enp2s0f1" . "a-br-ext", "a-br-ext" . "enp2s0f1" } counter accept
-    
+
             }
-    
+
     }
     table ip nat {
-    
+
             chain prerouting {
                     type nat hook prerouting priority dstnat; policy accept;
-    
+
                     iifname "enp2s0f1" ip saddr 192.0.2.0/28 dnat ip to tcp dport map {
                         8123 : 10.5.5.123 . 22, # core14 / a-r1
                         8124 : 10.5.5.124 . 22, # core15 / a-r2
                         8125 : 10.5.5.107 . 22, # edge13 / a-r42
                         8126 : 10.5.5.211 . 22, # edge3 / a-r3
                     }
-    
+
             }
-    
+
             chain postrouting {
                     type nat hook postrouting priority srcnat; policy accept;
-    
+
                     # Connections to guests linked to a-br-ext come from the address configured for
                     # a-br-ext, so no static routes are needed in the guests.
                     # Guests have Internet access.
                     iifname . oifname { "enp2s0f1" . "a-br-ext", "a-br-ext" . "enp2s0f1" } counter masquerade
-    
+
             }
-    
+
     }
     ```
 
@@ -587,7 +587,7 @@ Messages on host machine console after executing `poweroff` in host machine when
     martin@deb-lab-svr:~$ sudo virsh dominfo a-r3-vjr
     Id:             -
     Name:           a-r3-vjr
-    UUID:           8543d21a-4e18-4854-ac43-b77d6d7d1014
+    UUID:           79ed3265-6a86-4ab0-a05d-c898e3cd4e93
     OS Type:        hvm
     State:          shut off
     CPU(s):         4
@@ -604,7 +604,7 @@ Messages on host machine console after executing `poweroff` in host machine when
     martin@deb-lab-svr:~$ sudo virsh snapshot-list a-r3-vjr
      Name           Creation Time               State
     -----------------------------------------------------
-     initial-conf   2026-07-30 23:04:32 +0300   shutoff
+     initial-conf   2026-08-04 14:48:59 +0300   shutoff
 
     martin@deb-lab-svr:~$
     martin@deb-lab-svr:~$ # create a new internal snapshot (supported only by qcow2 disk images) of a powered-off virtual machine
@@ -614,8 +614,8 @@ Messages on host machine console after executing `poweroff` in host machine when
     martin@deb-lab-svr:~$ sudo virsh snapshot-list a-r3-vjr
      Name            Creation Time               State
     ------------------------------------------------------
-     complete-conf   2026-07-31 18:40:47 +0300   shutoff
-     initial-conf    2026-07-30 23:04:32 +0300   shutoff
+     complete-conf   2026-08-04 15:53:07 +0300   shutoff
+     initial-conf    2026-08-04 14:48:59 +0300   shutoff
 
     martin@deb-lab-svr:~$
     martin@deb-lab-svr:~$ sudo virsh snapshot-info a-r3-vjr initial-conf
@@ -652,18 +652,18 @@ Messages on host machine console after executing `poweroff` in host machine when
     martin@deb-lab-svr:~$
     martin@deb-lab-svr:~$ # internal type snapshots are stored in the virtual machine disk file
     martin@deb-lab-svr:~$ # as snapshots were done from a shut down VM, the memory state is not stored and the "VM SIZE" is 0
-    martin@deb-lab-svr:~$ sudo qemu-img info ~/iasb-class/a-r3/images/vJunos-router-23.2R1.15.qcow2
-    image: /home/martin/iasb-class/a-r3/images/vJunos-router-23.2R1.15.qcow2
+    martin@deb-lab-svr:~$ sudo qemu-img info ~/iasb-class/a-r3/images/vJunos-router-26.2R1.7.qcow2
+    image: /home/martin/iasb-class/a-r3/images/vJunos-router-26.2R1.7.qcow2
     file format: qcow2
     virtual size: 31.8 GiB (34100740096 bytes)
-    disk size: 4.34 GiB
+    disk size: 621 MiB
     cluster_size: 65536
-    backing file: /home/martin/iasb-class/vJunos-router/vJunos-router-23.2R1.15.qcow2
+    backing file: /home/martin/iasb-class/vJunos-router/vJunos-router-26.2R1.7.qcow2
     backing file format: qcow2
     Snapshot list:
     ID      TAG               VM_SIZE                DATE        VM_CLOCK     ICOUNT
-    1       initial-conf          0 B 2026-07-30 23:04:32  0000:00:00.000          0
-    2       complete-conf         0 B 2026-07-31 18:40:47  0000:00:00.000          0
+    1       initial-conf          0 B 2026-08-04 14:48:59  0000:00:00.000          0
+    2       complete-conf         0 B 2026-08-04 15:53:07  0000:00:00.000          0
     Format specific information:
         compat: 1.1
         compression type: zlib
@@ -672,10 +672,10 @@ Messages on host machine console after executing `poweroff` in host machine when
         corrupt: false
         extended l2: false
     Child node '/file':
-        filename: /home/martin/iasb-class/a-r3/images/vJunos-router-23.2R1.15.qcow2
+        filename: /home/martin/iasb-class/a-r3/images/vJunos-router-26.2R1.7.qcow2
         protocol type: file
-        file length: 7.47 GiB (8018592256 bytes)
-        disk size: 4.34 GiB
+        file length: 622 MiB (651690496 bytes)
+        disk size: 621 MiB
     martin@deb-lab-svr:~$
     martin@deb-lab-svr:~$ # revert to a "initial-conf" snapshot
     martin@deb-lab-svr:~$ sudo virsh snapshot-current a-r3-vjr --name
