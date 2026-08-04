@@ -1,0 +1,29 @@
+IdentityFile ~/.ssh/lab_projects_ed25519
+
+# a-r1
+Host core14
+  User root
+  HostName 10.5.5.123
+  RemoteCommand cli
+  RequestTTY force
+
+# a-r2
+Host core15
+  User root
+  HostName 10.5.5.124
+  RemoteCommand cli
+  RequestTTY force
+
+# a-r42
+Host edge13
+  User root
+  HostName 10.5.5.107
+  RemoteCommand cli
+  RequestTTY force
+
+# a-r3
+Host edge3
+  User root
+  HostName 10.5.5.211
+  RemoteCommand cli
+  RequestTTY force
