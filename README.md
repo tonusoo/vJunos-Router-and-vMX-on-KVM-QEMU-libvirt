@@ -1,8 +1,8 @@
-# vJunos-Router and vMX virtualized with KVM-QEMU-libvirt stack in Debian 12 without Juniper orchestration scripts
+# vJunos-Router and vMX virtualized with KVM-QEMU-libvirt stack in Debian 13 without Juniper orchestration scripts
 
 Network topology used as an example:
 
-![Juniper vXM virtualized with KVM-QEMU-libvirt stack in Debian 12](https://github.com/tonusoo/vJunos-Router-and-vMX-on-KVM-QEMU-libvirt/blob/main/imgs/Juniper_vXM_virtualized_with_KVM-QEMU-libvirt_stack_in_Debian_12.png)
+![Juniper vXM virtualized with KVM-QEMU-libvirt stack in Debian 13](https://github.com/tonusoo/vJunos-Router-and-vMX-on-KVM-QEMU-libvirt/blob/main/imgs/Juniper_vXM_virtualized_with_KVM-QEMU-libvirt_stack_in_Debian_13.png)
 
 ### Host machine network configuration
 
@@ -302,7 +302,7 @@ martin@deb-lab-svr:~$
 
 A `vJunos-router` named `a-r3` is added, `ge-0/0/2` of `a-r2` is connected to `a-r2-r3-1`, `ge-0/0/3` of `a-r2` is connected to `a-r2-r42-1` and a 50ms RTT is introduced between `a-r2` and `a-r3` routers:
 
-![Juniper routers virtualized with KVM-QEMU-libvirt stack in Debian 12 with a-r3](https://github.com/tonusoo/vJunos-Router-and-vMX-on-KVM-QEMU-libvirt/blob/main/imgs/Juniper_routers_virtualized_with_KVM-QEMU-libvirt_stack_in_Debian_12_with_a-r3.png)
+![Juniper routers virtualized with KVM-QEMU-libvirt stack in Debian 13 with a-r3](https://github.com/tonusoo/vJunos-Router-and-vMX-on-KVM-QEMU-libvirt/blob/main/imgs/Juniper_routers_virtualized_with_KVM-QEMU-libvirt_stack_in_Debian_13_with_a-r3.png)
 
 `vJunos-router` built without initial configuration:
 ```
