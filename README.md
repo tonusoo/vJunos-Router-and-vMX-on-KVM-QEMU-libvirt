@@ -437,9 +437,9 @@ Messages on host machine console after executing `poweroff` in host machine when
 
     login: root
     Password:
-    Last login: Wed Oct 23 00:40:33 on ttyu0
+    Last login: Tue Aug  4 11:46:48 from 10.5.5.1
 
-    --- JUNOS 23.2R1.15 Kernel 64-bit  JNPR-12.1-20230815.735906f_buil
+    --- JUNOS 26.2R1.7 Kernel 64-bit  JNPR-15.0-20260518.25fe30f_buil
     root@edge3:~ # cli
     root@edge3>
     martin@deb-lab-svr:~$
@@ -449,18 +449,19 @@ Messages on host machine console after executing `poweroff` in host machine when
 * Qemu monitor access:
     ```
     martin@deb-lab-svr:~$ sudo virsh qemu-monitor-command a-r3-vjr --hmp "info block"
-    libvirt-1-format: /home/martin/iasb-class/a-r3/images/vJunos-router-23.2R1.15.qcow2 (qcow2)
+    libvirt-1-format: /home/martin/iasb-class/a-r3/images/vJunos-router-26.2R1.7.qcow2 (qcow2)
         Attached to:      /machine/peripheral/virtio-disk0/virtio-backend
         Cache mode:       writethrough, direct
-        Backing file:     /home/martin/iasb-class/vJunos-router/vJunos-router-23.2R1.15.qcow2 (chain depth: 1)
+        Backing file:     /home/martin/iasb-class/vJunos-router/vJunos-router-26.2R1.7.qcow2 (chain depth: 1)
 
 
     martin@deb-lab-svr:~$ sudo virsh qemu-monitor-command a-r3-vjr --hmp "info blockstats"
-    : rd_bytes=1234886656 wr_bytes=324805120 rd_operations=14835 wr_operations=2057 flush_operations=0 wr_total_time_ns=1377246988817 rd_total_time_ns=53329979260 flush_total_time_ns=0 rd_merged=459 wr_merged=95 idle_time_ns=1767581173
+    : rd_bytes=1343735296 wr_bytes=170259456 rd_operations=17083 wr_operations=1140 flush_operations=0 wr_total_time_ns=262623804522 rd_total_time_ns=9465868566 flush_total_time_ns=0 rd_merged=926 wr_merged=58 idle_time_ns=127426145
 
 
     martin@deb-lab-svr:~$
     ```
+
 
 * Connecting to the Wind River Linux Bash shell and the virtualized line-card uKernel shell from `vCP`, respectively:
 
