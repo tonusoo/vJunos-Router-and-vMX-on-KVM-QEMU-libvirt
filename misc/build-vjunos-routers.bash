@@ -57,7 +57,7 @@ genconf() {
 passwd_hash=$(openssl passwd -6 -stdin <<< "root")
 
 mkdir -v ~/jnpr-lab/
-cp -v /media/storage/juniper_images/vJunos-router-23.2R1.15.qcow2 ~/jnpr-lab/
+cp -v /media/storage/juniper_images/vJunos-router-26.2R1.7.qcow2 ~/jnpr-lab/
 
 
 for name in a-r{10..15}; do
@@ -82,16 +82,20 @@ for name in a-r{10..15}; do
 
 	echo
 
-	qemu-img create -F qcow2 -b ~/jnpr-lab/vJunos-router-23.2R1.15.qcow2 \
-		-f qcow2 ~/jnpr-lab/"$name"/vJunos-router-23.2R1.15.qcow2
+	qemu-img create -F qcow2 -b ~/jnpr-lab/vJunos-router-26.2R1.7.qcow2 \
+		-f qcow2 ~/jnpr-lab/"$name"/vJunos-router-26.2R1.7.qcow2
 
-	sudo virt-install --osinfo linux2022 \
+	# Compared to vJunos-Router 23.2R1, the vJunos-router 26.2R1 no longer
+	# seems to require "..  -smbios type=1,product=VM-VMX,family=lab .."
+	# SMBIOS entries. The official vjunos-router-26.2R1.7.xml libvirt
+	# domain XML file also no longer includes the custom SMBIOS arguments.
+	sudo virt-install --osinfo linux2024 \
 		--name "$name-vjr" \
 		--events on_crash=restart \
 		--memory 5120 \
 		--vcpus 4 \
 		--import \
-		--disk ~/jnpr-lab/"$name"/vJunos-router-23.2R1.15.qcow2,cache=directsync,bus=virtio \
+		--disk ~/jnpr-lab/"$name"/vJunos-router-26.2R1.7.qcow2,cache=directsync,bus=virtio \
 		--disk ~/jnpr-lab/"$name"/conf-disk.raw,cache=directsync,bus=usb \
 		--network bridge="a-br-ext,model=virtio,target=$name-vjr-ext" \
 		--network bridge="a-br-default,model=virtio,target=$name-ge-0.0.0" \
@@ -104,11 +108,10 @@ for name in a-r{10..15}; do
 		--network bridge="a-br-default,model=virtio,target=$name-ge-0.0.7" \
 		--network bridge="a-br-default,model=virtio,target=$name-ge-0.0.8" \
 		--network bridge="a-br-default,model=virtio,target=$name-ge-0.0.9" \
-		--qemu-commandline="-smbios type=1,product=VM-VMX,family=lab" \
 		--graphics none \
 		--noautoconsole
 
-	sudo virsh desc "$name-vjr" --title "vJunos-Router; Junos 23.2R1.15" --live --config
+	sudo virsh desc "$name-vjr" --title "vJunos-Router; Junos 26.2R1.7" --live --config
 	sudo virsh autostart "$name-vjr"
 
 done
