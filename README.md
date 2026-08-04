@@ -308,20 +308,20 @@ A `vJunos-router` named `a-r3` is added, `ge-0/0/2` of `a-r2` is connected to `a
 ```
 martin@deb-lab-svr:~$ mkdir ~/iasb-class/vJunos-router
 martin@deb-lab-svr:~$ # Copy the base image from HDD storage to SSDs
-martin@deb-lab-svr:~$ cp -v /media/storage/juniper_images/vJunos-router-23.2R1.15.qcow2 ~/iasb-class/vJunos-router/
-'/media/storage/juniper_images/vJunos-router-23.2R1.15.qcow2' -> '/home/martin/iasb-class/vJunos-router/vJunos-router-23.2R1.15.qcow2'
+martin@deb-lab-svr:~$ cp -v /media/storage/juniper_images/vJunos-router-26.2R1.7.qcow2 ~/iasb-class/vJunos-router/
+'/media/storage/juniper_images/vJunos-router-26.2R1.7.qcow2' -> '/home/martin/iasb-class/vJunos-router/vJunos-router-26.2R1.7.qcow2'
 martin@deb-lab-svr:~$
 martin@deb-lab-svr:~$ mkdir -p ~/iasb-class/a-r3/images
-martin@deb-lab-svr:~$ qemu-img create -F qcow2 -b ~/iasb-class/vJunos-router/vJunos-router-23.2R1.15.qcow2 -f qcow2 ~/iasb-class/a-r3/images/vJunos-router-23.2R1.15.qcow2
-Formatting '/home/martin/iasb-class/a-r3/images/vJunos-router-23.2R1.15.qcow2', fmt=qcow2 cluster_size=65536 extended_l2=off compression_type=zlib size=34100740096 backing_file=/home/martin/iasb-class/vJunos-router/vJunos-router-23.2R1.15.qcow2 backing_fmt=qcow2 lazy_refcounts=off refcount_bits=16
+martin@deb-lab-svr:~$ qemu-img create -F qcow2 -b ~/iasb-class/vJunos-router/vJunos-router-26.2R1.7.qcow2 -f qcow2 ~/iasb-class/a-r3/images/vJunos-router-26.2R1.7.qcow2
+Formatting '/home/martin/iasb-class/a-r3/images/vJunos-router-26.2R1.7.qcow2', fmt=qcow2 cluster_size=65536 extended_l2=off compression_type=zlib size=34100740096 backing_file=/home/martin/iasb-class/vJunos-router/vJunos-router-26.2R1.7.qcow2 backing_fmt=qcow2 lazy_refcounts=off refcount_bits=16
 martin@deb-lab-svr:~$
-martin@deb-lab-svr:~$ sudo virt-install --osinfo linux2022 \
+martin@deb-lab-svr:~$ sudo virt-install --osinfo linux2024 \
     --name a-r3-vjr \
     --events on_crash=restart \
     --memory 5120 \
     --vcpus 4 \
     --import \
-    --disk ~/iasb-class/a-r3/images/vJunos-router-23.2R1.15.qcow2,cache=directsync \
+    --disk ~/iasb-class/a-r3/images/vJunos-router-26.2R1.7.qcow2,cache=directsync \
     --network bridge="a-br-ext,model=virtio,target=a-r3-vjr-ext" \
     --network bridge="a-br-default,model=virtio,target=a-r3-ge-0.0.0" \
     --network bridge="a-br-default,model=virtio,target=a-r3-ge-0.0.1" \
@@ -333,14 +333,13 @@ martin@deb-lab-svr:~$ sudo virt-install --osinfo linux2022 \
     --network bridge="a-br-default,model=virtio,target=a-r3-ge-0.0.7" \
     --network bridge="a-br-default,model=virtio,target=a-r3-ge-0.0.8" \
     --network bridge="a-br-default,model=virtio,target=a-r3-ge-0.0.9" \
-    --qemu-commandline="-smbios type=1,product=VM-VMX,family=lab" \
     --graphics none \
     --noautoconsole
 
 Starting install...
-Creating domain...                                                                                                                                                                                                                                                                                      |    0 B  00:00:00
+Creating domain...                                                                                                                                                                                                                                        |         00:00:00
 Domain creation completed.
-martin@deb-lab-svr:~$ sudo virsh desc "a-r3-vjr" --title "vJunos-Router; Junos 23.2R1.15" --live --config
+martin@deb-lab-svr:~$ sudo virsh desc "a-r3-vjr" --title "vJunos-Router; Junos 26.2R1.7" --live --config
 Domain title updated successfully
 martin@deb-lab-svr:~$ sudo virsh autostart "a-r3-vjr"
 Domain 'a-r3-vjr' marked as autostarted
@@ -348,14 +347,14 @@ Domain 'a-r3-vjr' marked as autostarted
 martin@deb-lab-svr:~$
 martin@deb-lab-svr:~$ sudo virsh list --title
  Id   Name        State     Title
-------------------------------------------------------------
- 3    a-r1-vcp    running   vMX vCP; Junos 21.4R3.15
- 4    a-r1-vfp    running   vMX vFP
- 5    a-r2-vcp    running   vMX vCP; Junos 21.4R3.15
- 6    a-r2-vfp    running   vMX vFP
- 7    a-r42-vcp   running   vMX vCP; Junos 21.4R3.15
- 8    a-r42-vfp   running   vMX vFP
- 9    a-r3-vjr    running   vJunos-Router; Junos 23.2R1.15
+-----------------------------------------------------------
+ 1    a-r2-vfp    running   vMX vFP
+ 2    a-r42-vcp   running   vMX vCP; Junos 21.4R3.15
+ 4    a-r42-vfp   running   vMX vFP
+ 5    a-r1-vcp    running   vMX vCP; Junos 21.4R3.15
+ 6    a-r1-vfp    running   vMX vFP
+ 7    a-r2-vcp    running   vMX vCP; Junos 21.4R3.15
+ 19   a-r3-vjr    running   vJunos-Router; Junos 26.2R1.7
 
 martin@deb-lab-svr:~$
 ```
