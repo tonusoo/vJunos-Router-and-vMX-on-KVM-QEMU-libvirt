@@ -697,6 +697,15 @@ Messages on host machine console after executing `poweroff` in host machine when
     ```
 
 
+* Per-project [~/iasb-class/tmux-session-setup.bash](https://github.com/tonusoo/vJunos-Router-and-vMX-on-KVM-QEMU-libvirt/blob/main/misc/tmux-session-setup.bash) script and [~/iasb-class/.ssh/config](https://github.com/tonusoo/vJunos-Router-and-vMX-on-KVM-QEMU-libvirt/blob/main/misc/config) files:
+
+    ![tmux-session-setup.bash and SSH config](https://github.com/tonusoo/vJunos-Router-and-vMX-on-KVM-QEMU-libvirt/blob/main/imgs/tmux_script_and_ssh_config.png)
+
+    `tmux` session and window tree:
+
+    ![tmux iasb-class session](https://github.com/tonusoo/vJunos-Router-and-vMX-on-KVM-QEMU-libvirt/blob/main/imgs/tmux_iasb-class_session.png)
+
+
 * Host machine spec:
     ```
     CPU: 2x Intel Xeon E5-2680v2 @ 2.80 GHz (Noctua's NH-U12DXi4 cooler)
