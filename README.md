@@ -230,7 +230,7 @@ martin@deb-lab-svr:~$
 
 However, depending on the lab, it might be sufficient to leave the interfaces in `<project_letter>-br-default` bridge.
 
-The `vCP` and `vFP` virtual machines were installed under **system** libvirtd instance(**qemu:///system** URI) which ensures that the VM autostart on host boot works and one can use TAP interfaces with custom names(for example `a-r1-ge-0.0.0`). For desktop(e.g lab workstation) use cases one might prefer that the `vCP` and `vFP` virtual machines are installed under **session** libvirtd instance(**qemu:///session** URI) and started once the user logs in. This requires that the user is in the `kvm` group and `qemu-bridge-helper` has [setuid attribute set](https://wiki.qemu.org/Features/HelperNetworking):
+The `vCP` and `vFP` virtual machines were installed under **system** libvirtd instance(**qemu:///system** URI) which ensures that the VM autostart on host boot works and one can use TAP interfaces with custom names(for example `a-r1-ge-0.0.0`). For desktop(e.g lab workstation) use cases one might prefer that the `vCP` and `vFP` virtual machines are installed under **session** libvirtd instance(**qemu:///session** URI) and started once the user logs in. This requires that the user is in the `kvm` group(or user has correct permissions from `/dev/kvm` ACL) and `qemu-bridge-helper` has [setuid attribute set](https://wiki.qemu.org/Features/HelperNetworking):
 ```
 martin@deb-lab-svr:~$ groups
 martin sudo kvm
