@@ -401,7 +401,7 @@ martin@deb-lab-svr:~$
 50 millisecond RTT between the `a-r2` and `a-r3` routers was added by the [/etc/libvirt/hooks/qemu](https://github.com/tonusoo/vJunos-Router-and-vMX-on-KVM-QEMU-libvirt/blob/main/scripts-and-conf/etc/libvirt/hooks/qemu) libvirt hook script once the `a-r3-vjr` VM was started:
 ```
 martin@deb-lab-svr:~$ sudo tc -d qdisc sh dev a-r3-ge-0.0.0
-qdisc netem 816b: root refcnt 2 limit 1000 delay 50ms
+qdisc netem 8168: root refcnt 2 limit 1000 delay 50ms seed 12383785700043428889
 martin@deb-lab-svr:~$
 ```
 
