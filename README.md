@@ -53,7 +53,8 @@ Both the `vCP` and `vFP` virtual machines are created with `virt-install`:
 martin@deb-lab-svr:~$ mkdir ~/iasb-class
 martin@deb-lab-svr:~$ # Extract the base images from HDD storage to SSDs
 martin@deb-lab-svr:~$ tar -xf /media/storage/juniper_images/vmx-bundle-21.4R3.15.tgz --directory ~/iasb-class/
-martin@deb-lab-svr:~$ # user "martin" belongs to the "sudo" group, and /home/martin has 755 permissions, which come from the default UMASK value in /etc/login.defs
+martin@deb-lab-svr:~$ # user "martin" belongs to the "sudo" group
+martin@deb-lab-svr:~$ # /home/martin has 755 permissions, which come from the custom "HOME_MODE    0755" in /etc/login.defs used by useradd
 martin@deb-lab-svr:~$ for name in a-r{1..2} a-r42; do
 
     mkdir -p ~/iasb-class/"$name"/images
