@@ -1,0 +1,87 @@
+martin@deb-lab-svr:~$ mkdir ~/iasb-class/debian
+martin@deb-lab-svr:~$
+martin@deb-lab-svr:~$ # Install fresh Debian 13 on a backing disk file. 100 GiB disk in qcow2
+martin@deb-lab-svr:~$ # format (sparse file) is created automatically and can be inspected with
+martin@deb-lab-svr:~$ # sudo qemu-img info --force-share ~/iasb-class/debian/deb13.qcow2
+martin@deb-lab-svr:~$
+martin@deb-lab-svr:~$ # OS name/short-id for virt-install "--osinfo" can be seen
+martin@deb-lab-svr:~$ # in the output of "osinfo-query os vendor='Debian Project'"
+martin@deb-lab-svr:~$ # or "virt-install --osinfo list"
+martin@deb-lab-svr:~$ sudo virt-install --osinfo debian13 \
+    --name a-svr1 \
+    --events on_crash=restart \
+    --memory 16384 \
+    --vcpus 2 \
+    --location https://deb.debian.org/debian/dists/trixie/main/installer-amd64/ \
+    --disk ~/iasb-class/debian/deb13.qcow2,size=100 \
+    --network bridge="a-br-ext,target=a-svr1-vnet0" \
+    --graphics none \
+    --extra-args "console=ttyS0"
+
+
+/* interactive OS installation and provisioning the golden image */
+
+
+martin@deb-lab-svr:~$ sudo virsh desc a-svr1 --title "Routinator 3000 on Debian 13" --live --config
+Domain title updated successfully
+martin@deb-lab-svr:~$ sudo virsh autostart a-svr1
+Domain 'a-svr1' marked as autostarted
+
+martin@deb-lab-svr:~$ sudo virsh shutdown a-svr1
+Domain 'a-svr1' is being shutdown
+
+martin@deb-lab-svr:~$
+martin@deb-lab-svr:~$
+martin@deb-lab-svr:~$ mkdir -p ~/iasb-class/a-svr1/images ~/iasb-class/a-svr2/images
+martin@deb-lab-svr:~$
+martin@deb-lab-svr:~$ # Create two new overlay disks
+martin@deb-lab-svr:~$ sudo qemu-img create -F qcow2 -b ~/iasb-class/debian/deb13.qcow2 \
+> -f qcow2 ~/iasb-class/a-svr1/images/deb13.qcow2
+Formatting '/home/martin/iasb-class/a-svr1/images/deb13.qcow2', fmt=qcow2 cluster_size=65536 extended_l2=off compression_type=zlib size=107374182400 backing_file=/home/martin/iasb-class/debian/deb13.qcow2 backing_fmt=qcow2 lazy_refcounts=off refcount_bits=16
+martin@deb-lab-svr:~$
+martin@deb-lab-svr:~$ sudo qemu-img create -F qcow2 -b ~/iasb-class/debian/deb13.qcow2 \
+> -f qcow2 ~/iasb-class/a-svr2/images/deb13.qcow2
+Formatting '/home/martin/iasb-class/a-svr2/images/deb13.qcow2', fmt=qcow2 cluster_size=65536 extended_l2=off compression_type=zlib size=107374182400 backing_file=/home/martin/iasb-class/debian/deb13.qcow2 backing_fmt=qcow2 lazy_refcounts=off refcount_bits=16
+martin@deb-lab-svr:~$
+martin@deb-lab-svr:~$
+martin@deb-lab-svr:~$ # Swap the disk image of a-svr1 with the overlay disk
+martin@deb-lab-svr:~$ sudo virsh domblklist a-svr1 --details
+ Type   Device   Target   Source
+----------------------------------------------------------------------
+ file   disk     vda      /home/martin/iasb-class/debian/deb13.qcow2
+
+martin@deb-lab-svr:~$
+martin@deb-lab-svr:~$ sudo virt-xml a-svr1 --edit --disk path=~/iasb-class/a-svr1/images/deb13.qcow2
+Domain 'a-svr1' defined successfully.
+martin@deb-lab-svr:~$
+martin@deb-lab-svr:~$ sudo virsh domblklist a-svr1 --details
+ Type   Device   Target   Source
+-----------------------------------------------------------------------------
+ file   disk     vda      /home/martin/iasb-class/a-svr1/images/deb13.qcow2
+
+martin@deb-lab-svr:~$
+martin@deb-lab-svr:~$
+martin@deb-lab-svr:~$ # Create a second virtual machine with two vNICs, 64 GiB of RAM
+martin@deb-lab-svr:~$ # and four vCPUs; skip the OS installation process
+martin@deb-lab-svr:~$ sudo virt-install --osinfo debian13 \
+    --name a-svr2 \
+    --events on_crash=restart \
+    --memory 65536 \
+    --vcpus 4 \
+    --import \
+    --disk ~/iasb-class/a-svr2/images/deb13.qcow2 \
+    --network bridge="a-br-ext,target=a-svr2-vnet0" \
+    --network bridge="a-r2-r3-1,target=a-svr2-vnet1" \
+    --graphics none \
+    --noautoconsole
+
+Starting install...
+Creating domain...                                                                                                                                                                                                                                        |         00:00:00
+Domain creation completed.
+martin@deb-lab-svr:~$
+martin@deb-lab-svr:~$ sudo virsh desc a-svr2 --title "Routinator 3000 and IRRd on Debian 13" --live --config
+Domain title updated successfully
+martin@deb-lab-svr:~$ sudo virsh autostart a-svr2
+Domain 'a-svr2' marked as autostarted
+
+martin@deb-lab-svr:~$
