@@ -590,6 +590,15 @@ Messages on host machine console after executing `poweroff` in host machine when
     ![virsh snapshot revert example](https://github.com/tonusoo/vJunos-Router-and-vMX-on-KVM-QEMU-libvirt/blob/main/imgs/virsh_snapshot_revert_example.png)
 
 
+* [Debian virtual machines installation](https://github.com/tonusoo/vJunos-Router-and-vMX-on-KVM-QEMU-libvirt/blob/main/misc/virt-install_servers.txt):
+
+    ![interactive a-svr1 OS installation](https://github.com/tonusoo/vJunos-Router-and-vMX-on-KVM-QEMU-libvirt/blob/main/imgs/interactive_a-svr1_OS_installation.png)
+
+    ![creation of a-svr2 VM](https://github.com/tonusoo/vJunos-Router-and-vMX-on-KVM-QEMU-libvirt/blob/main/imgs/creation_of_a-svr2_VM.png)
+
+    For `sudo virsh console ...` to work, the `getty` on serial port needs to be enabled with `systemctl enable --now serial-getty@ttyS0` in the guest machine.
+
+
 * Per-project [~/iasb-class/tmux-session-setup.bash](https://github.com/tonusoo/vJunos-Router-and-vMX-on-KVM-QEMU-libvirt/blob/main/misc/tmux-session-setup.bash) script and [~/iasb-class/.ssh/config](https://github.com/tonusoo/vJunos-Router-and-vMX-on-KVM-QEMU-libvirt/blob/main/misc/config) files:
 
     ![tmux-session-setup.bash and SSH config](https://github.com/tonusoo/vJunos-Router-and-vMX-on-KVM-QEMU-libvirt/blob/main/imgs/tmux_script_and_ssh_config.png)
